@@ -12,6 +12,7 @@
 
 % === BEGIN DOCUMENT ===
 \begin{document}
+\sloppy
 
 % === COVER PAGE ===
 \input{../common/cover}
@@ -22,7 +23,7 @@
 
 \section{Introduction}
 \subsection{Purpose}
-This document defines the functional and non‑functional requirements for the Moove Education Platform, an Open edX‑based learning management system deployed using Tutor. It serves as the living source of truth for system capabilities, guiding continuous development, internal quality assurance, and security assessment activities. The requirements are aligned with Ethiopian regulatory frameworks, including the Critical Mass Cyber Security Requirement Standard (CMCSRS) and the National Cybersecurity Policy.
+This document defines the functional and non‑functional requirements for the Moove Education Platform, an Open edX‑based learning management system deployed using Tutor. It serves as the living source of truth for system capabilities, guiding continuous development, internal quality assurance, and security assessment activities. The requirements are aligned with Ethiopian regulatory frameworks, including the Critical Mass Cyber Security Requirement Standard (CMCSRS), the National Cybersecurity Policy, the Computer Crime Proclamation, and the Electronic Signature Proclamation.
 
 \subsection{Scope}
 The system provides a comprehensive online learning environment supporting:
@@ -36,7 +37,10 @@ The system provides a comprehensive online learning environment supporting:
     \item Administrative controls.
 \end{itemize}
 
-\subsection{Actors}
+\subsection{System Overview and Actors}
+The platform is a client‑server application based on Open edX, deployed in Docker containers orchestrated by Tutor. It uses a microservices architecture with separate containers for LMS, CMS, MFE, databases, and supporting services.
+
+\subsubsection{Actors}
 \begin{itemize}
     \item \textbf{Educator (Instructor/Staff)}: Creates and manages courses, creates content, assesses learners, moderates discussions, views analytics.
     \item \textbf{Learner (Student)}: Enrolls in courses, accesses content, completes assessments, participates in discussions, tracks progress.
@@ -44,8 +48,25 @@ The system provides a comprehensive online learning environment supporting:
     \item \textbf{System}: Automated processes (notifications, email, background tasks).
 \end{itemize}
 
+\subsection{System Constraints}
+\begin{itemize}
+    \item The system must comply with Ethiopian laws and regulations, including the Computer Crime Proclamation and the Electronic Signature Proclamation.
+    \item All user data must be stored and processed within the country’s jurisdiction.
+    \item The system must support English and Amharic (planned) interfaces.
+    \item The system shall be accessible via modern web browsers and mobile devices.
+\end{itemize}
+
+\subsection{Assumptions and Dependencies}
+\begin{itemize}
+    \item The platform assumes reliable internet connectivity for both learners and educators.
+    \item Third‑party services (e.g., video hosting, proctoring) are available and secured.
+    \item The underlying Tutor deployment and container infrastructure are maintained and updated regularly.
+\end{itemize}
+
+% ---------------------------------------------------------------------
+% EDUCATOR FEATURES
+% ---------------------------------------------------------------------
 \section{Functional Requirements – Educator Features}
-This section defines requirements for instructors and course staff.
 
 \subsection{Course Creation \& Planning Module}
 \paragraph{General Description}
@@ -54,21 +75,35 @@ Provides tools for educators to create, plan, and structure courses.
 \subsubsection{Requirement UFR-OE-001-01: Create a New Course}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Create a new course.
-\item \textbf{UML Traceability:} Use Case: "Create Course"; Activity: "Course Creation Flow".
+\item \textbf{UML Traceability:} Use Case: “Create Course”; Activity: “Course Creation Flow”.
 \item \textbf{Actor:} Educator (Instructor/Staff).
-\item \textbf{Pre-conditions:} Educator is logged in with course creation permissions.
-\item \textbf{Post-conditions:} Course is created with basic metadata; course skeleton is initialized.
+\item \textbf{Pre-conditions:} 
+    \begin{itemize}
+        \item Educator is logged in with course creation permissions.
+        \item The organisation code, course number, and run combination is unique.
+    \end{itemize}
+\item \textbf{Post-conditions:}
+    \begin{itemize}
+        \item A new course skeleton is created in the CMS.
+        \item The course appears in the educator’s course list.
+        \item An audit log entry is recorded.
+    \end{itemize}
 \item \textbf{Normal Flow:}
-    1. Educator navigates to Studio (CMS).
-    2. Clicks "New Course".
-    3. Enters course title, organization code, course number, and course run.
-    4. Sets start date, enrollment start/end dates, and course visibility.
-    5. Clicks "Create".
-    6. System initializes course structure and creates course ID.
-\item \textbf{Alt Flows:} Invalid course number/org code → validation error.
-\item \textbf{Business Rules:} Course ID must be unique. Course number and organization code follow defined patterns.
+    \begin{enumerate}
+        \item Educator navigates to Studio (CMS).
+        \item Clicks “New Course”.
+        \item Enters course title, organisation code, course number, and course run.
+        \item Sets start date, enrollment start/end dates, and course visibility.
+        \item Clicks “Create”.
+        \item System validates uniqueness and creates the course ID.
+    \end{enumerate}
+\item \textbf{Alternative Flows:}
+    \begin{itemize}
+        \item Alt 1: Duplicate course ID → validation error.
+    \end{itemize}
+\item \textbf{Business Rules:} Course ID format: \texttt{org+course+run}; must be unique.
 \item \textbf{Input/Output:} Input: title, org, number, run, start date, enrollment dates. Output: Course object with ID.
-\item \textbf{Acceptance:}
+\item \textbf{Acceptance Criteria:}
     \begin{verbatim}
 Given I am an educator
 When I create a course with title "Introduction to Physics"
@@ -80,163 +115,226 @@ And the course appears in my course list
 \subsubsection{Requirement UFR-OE-001-02: Plan a New Course (Outline)}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Plan course outline.
+\item \textbf{UML Traceability:} Activity: “Course Outline Flow”.
 \item \textbf{Actor:} Educator.
 \item \textbf{Pre:} Course exists.
 \item \textbf{Post:} Course outline (sections, subsections, units) is defined.
-\item \textbf{Normal Flow:} Educator adds sections, subsections, and units to organize content.
+\item \textbf{Normal Flow:} 
+    \begin{enumerate}
+        \item Educator opens the course outline.
+        \item Clicks “Add Section” and enters a name.
+        \item Within a section, clicks “Add Subsection” and enters a name.
+        \item Within a subsection, clicks “Add Unit” to create content pages.
+        \item Drags and drops to reorder.
+    \end{enumerate}
 \item \textbf{Input/Output:} Input: section/subsection/unit metadata. Output: updated course structure.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-001-03: Enroll Learners in a Course}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Enroll learners manually.
+\item \textbf{UML Traceability:} Use Case: “Manage Enrollments”.
 \item \textbf{Actor:} Educator.
 \item \textbf{Pre:} Course exists and enrollment is open.
 \item \textbf{Post:} Learner is enrolled.
-\item \textbf{Normal Flow:} Educator enters learner email(s) and assigns enrollment track (audit/verified).
+\item \textbf{Normal Flow:} 
+    \begin{enumerate}
+        \item Educator goes to “Instructor Dashboard” → “Enrollment”.
+        \item Enters learner email(s) and selects enrollment track (audit/verified).
+        \item Clicks “Enroll”.
+        \item System sends confirmation email.
+    \end{enumerate}
 \item \textbf{Alt:} Bulk enrollment via CSV upload.
-\item \textbf{Acceptance:} Bulk upload processes 500+ enrollments.
+\item \textbf{Acceptance:} Bulk upload processes 500+ enrollments within 5 minutes.
 \end{enumerate}
 
 \subsection{Instructional Design Concepts}
 \subsubsection{Requirement UFR-OE-002-01: Apply Instructional Design Principles}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Apply instructional design concepts.
+\item \textbf{UML Traceability:} – (guideline).
 \item \textbf{Actor:} Educator.
-\item \textbf{Normal Flow:} Educator structures course using learning objectives, assessments, and activities following Open edX best practices.
-\item \textbf{Business Rules:} Supports backward design, Bloom's taxonomy alignment.
+\item \textbf{Pre:} Course exists.
+\item \textbf{Post:} Course is structured using sound pedagogical design.
+\item \textbf{Normal Flow:} 
+    \begin{enumerate}
+        \item Educator defines learning objectives for each section.
+        \item Creates assessments aligned with objectives.
+        \item Uses Open edX best practices (backward design, Bloom's taxonomy).
+    \end{enumerate}
 \end{enumerate}
 
 \subsection{Learner Engagement \& Communication Module}
 \subsubsection{Requirement UFR-OE-003-01: Course Discussions}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Configure course discussions.
+\item \textbf{UML Traceability:} Use Case: “Manage Discussions”.
 \item \textbf{Actor:} Educator.
 \item \textbf{Pre:} Course exists.
 \item \textbf{Post:} Discussion forums enabled.
-\item \textbf{Normal Flow:} Educator enables discussions, configures topics, and sets moderation policies.
+\item \textbf{Normal Flow:} 
+    \begin{enumerate}
+        \item Educator goes to “Advanced Settings” and enables discussions.
+        \item Configures topics and moderation policies.
+    \end{enumerate}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-003-02: Bulk Emails}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Send bulk emails to learners.
+\item \textbf{UML Traceability:} Sequence: “Bulk Email Flow”.
 \item \textbf{Actor:} Educator.
 \item \textbf{Pre:} Course has enrolled learners.
-\item \textbf{Normal Flow:} Educator composes email, selects recipients (all learners, specific segments), sends.
-\item \textbf{Business Rules:} Email is sent asynchronously via Celery.
+\item \textbf{Post:} Email sent asynchronously.
+\item \textbf{Normal Flow:} 
+    \begin{enumerate}
+        \item Educator composes email, selects recipients (all learners, specific segments).
+        \item Clicks “Send”.
+        \item System queues via Celery.
+    \end{enumerate}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-003-03: Course Updates}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Publish course updates.
+\item \textbf{UML Traceability:} – (simple notification).
 \item \textbf{Actor:} Educator.
-\item \textbf{Normal Flow:} Educator creates update post (announcement) visible on course home page.
+\item \textbf{Post:} Update appears on course home page.
+\item \textbf{Normal Flow:} Educator creates an update post (title, content) and publishes.
 \end{enumerate}
 
 \subsection{Content Creation \& Management Module}
 \subsubsection{Requirement UFR-OE-004-01: Create and Manage Components}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Add and manage course components.
+\item \textbf{UML Traceability:} Activity: “Component Management”.
 \item \textbf{Actor:} Educator.
-\item \textbf{Pre:} Course structure exists.
+\item \textbf{Pre:} Unit exists.
 \item \textbf{Post:} Component added to unit.
-\item \textbf{Component Types:} HTML, Video, Problem, Discussion, Poll, Survey, and custom XBlocks.
+\item \textbf{Normal Flow:} 
+    \begin{enumerate}
+        \item Educator selects a unit.
+        \item Clicks “Add New Component” and chooses type (HTML, Video, Problem, Discussion, etc.).
+        \item Configures component content.
+        \item Saves.
+    \end{enumerate}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-004-02: Manage Text Components}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Create and edit HTML/text components.
 \item \textbf{Actor:} Educator.
-\item \textbf{Normal Flow:} Educator uses rich text editor or raw HTML to create text content.
-\item \textbf{Features:} Supports LaTeX, Code snippets, Embedded media.
+\item \textbf{Normal Flow:} Uses rich text editor or raw HTML; supports LaTeX, code snippets.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-004-03: Manage Video Components}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Upload and manage video content.
+\item \textbf{UML Traceability:} Use Case: “Manage Video”.
 \item \textbf{Actor:} Educator.
 \item \textbf{Pre:} Video file available.
-\item \textbf{Normal Flow:} Educator uploads video file or enters YouTube/Vimeo URL; system processes and displays video player.
-\item \textbf{Features:} Transcript support, speed control, download options.
+\item \textbf{Post:} Video player embedded.
+\item \textbf{Normal Flow:} Uploads video file or enters URL; system processes and displays player with transcripts, speed control.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-004-04: Control Content Visibility \& Access}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Control content visibility and access.
+\item \textbf{UML Traceability:} – (settings).
 \item \textbf{Actor:} Educator.
-\item \textbf{Normal Flow:} Educator sets release dates, prerequisites, and visibility rules for content.
-\item \textbf{Features:} Release date, prerequisite, visibility to specific user groups.
+\item \textbf{Normal Flow:} Sets release dates, prerequisites, and visibility rules.
 \end{enumerate}
 
 \subsection{Components \& Activities Module}
 \subsubsection{Requirement UFR-OE-005-01: Dropdown Problem}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Create dropdown problem.
+\item \textbf{UML Traceability:} – (component type).
 \item \textbf{Actor:} Educator.
-\item \textbf{Description:} Multiple choice with a dropdown selector; learner selects one option.
+\item \textbf{Pre:} Unit exists.
+\item \textbf{Post:} Problem added to unit.
+\item \textbf{Normal Flow:} 
+    \begin{enumerate}
+        \item Adds a Problem component.
+        \item Selects “Dropdown” type.
+        \item Enters question and options.
+        \item Marks correct answer.
+        \item Saves.
+    \end{enumerate}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-005-02: Multi-Select Problem}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Create multi-select problem.
-\item \textbf{Description:} Learner selects multiple correct answers from a list.
+\item \textbf{Actor:} Educator.
+\item \textbf{Normal Flow:} Adds Problem component, selects “Multi-Select”, enters options and marks multiple correct answers.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-005-03: Open Response Assessments (ORA)}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Create open response assessment.
+\item \textbf{UML Traceability:} Activity: “ORA Flow”.
 \item \textbf{Actor:} Educator.
-\item \textbf{Normal Flow:} Educator defines prompt, rubric, and assessment steps (self, peer, staff).
-\item \textbf{Features:} Rubric-based grading, peer review, self-assessment.
+\item \textbf{Normal Flow:} 
+    \begin{enumerate}
+        \item Adds Advanced component → “Open Response Assessment”.
+        \item Defines prompt and rubric.
+        \item Configures assessment steps (self, peer, staff).
+        \item Sets deadlines.
+        \item Saves.
+    \end{enumerate}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-005-04: Single Select Problem}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Create single select (radio button) problem.
-\item \textbf{Description:} Learner selects one correct answer from a list of options.
+\item \textbf{Actor:} Educator.
+\item \textbf{Normal Flow:} Adds Problem, selects “Single Select”, enters options, marks correct answer.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-005-05: Text Input Problem}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Create text input problem.
-\item \textbf{Description:} Learner enters a short text answer; system checks against expected answer(s).
+\item \textbf{Actor:} Educator.
+\item \textbf{Normal Flow:} Adds Problem, selects “Text Input”, enters question and expected answer(s).
 \end{enumerate}
 
 \subsection{Data \& Analytics Module}
 \subsubsection{Requirement UFR-OE-006-01: View Course Enrollments}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View course enrollment data.
+\item \textbf{UML Traceability:} Use Case: “View Analytics”.
 \item \textbf{Actor:} Educator.
-\item \textbf{Normal Flow:} Educator accesses enrollment dashboard showing totals, trends, and demographics.
+\item \textbf{Normal Flow:} Accesses Instructor Dashboard → Data Downloads → Enrollment Data; views totals, trends, demographics.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-006-02: View Learner Data}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View learner data and activity.
 \item \textbf{Actor:} Educator.
-\item \textbf{Normal Flow:} Educator views individual learner progress, engagement metrics, and activity history.
+\item \textbf{Normal Flow:} Instructor Dashboard → Student Admin; searches learner; views progress, engagement, activity history.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-006-03: View Learner Grades}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View and manage learner grades.
+\item \textbf{UML Traceability:} Sequence: “Grade View”.
 \item \textbf{Actor:} Educator.
-\item \textbf{Normal Flow:} Educator accesses gradebook, views grades by assignment and learner.
-\item \textbf{Features:} Export to CSV, manual grade adjustment.
+\item \textbf{Normal Flow:} Accesses Gradebook; views grades per assignment; adjusts manually if needed; exports CSV.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-006-04: View Answer Data}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View answer distribution data.
 \item \textbf{Actor:} Educator.
-\item \textbf{Normal Flow:} Educator views analytics on problem answers (e.g., \% correct per problem).
+\item \textbf{Normal Flow:} Data Downloads → Answer Distribution; sees \% correct per problem.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-006-05: View Certificate Data}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View certificate issuance data.
 \item \textbf{Actor:} Educator.
-\item \textbf{Normal Flow:} Educator views list of issued certificates and download statistics.
+\item \textbf{Normal Flow:} Data Downloads → Certificate Data; views list of issued certificates and download stats.
 \end{enumerate}
 
 \subsection{Accessibility Module}
@@ -265,7 +363,7 @@ And the course appears in my course list
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Upload and manage video transcripts.
 \item \textbf{Actor:} Educator.
-\item \textbf{Normal Flow:} Educator uploads transcript files (.srt, .vtt) for video components.
+\item \textbf{Normal Flow:} Uploads .srt/.vtt files for video components; transcripts appear as captions.
 \end{enumerate}
 
 \subsection{Import/Export / OLX Module}
@@ -283,37 +381,45 @@ And the course appears in my course list
 \item \textbf{Description:} Provide resources for educators to learn and use OLX.
 \end{enumerate}
 
+% ---------------------------------------------------------------------
+% LEARNER FEATURES
+% ---------------------------------------------------------------------
 \section{Functional Requirements – Learner Features}
-This section defines requirements for learners.
 
 \subsection{Dashboard \& Profile Module}
 \subsubsection{Requirement UFR-OE-101-01: Explore Dashboard and Profile}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Access and explore learner dashboard.
+\item \textbf{UML Traceability:} Use Case: “View Dashboard”.
 \item \textbf{Actor:} Learner.
-\item \textbf{Pre:} Learner is logged in.
-\item \textbf{Post:} Dashboard displays enrolled courses, progress, and announcements.
+\item \textbf{Pre:} Learner logged in.
+\item \textbf{Post:} Dashboard displays enrolled courses, progress, announcements.
+\item \textbf{Normal Flow:} 
+    \begin{enumerate}
+        \item Learner logs in.
+        \item Dashboard shows course cards with progress bars, recent activity, and site announcements.
+    \end{enumerate}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-101-02: Access Courses from Dashboard}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Access enrolled courses from dashboard.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} Learner clicks on course card to enter the course.
+\item \textbf{Normal Flow:} Clicks on course card; enters the course.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-101-03: Share Courses on Social Media}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Share course links on social media.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} Learner clicks "Share" button, selects platform (Facebook, Twitter, LinkedIn).
+\item \textbf{Normal Flow:} Clicks “Share” button; selects platform (Facebook, Twitter, LinkedIn); link posted.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-101-04: Update Profile Image}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Upload or update profile image.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} Learner uploads image file; system resizes and stores.
+\item \textbf{Normal Flow:} Clicks on profile, selects image file; system resizes and stores.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-101-05: Update Profile Details}
@@ -321,34 +427,35 @@ This section defines requirements for learners.
 \item \textbf{Title:} Update profile information.
 \item \textbf{Actor:} Learner.
 \item \textbf{Fields:} Name, email, location, bio, language preferences.
+\item \textbf{Normal Flow:} Edits fields and saves.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-101-06: Add Social Media Links}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Add personal social media links.
 \item \textbf{Actor:} Learner.
-\item \textbf{Description:} Learner adds links to Twitter, LinkedIn, GitHub, etc.
+\item \textbf{Normal Flow:} Adds URLs for Twitter, LinkedIn, GitHub, etc.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-101-07: Toggle Profile Visibility}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Control profile visibility.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} Learner toggles visibility of profile sections (public/private).
+\item \textbf{Normal Flow:} Toggles visibility of profile sections (public/private).
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-101-08: View Another Learner’s Profile}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View other learners' profiles.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} Learner clicks on username in discussions or course roster.
+\item \textbf{Normal Flow:} Clicks on username in discussions or roster; profile opens (public info only).
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-101-09: Update Course-Specific Settings}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Update course-specific settings.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} Learner configures per-course preferences (e.g., email notifications, language).
+\item \textbf{Normal Flow:} In course, clicks avatar → Course Settings; adjusts email notifications, language.
 \end{enumerate}
 
 \subsection{Course Navigation Module}
@@ -356,24 +463,31 @@ This section defines requirements for learners.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Navigate course using sidebar.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} Sidebar displays course sections and subsections for easy navigation.
+\item \textbf{Normal Flow:} Sidebar displays all sections/subsections; click to navigate.
 \end{enumerate}
 
 \subsection{Enrollment Module}
 \subsubsection{Requirement UFR-OE-103-01: Enroll in a Course}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Enroll in a course.
+\item \textbf{UML Traceability:} Sequence: “Enrollment Flow”.
 \item \textbf{Actor:} Learner.
-\item \textbf{Pre:} Course is open for enrollment.
-\item \textbf{Post:} Learner is enrolled.
-\item \textbf{Normal Flow:} Learner clicks "Enroll" on course page; system confirms enrollment.
+\item \textbf{Pre:} Course open for enrollment.
+\item \textbf{Post:} Learner enrolled.
+\item \textbf{Normal Flow:} 
+    \begin{enumerate}
+        \item Browses course catalog.
+        \item Clicks “Enroll Now”.
+        \item Selects enrollment track (Audit/Verified).
+        \item Confirms enrollment.
+    \end{enumerate}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-103-02: Open and Start a Course}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Open and start a course.
 \item \textbf{Actor:} Learner.
-\item \textbf{Post:} Learner accesses course content.
+\item \textbf{Normal Flow:} Clicks “Start Course” or “Resume Course” from dashboard; goes to last visited content.
 \end{enumerate}
 
 \subsection{Course Prerequisites Module}
@@ -381,21 +495,21 @@ This section defines requirements for learners.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View course prerequisites.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} Learner views prerequisite requirements before enrolling.
+\item \textbf{Normal Flow:} Prerequisites displayed on course info page; learner can check completion status.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-104-02: Complete Prerequisite Course}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Complete prerequisite course.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} Learner must complete prerequisite course before enrolling in advanced course.
+\item \textbf{Normal Flow:} Must complete prerequisite course before enrolling in advanced course.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-104-03: Pass Entrance Exam}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Pass entrance exam.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} Learner takes and passes an entrance exam to gain access.
+\item \textbf{Normal Flow:} Takes and passes an entrance exam to gain access.
 \end{enumerate}
 
 \subsection{Course Content Access Module}
@@ -403,28 +517,28 @@ This section defines requirements for learners.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Troubleshoot content access issues.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} System provides error messages and support for content access issues.
+\item \textbf{Normal Flow:} System provides error messages and support links; contact course staff.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-105-02: Access an Archived Course}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Access archived course.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} Learner can view read-only archived course content.
+\item \textbf{Normal Flow:} Views read‑only archived course content.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-105-03: View Final Course Grade}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View final course grade.
 \item \textbf{Actor:} Learner.
-\item \textbf{Post:} Learner sees final grade and passing status.
+\item \textbf{Post:} Sees final grade and passing status.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-105-04: View Certificate Status}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View certificate status.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} Learner views certificate issuance status and download link.
+\item \textbf{Normal Flow:} In profile → Certificates, sees status (Eligible, Available, Not Eligible).
 \end{enumerate}
 
 \subsection{Course Progress Module}
@@ -432,28 +546,28 @@ This section defines requirements for learners.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View course start date.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} Course start date displayed on course info and dashboard.
+\item \textbf{Normal Flow:} Start date displayed on course info and dashboard.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-106-02: Start or Resume a Course}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Start or resume a course.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} Learner clicks "Start" or "Resume" button; system navigates to last visited content.
+\item \textbf{Normal Flow:} Clicks “Start” or “Resume” from dashboard; goes to last visited content.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-106-03: Progress Indicators}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View progress indicators.
 \item \textbf{Actor:} Learner.
-\item \textbf{Description:} Visual indicators show completion percentage for sections, subsections, and course overall.
+\item \textbf{Description:} Visual indicators show completion percentage for sections, subsections, and overall.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-106-04: The Progress Page}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Access the Progress page.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} Learner navigates to Progress page to view detailed completion status.
+\item \textbf{Normal Flow:} Navigates to Progress page to view detailed completion status.
 \end{enumerate}
 
 \subsection{Certificates \& Badges Module}
@@ -461,7 +575,7 @@ This section defines requirements for learners.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Access earned certificate.
 \item \textbf{Actor:} Learner.
-\item \textbf{Post:} Learner downloads or prints certificate.
+\item \textbf{Post:} Downloads or prints certificate.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-107-02: Viewing Earned Badges in Profile}
@@ -475,7 +589,7 @@ This section defines requirements for learners.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Share badges to Mozilla Backpack.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} Learner pushes badge to Mozilla Backpack for portability.
+\item \textbf{Normal Flow:} Clicks “Share to Backpack” and authorises.
 \end{enumerate}
 
 \subsection{Video Player Module}
@@ -483,7 +597,7 @@ This section defines requirements for learners.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Use the video player.
 \item \textbf{Actor:} Learner.
-\item \textbf{Features:} Play, pause, volume, speed control, full-screen, CC/subtitles.
+\item \textbf{Features:} Play, pause, volume, speed control, full‑screen, CC/subtitles.
 \end{enumerate}
 
 \subsection{Discussions Module}
@@ -491,7 +605,7 @@ This section defines requirements for learners.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Access course discussions.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} Learner accesses discussions from course navigation.
+\item \textbf{Normal Flow:} Clicks “Discussions” tab; sees threads and topics.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-109-02: Finding and Following Conversations}
@@ -505,7 +619,7 @@ This section defines requirements for learners.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Participate in discussions.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} Learner creates new threads, replies to existing ones.
+\item \textbf{Normal Flow:} Creates new threads, replies to existing ones.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-109-04: Staying Updated with Notifications}
@@ -527,7 +641,7 @@ This section defines requirements for learners.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Take timed exam.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} Learner starts exam; timer starts; auto-submit at expiration.
+\item \textbf{Normal Flow:} Starts exam; timer counts down; auto‑submit at expiration.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-110-03: Proctored Exams}
@@ -541,21 +655,21 @@ This section defines requirements for learners.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Provide explanation for multiple choice answers.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} Learner selects answer and optionally explains reasoning.
+\item \textbf{Normal Flow:} Selects answer and optionally enters explanation.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-110-05: Completing Essay Assignments}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Complete essay assignment.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} Learner writes essay in text editor (supports formatting).
+\item \textbf{Normal Flow:} Writes essay in text editor (supports formatting).
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-110-06: Open Response Assessment Steps}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Follow ORA workflow.
 \item \textbf{Actor:} Learner.
-\item \textbf{Steps:} Submit response, self-assessment, peer assessment, receive score.
+\item \textbf{Steps:} Submit response, self‑assessment, peer assessment, receive score.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-110-07: How Grading Is Done In Open Response Assessments}
@@ -569,14 +683,14 @@ This section defines requirements for learners.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Complete ORA.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} Learner submits response, performs self/peer assessments.
+\item \textbf{Normal Flow:} Submits response, performs self/peer assessments.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-110-09: Receive Score and Provide Feedback}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Receive ORA score and provide feedback.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} Learner views score and provides feedback on assessment experience.
+\item \textbf{Normal Flow:} Views score and provides feedback on assessment experience.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-110-10: How Peer Assessment Scores Are Calculated}
@@ -590,7 +704,7 @@ This section defines requirements for learners.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Handle canceled responses.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} Learner can cancel submission before assessment.
+\item \textbf{Normal Flow:} Can cancel submission before assessment.
 \end{enumerate}
 
 \subsection{Team Projects Module}
@@ -605,35 +719,35 @@ This section defines requirements for learners.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Search for a team.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} Learner searches teams by name, topic, or member.
+\item \textbf{Normal Flow:} Searches teams by name, topic, or member.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-111-03: Join a Team}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Join an existing team.
 \item \textbf{Actor:} Learner.
-\item \textbf{Post:} Learner is added to team.
+\item \textbf{Post:} Added to team.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-111-04: Leave a Team}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Leave a team.
 \item \textbf{Actor:} Learner.
-\item \textbf{Post:} Learner is removed from team.
+\item \textbf{Post:} Removed from team.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-111-05: Create a Team}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Create a new team.
 \item \textbf{Actor:} Learner.
-\item \textbf{Post:} Team is created; learner becomes team member.
+\item \textbf{Post:} Team created; learner becomes member.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-111-06: Participating in Team Discussions}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Participate in team discussions.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} Team members discuss within team-specific forum.
+\item \textbf{Normal Flow:} Team members discuss within team‑specific forum.
 \end{enumerate}
 
 \subsection{Search Module}
@@ -641,21 +755,21 @@ This section defines requirements for learners.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Understand search capabilities.
 \item \textbf{Actor:} Learner.
-\item \textbf{Description:} System supports full-text search across course content.
+\item \textbf{Description:} Full‑text search across course content.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-112-02: Search a Single Course}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Search within a course.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} Learner enters search query; system returns relevant content within course.
+\item \textbf{Normal Flow:} Enters query; returns relevant content within course.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-112-03: Search All Your Courses}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Search across all courses.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} Learner enters search query; system returns results from all enrolled courses.
+\item \textbf{Normal Flow:} Enters query; returns results from all enrolled courses.
 \end{enumerate}
 
 \subsection{Bookmarking Module}
@@ -663,14 +777,14 @@ This section defines requirements for learners.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Bookmark course content.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} Learner clicks bookmark icon to save or remove bookmark.
+\item \textbf{Normal Flow:} Clicks bookmark icon to save/remove bookmark.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-113-02: View Your Bookmarks}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View bookmarked content.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} Learner accesses bookmarks page to view and navigate saved items.
+\item \textbf{Normal Flow:} Accesses bookmarks page to view and navigate saved items.
 \end{enumerate}
 
 \subsection{Notifications \& Preferences Module}
@@ -678,28 +792,28 @@ This section defines requirements for learners.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Access notifications.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} Notifications appear in dashboard, email, and in-app alerts.
+\item \textbf{Normal Flow:} Notifications appear in dashboard, email, and in‑app alerts.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-114-02: Activity Types}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Understand notification activity types.
 \item \textbf{Actor:} Learner.
-\item \textbf{Description:} System supports types: discussion replies, assignment due dates, course updates, etc.
+\item \textbf{Description:} Types include discussion replies, assignment due dates, course updates.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-114-03: Managing Preferences}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Manage notification preferences.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} Learner configures which notifications to receive and via which channels.
+\item \textbf{Normal Flow:} Configures which notifications to receive and via which channels.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-114-04: Notifications Expiry}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Notification expiry.
 \item \textbf{Actor:} System.
-\item \textbf{Description:} Notifications expire after a defined period.
+\item \textbf{Description:} Notifications expire after 30 days.
 \end{enumerate}
 
 \subsection{Course Wiki Module}
@@ -707,25 +821,25 @@ This section defines requirements for learners.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Use the course wiki.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} Learner accesses wiki from course navigation; views and edits (if allowed).
+\item \textbf{Normal Flow:} Accesses wiki from course navigation; views and edits (if allowed).
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-115-02: View Live Course}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View live course content.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} Learner accesses course content that is currently active/published.
+\item \textbf{Normal Flow:} Accesses content that is currently active/published.
 \end{enumerate}
 
 % ---------------------------------------------------------------------
-% NEW SECURITY AND COMPLIANCE REQUIREMENTS
+% SECURITY AND COMPLIANCE REQUIREMENTS
 % ---------------------------------------------------------------------
 \section{Security and Compliance Requirements (Non‑Functional)}
 This section defines mandatory security requirements derived from INSA’s CMCSRS, the Computer Crime Proclamation, and the Electronic Signature Proclamation. All requirements are traceable to the \textit{Security Architecture \& Threat Model} document.
 
 \subsection{Access Control (CMCSRS 6.17)}
 \begin{enumerate}[label=\textbf{SEC-NFR-001-\arabic*.}]
-    \item The system must enforce role‑based access control (RBAC) for all user actions. Roles include Learner, Educator, Administrator, and System.
+    \item The system must enforce role‑based access control (RBAC) for all user actions.
     \item All access to administrative functions must be restricted to users with appropriate privileges.
     \item User accounts must be subject to a formal provisioning and de‑provisioning process.
     \item Default passwords for any system component must be changed upon first use.
@@ -735,39 +849,39 @@ This section defines mandatory security requirements derived from INSA’s CMCSR
 \subsection{Cryptography (CMCSRS 6.18)}
 \begin{enumerate}[label=\textbf{SEC-NFR-002-\arabic*.}]
     \item All data in transit must be encrypted using TLS 1.2 or higher.
-    \item All sensitive data at rest (passwords, API keys, PII) must be encrypted using strong, INSA‑approved algorithms (e.g., AES‑256).
-    \item Private keys and secrets must never be stored in plaintext; they must be managed via secure key management processes.
+    \item All sensitive data at rest must be encrypted using strong, INSA‑approved algorithms.
+    \item Private keys and secrets must never be stored in plaintext.
     \item Digital signatures must be used for certificate verification as per the Electronic Signature Proclamation.
 \end{enumerate}
 
 \subsection{Network Security (CMCSRS 5.7.c)}
 \begin{enumerate}[label=\textbf{SEC-NFR-003-\arabic*.}]
-    \item A host‑based firewall (UFW) must be active and configured to allow only necessary ports (22, 80, 443).
-    \item The internal network must be segmented into separate Docker networks for frontend, backend, and database services.
+    \item A host‑based firewall must be active and configured to allow only necessary ports.
+    \item The internal network must be segmented into separate Docker networks.
     \item All unnecessary services and ports must be disabled.
-    \item Intrusion detection/prevention systems (fail2ban, IDS) must be deployed to protect against brute‑force attacks.
+    \item Intrusion detection/prevention systems must be deployed.
 \end{enumerate}
 
 \subsection{Logging and Monitoring (CMCSRS 6.25)}
 \begin{enumerate}[label=\textbf{SEC-NFR-004-\arabic*.}]
-    \item All system and application logs must be collected centrally (SIEM) and retained for at least one month.
-    \item Security‑relevant events (login failures, privilege changes, configuration changes) must be logged with timestamps and user identifiers.
-    \item Regular vulnerability scanning (e.g., Trivy) must be performed weekly on container images.
-    \item Anomaly detection and alerting must be configured for critical events.
+    \item All logs must be collected centrally and retained for at least one month.
+    \item Security‑relevant events must be logged with timestamps and user identifiers.
+    \item Regular vulnerability scanning must be performed weekly.
+    \item Anomaly detection and alerting must be configured.
 \end{enumerate}
 
 \subsection{Incident Response and Business Continuity (CMCSRS 6.26, 6.19)}
 \begin{enumerate}[label=\textbf{SEC-NFR-005-\arabic*.}]
     \item An incident response plan must be documented and tested annually.
     \item A business continuity plan with defined RTO and RPO must be maintained.
-    \item Regular backups of all critical data must be performed and stored off‑site.
-    \item All security incidents must be reported to Ethio‑CERT and INSA as per CMCSRS 6.26.f.
+    \item Regular backups must be performed and stored off‑site.
+    \item All security incidents must be reported to Ethio‑CERT and INSA.
 \end{enumerate}
 
 \subsection{Personnel Security (CMCSRS 5.6, 6.37)}
 \begin{enumerate}[label=\textbf{SEC-NFR-006-\arabic*.}]
     \item All personnel with access to sensitive systems must undergo security clearance.
-    \item Mandatory annual security awareness training must be provided to all employees.
+    \item Mandatory annual security awareness training must be provided.
     \item Job descriptions must include security responsibilities.
 \end{enumerate}
 
@@ -778,11 +892,58 @@ This section defines mandatory security requirements derived from INSA’s CMCSR
     \item A compliance report must be submitted to INSA annually.
 \end{enumerate}
 
-All security requirements are linked to the \textit{Security Architecture \& Threat Model} document, which provides detailed implementation guidance and risk assessment.
+% ---------------------------------------------------------------------
+% NON‑FUNCTIONAL REQUIREMENTS
+% ---------------------------------------------------------------------
+\section{Non‑Functional Requirements}
+\subsection{Performance}
+\begin{itemize}
+    \item Support at least 10,000 concurrent learners and 500 concurrent educators.
+    \item Page load times below 2 seconds for 95\% of requests.
+    \item API response times below 500ms for 95\% of requests.
+    \item Video streaming supports at least 720p with adaptive bitrate.
+\end{itemize}
 
+\subsection{Security}
+\begin{itemize}
+    \item All network communication encrypted with TLS 1.2+.
+    \item Passwords hashed using PBKDF2/BCrypt.
+    \item API authentication using JWT with short expiry.
+    \item RBAC enforced.
+    \item Firewall and intrusion detection in place.
+\end{itemize}
+
+\subsection{Availability}
+\begin{itemize}
+    \item 99.9\% uptime.
+    \item Automatic container restarts.
+    \item Daily off‑site backups.
+\end{itemize}
+
+\subsection{Maintainability}
+\begin{itemize}
+    \item Containerised microservices architecture.
+    \item Quarterly upstream merges.
+    \item Externalised configuration.
+\end{itemize}
+
+\subsection{Scalability}
+\begin{itemize}
+    \item Horizontal scaling with container replicas.
+    \item Database read replicas supported.
+\end{itemize}
+
+\subsection{Usability}
+\begin{itemize}
+    \item Responsive interface (modern browsers).
+    \item User‑friendly error messages.
+    \item WCAG 2.1 AA accessibility.
+\end{itemize}
+
+% ---------------------------------------------------------------------
+% TRACEABILITY MATRIX
+% ---------------------------------------------------------------------
 \section{Traceability Matrix}
-The following table maps each requirement to its corresponding test case and security reference.
-
 \begin{center}
 \begin{longtable}{|p{3.5cm}|p{3.5cm}|p{3cm}|}
 \hline
@@ -815,15 +976,32 @@ UFR-OE-110-02 & TC-013 & SEC-NFR-003 \\
 UFR-OE-112-02 & TC-014 & – \\
 UFR-OE-113-01 & TC-015 & – \\
 UFR-OE-114-03 & TC-016 & SEC-NFR-006 \\
-SEC-NFR-001 to 007 & See Security document & CMCSRS, Proc.958/2016 \\
-\hline
+SEC-NFR-001..007 & Security doc & CMCSRS, Proc.958/2016 \\
 \end{longtable}
 \end{center}
 
+% ---------------------------------------------------------------------
+% GLOSSARY
+% ---------------------------------------------------------------------
+\section{Glossary}
+\begin{description}
+    \item[CMCSRS] Critical Mass Cyber Security Requirement Standard.
+    \item[CMS] Course Management System.
+    \item[DFD] Data Flow Diagram.
+    \item[INSA] Information Network Security Administration.
+    \item[LMS] Learning Management System.
+    \item[MFE] Micro‑Frontend.
+    \item[RBAC] Role‑Based Access Control.
+    \item[Tutor] Open edX deployment tool.
+\end{description}
+
+% ---------------------------------------------------------------------
+% REFERENCES
+% ---------------------------------------------------------------------
 \section{References}
 \begin{itemize}
-    \item \textit{Security Architecture \& Threat Model – Moove Education Platform} (Security\_OpenEdX.tex)
-    \item CMCSRS (Critical Mass Cyber Security Requirement Standard) v2.0 (2025)
+    \item \textit{Security Architecture \& Threat Model – Moove Education Platform}
+    \item CMCSRS v2.0 (2025)
     \item FDRE National Cybersecurity Policy (2024)
     \item Computer Crime Proclamation No. 958/2016
     \item Electronic Signature Proclamation No. 1072/2018
