@@ -2,7 +2,7 @@ PWD /Users/macbookpro/educationvirtual.net/moove-openedx-docs/SDD
 INPUT /usr/local/texlive/2026/texmf.cnf
 INPUT /usr/local/texlive/2026/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2026/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT SDD_OpenEdX.tex
+INPUT /Users/macbookpro/educationvirtual.net/moove-openedx-docs/SDD/SDD_OpenEdX.tex
 OUTPUT SDD_OpenEdX.log
 INPUT ../common/preamble.tex
 INPUT ../common/preamble.tex

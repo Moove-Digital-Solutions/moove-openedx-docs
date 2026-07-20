@@ -1,10 +1,11 @@
 # Fdb version 4
-["pdflatex"] 1784550570.31461 "SDD_OpenEdX.tex" "SDD_OpenEdX.pdf" "SDD_OpenEdX" 1784550571.74816 0
+["pdflatex"] 1784550979.23693 "/Users/macbookpro/educationvirtual.net/moove-openedx-docs/SDD/SDD_OpenEdX.tex" "SDD_OpenEdX.pdf" "SDD_OpenEdX" 1784550980.55808 0
   "../common/cover.tex" 1783197070.20834 445 e6ab4c3457695f7ab49cff5452125071 ""
   "../common/footer.tex" 1783197051.23098 648 ef5528c86f28b48f43b93017d1bde956 ""
   "../common/license.tex" 1782934993.03771 0 d41d8cd98f00b204e9800998ecf8427e ""
   "../common/preamble.tex" 1783196332.93356 1566 73e1329224de055547676cbcbf66b80a ""
   "../logo.png" 1783195631.49143 47196 dd847530ac6f490e333d17a98e88091b ""
+  "/Users/macbookpro/educationvirtual.net/moove-openedx-docs/SDD/SDD_OpenEdX.tex" 1784550980.41166 10378 da7bee2b0d0190148542859825094d98 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -95,10 +96,10 @@
   "/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1775473485 5573038 b99aad5e4898a9034e953632f940512b ""
   "/usr/local/texlive/2026/texmf-var/web2c/pdftex/pdflatex.fmt" 1775473124 3636769 b495616e343b1ff933af198507f58673 ""
   "/usr/local/texlive/2026/texmf.cnf" 1774209515 577 648cd9f92f9c0eac486f4c71c85cfbbe ""
-  "SDD_OpenEdX.aux" 1784550571.54452 5039 5c05aa2cfff35776e0448b1c96da9380 "pdflatex"
-  "SDD_OpenEdX.out" 1784550571.54592 4158 be287a593c180cba3c31e19dbbf76263 "pdflatex"
-  "SDD_OpenEdX.tex" 1784549330.89906 9935 793477cde64ac0ad09b2aceebad7831b ""
-  "SDD_OpenEdX.toc" 1784550571.54644 2333 f8d2697a35a012b8b89c31dfd12ff4ae "pdflatex"
+  "SDD_OpenEdX.aux" 1784550980.3781 5740 678366dfc702de2918d463942c7d0e62 "pdflatex"
+  "SDD_OpenEdX.out" 1784550980.37949 4158 be287a593c180cba3c31e19dbbf76263 "pdflatex"
+  "SDD_OpenEdX.tex" 1784550980.41166 10378 da7bee2b0d0190148542859825094d98 ""
+  "SDD_OpenEdX.toc" 1784550980.38022 2333 f8d2697a35a012b8b89c31dfd12ff4ae "pdflatex"
   "diagrams/class.png" 1783195890.97385 32485 27420e500e37a597d6e973b59c5e0087 ""
   "diagrams/dfd_context.png" 1784550559.90181 20478 bca417f6d543ddaaf95506dfe4e2342b ""
   "diagrams/dfd_level1.png" 1784550559.91998 118338 55d0eedf01a8e4431870437d44dc3ebc ""

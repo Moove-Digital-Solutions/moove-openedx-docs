@@ -12,6 +12,7 @@
 
 % === BEGIN DOCUMENT ===
 \begin{document}
+\sloppy % reduce overfull box warnings
 
 % === COVER PAGE ===
 \input{../common/cover}
@@ -53,8 +54,7 @@ The deployment consists of the following containers:
 - Meilisearch: Search index.
 
 % ---------------------------------------------------------------------
-% NEW SECURITY ARCHITECTURE SECTION
-% ---------------------------------------------------------------------
+% NEW: System Architecture and Data Flow
 % ---------------------------------------------------------------------
 \section{System Architecture and Data Flow}
 
@@ -90,6 +90,7 @@ The Data Flow Diagram shows how data moves through the system, from user interac
 \centering
 \includegraphics[width=0.8\textwidth,height=0.6\textheight,keepaspectratio]{diagrams/dfd_context.png}
 \caption{Context DFD showing external entities (Learner, Educator, Administrator) and the system boundary.}
+\label{fig:dfd_context}
 \end{figure}
 
 \subsubsection{Level 1 DFD}
@@ -97,6 +98,7 @@ The Data Flow Diagram shows how data moves through the system, from user interac
 \centering
 \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio]{diagrams/dfd_level1.png}
 \caption{Level 1 DFD showing main processes: Authentication, Course Management, Enrollment, Content Delivery, Assessment, and Reporting.}
+\label{fig:dfd_level1}
 \end{figure}
 
 \subsection{Data Flow Explanation}
@@ -112,6 +114,9 @@ The system processes data as follows:
     \item \textbf{Notifications:} The system generates notification events (e.g., discussion replies, assignment due dates) via Redis and Celery, sending emails through the SMTP relay.
 \end{itemize}
 
+% ---------------------------------------------------------------------
+% SECURITY ARCHITECTURE SECTION
+% ---------------------------------------------------------------------
 \section{Security Architecture (INSA Compliance)}
 This section describes the security controls implemented to meet INSA requirements. Detailed risk assessment and threat modelling are provided in the \textit{Security Architecture \& Threat Model} document.
 
@@ -153,12 +158,16 @@ This section describes the security controls implemented to meet INSA requiremen
 
 For a complete threat model and risk assessment, refer to the \textit{Security Architecture \& Threat Model} (Security\_OpenEdX.tex).
 
+% ---------------------------------------------------------------------
+% UML DIAGRAMS
+% ---------------------------------------------------------------------
 \section{UML Diagrams}
 \subsection{Use Case Diagram}
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio]{diagrams/usecase.png}
 \caption{Use Case Diagram showing Educator and Learner interactions.}
+\label{fig:usecase}
 \end{figure}
 
 \subsection{Class Diagram}
@@ -166,6 +175,7 @@ For a complete threat model and risk assessment, refer to the \textit{Security A
 \centering
 \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio]{diagrams/class.png}
 \caption{Core entities: User, Course, Enrollment, Assessment, Grade, Discussion.}
+\label{fig:class}
 \end{figure}
 
 \subsection{Sequence Diagram: Course Enrollment}
@@ -173,6 +183,7 @@ For a complete threat model and risk assessment, refer to the \textit{Security A
 \centering
 \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio]{diagrams/sequence_enrollment.png}
 \caption{Learner enrollment flow.}
+\label{fig:enrollment}
 \end{figure}
 
 \subsection{Sequence Diagram: Course Creation (Educator)}
@@ -180,6 +191,7 @@ For a complete threat model and risk assessment, refer to the \textit{Security A
 \centering
 \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio]{diagrams/sequence_course_creation.png}
 \caption{Educator course creation flow.}
+\label{fig:course_creation}
 \end{figure}
 
 \section{Module Interaction}
