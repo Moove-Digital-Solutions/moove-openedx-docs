@@ -1,0 +1,82 @@
+@startuml
+!define RECTANGLE class
+
+title Moove Education Platform - Level 1 DFD
+
+skinparam backgroundColor #FEFEFE
+skinparam rectangle {
+  BorderColor #2980B9
+  BackgroundColor #D6EAF8
+}
+skinparam database {
+  BorderColor #27AE60
+  BackgroundColor #D5F5E3
+}
+skinparam actor {
+  BorderColor #E67E22
+  BackgroundColor #FDEBD0
+}
+
+actor "Learner" as L
+actor "Educator" as E
+actor "Administrator" as A
+
+' Main processes
+rectangle "1. Authenticate" as Auth
+rectangle "2. Manage Courses" as ManageCourses
+rectangle "3. Enroll" as Enroll
+rectangle "4. Deliver Content" as Deliver
+rectangle "5. Assess" as Assess
+rectangle "6. Report" as Report
+
+' Data stores
+database "MySQL\n(users, grades,\nenrollments)" as MySQL
+database "MongoDB\n(course structure,\ndiscussions)" as MongoDB
+database "Redis\n(cache, sessions)" as Redis
+database "Meilisearch\n(index)" as Meilisearch
+
+' Flows from actors to processes
+L --> Auth : credentials
+L --> Enroll : enrollment request
+L --> Deliver : content request
+L --> Assess : answers
+L --> Report : report request
+
+E --> Auth : credentials
+E --> ManageCourses : course creation/update
+E --> Assess : grade submissions
+E --> Report : analytics request
+
+A --> Auth : credentials
+A --> ManageCourses : course publishing
+A --> Report : system stats
+
+' Process to process / data store
+Auth --> MySQL : verify user
+Auth --> Redis : store session
+
+ManageCourses --> MySQL : course metadata
+ManageCourses --> MongoDB : course outline
+
+Enroll --> MySQL : write enrollment
+Enroll --> Redis : queue email (via Celery)
+
+Deliver --> MySQL : get course, enrollments
+Deliver --> MongoDB : get course structure
+Deliver --> Redis : cache content
+
+Assess --> MySQL : store answers, grades
+Assess --> Redis : queue grading (via Celery)
+
+Report --> MySQL : aggregate data
+Report --> Meilisearch : search query
+
+' Data flows between processes (some)
+ManageCourses --> Deliver : published course
+Enroll --> Deliver : enrollment status
+
+note right of Redis
+  Also used for Celery broker
+end note
+
+@enduml

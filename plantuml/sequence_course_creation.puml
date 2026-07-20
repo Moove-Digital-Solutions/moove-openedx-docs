@@ -1,0 +1,14 @@
+@startuml
+actor Educator
+participant "CMS (Studio)" as CMS
+participant "MySQL" as DB
+participant "MongoDB" as MDB
+
+Educator -> CMS: Click "New Course"
+CMS -> CMS: Validate course ID
+CMS -> DB: INSERT course_overview
+DB --> CMS: OK
+CMS -> MDB: Initialize course structure
+MDB --> CMS: OK
+CMS --> Educator: Course created
+@enduml

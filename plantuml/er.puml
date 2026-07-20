@@ -1,0 +1,80 @@
+@startuml
+entity "auth_user" {
+  *id : int PK
+  --
+  username : varchar(150)
+  email : varchar(254)
+  password : varchar(128)
+  is_staff : boolean
+  is_superuser : boolean
+  last_login : datetime
+}
+
+entity "course_overview" {
+  *id : varchar(255) PK
+  --
+  display_name : varchar(255)
+  start : datetime
+  end : datetime
+  enrollment_track : varchar(100)
+  is_published : boolean
+}
+
+entity "course_enrollment" {
+  *id : int PK
+  --
+  user_id : int FK
+  course_id : varchar(255) FK
+  created : datetime
+  is_active : boolean
+  mode : varchar(100)
+}
+
+entity "student_grade" {
+  *id : int PK
+  --
+  user_id : int FK
+  course_id : varchar(255) FK
+  grade : float
+  percent : float
+  passed : boolean
+}
+
+entity "discussion_thread" {
+  *id : int PK
+  --
+  course_id : varchar(255) FK
+  title : varchar(255)
+  author_id : int FK
+  created : datetime
+}
+
+entity "discussion_post" {
+  *id : int PK
+  --
+  thread_id : int FK
+  body : text
+  author_id : int FK
+  created : datetime
+}
+
+entity "assessment" {
+  *id : int PK
+  --
+  course_id : varchar(255) FK
+  section : varchar(255)
+  type : varchar(50)
+  max_score : float
+}
+
+auth_user ||--o{ course_enrollment : "enrolls"
+course_overview ||--o{ course_enrollment : "has"
+auth_user ||--o{ student_grade : "gets"
+course_overview ||--o{ student_grade : "has"
+assessment ||--o{ student_grade : "grades"
+course_overview ||--o{ discussion_thread : "contains"
+discussion_thread ||--o{ discussion_post : "has"
+auth_user ||--o{ discussion_thread : "authors"
+auth_user ||--o{ discussion_post : "authors"
+course_overview ||--o{ assessment : "has"
+@enduml

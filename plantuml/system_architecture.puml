@@ -1,0 +1,84 @@
+@startuml
+!define RECTANGLE class
+
+title Moove Education Platform - System Architecture
+
+skinparam componentStyle rectangle
+skinparam backgroundColor #FEFEFE
+skinparam component {
+  BorderColor #2C3E50
+  BackgroundColor #ECF0F1
+  FontColor #2C3E50
+}
+skinparam database {
+  BorderColor #2980B9
+  BackgroundColor #D6EAF8
+  FontColor #154360
+}
+skinparam actor {
+  BorderColor #E67E22
+  BackgroundColor #FDEBD0
+  FontColor #E67E22
+}
+
+' External actors
+actor "Users\n(Learners, Educators,\nAdministrators)" as Users
+
+' Frontend network
+package "Frontend Network" {
+  [Caddy] as Caddy
+}
+
+' Backend network
+package "Backend Network" {
+  component "LMS (Django)" as LMS
+  component "CMS (Django)" as CMS
+  component "MFE (React)" as MFE
+  component "Celery Workers" as Workers
+  component "SMTP Relay" as SMTP
+}
+
+' Database network
+package "Database Network" {
+  database "MySQL 8.4" as MySQL
+  database "MongoDB 7.0" as MongoDB
+  database "Redis 7.4" as Redis
+  database "Meilisearch 1.8" as Meilisearch
+}
+
+' Connections
+Users --> Caddy : HTTPS (443)
+Caddy --> LMS : Proxy /lms
+Caddy --> CMS : Proxy /studio
+Caddy --> MFE : Proxy /mfe
+Caddy --> Meilisearch : Proxy /search
+
+LMS --> MySQL : JDBC
+LMS --> MongoDB : Mongo Driver
+LMS --> Redis : Redis Client
+LMS --> Workers : Celery (Redis)
+LMS --> SMTP : Email
+
+CMS --> MySQL : JDBC
+CMS --> MongoDB : Mongo Driver
+
+Workers --> MySQL
+Workers --> MongoDB
+Workers --> SMTP
+
+MFE --> LMS : REST / WebSocket
+MFE --> CMS : REST
+
+note right of Caddy
+  TLS termination,
+  load balancing,
+  static files
+end note
+
+note bottom of Workers
+  Asynchronous tasks:
+  email, grading,
+  analytics, etc.
+end note
+
+@enduml

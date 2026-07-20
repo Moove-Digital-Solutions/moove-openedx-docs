@@ -1,0 +1,173 @@
+========================================
+     VPS Health Check Report           
+========================================
+
+--- System Information ---
+Hostname: moove
+OS: Ubuntu 22.04.5 LTS
+Kernel: 5.15.0-185-generic
+Uptime: up 1 day, 21 hours, 49 minutes
+Load Average:  0.06, 0.06, 0.01
+
+--- Memory Usage (RAM + Swap) ---
+               total        used        free      shared  buff/cache   available
+Mem:           7.6Gi       5.5Gi       175Mi       6.0Mi       1.9Gi       1.7Gi
+Swap:          4.0Gi       260Mi       3.7Gi
+
+--- Top 10 Memory-Consuming Processes ---
+PID    %MEM  COMMAND
+6064   16.7  /usr/bin/buildkitd
+52319  7.0   mysqld
+52873  5.4   uwsgi
+52875  5.2   uwsgi
+52709  4.7   /openedx/venv/bin/python3
+52889  4.7   /openedx/venv/bin/python3
+52560  4.7   /openedx/venv/bin/python3
+52876  4.6   uwsgi
+52874  4.6   uwsgi
+52883  4.4   /openedx/venv/bin/python3
+
+--- CPU Info & Top CPU Processes ---
+Model name:                              AMD EPYC-Rome Processor
+CPU Cores: 4
+
+--- Top 10 CPU-Consuming Processes ---
+PID    %CPU  COMMAND
+6064   0.6   /usr/bin/buildkitd
+52006  0.6   mongod
+52319  0.6   mysqld
+52171  0.4   redis-server
+4166   0.2   /usr/bin/dockerd
+52560  0.1   /openedx/venv/bin/python3
+52709  0.1   /openedx/venv/bin/python3
+52874  0.1   uwsgi
+52875  0.1   uwsgi
+52876  0.1   uwsgi
+
+--- Disk Partition Usage (df -h) ---
+Filesystem      Size  Used Avail Use% Mounted on
+tmpfs           775M  1.9M  773M   1% /run
+/dev/sda1        75G   46G   26G  64% /
+tmpfs           3.8G     0  3.8G   0% /dev/shm
+tmpfs           5.0M     0  5.0M   0% /run/lock
+/dev/sda15      253M  142K  252M   1% /boot/efi
+overlay          75G   46G   26G  64% /var/lib/docker/rootfs/overlayfs/6b0b84699939a3e3b22e0b4b43dd1bdfe4b0e2c212312a871eaae68c4c7fd174
+overlay          75G   46G   26G  64% /var/lib/docker/rootfs/overlayfs/83ea3e251f887163786ddef00a9573dc00a9e2b588d2a15a757852b6a765cdda
+overlay          75G   46G   26G  64% /var/lib/docker/rootfs/overlayfs/603815ad8c1fdf004a019356b792e69ff9b3460d7b48b81d187a35e8eb0322dc
+overlay          75G   46G   26G  64% /var/lib/docker/rootfs/overlayfs/95b6cb99a56a5ee7e48a9f7fdd6e3118f9027c1c6ecbbd0f2ec14faa9726c74a
+overlay          75G   46G   26G  64% /var/lib/docker/rootfs/overlayfs/9e542a3a34e91fa1e901fae06f3c6a1d2aaa51c9419b40f43c286bd3aac64117
+overlay          75G   46G   26G  64% /var/lib/docker/rootfs/overlayfs/9cbc527feaa1b1ceb6199b1be050b9156ae470078ef2b05e01a22ebd2752472b
+overlay          75G   46G   26G  64% /var/lib/docker/rootfs/overlayfs/d06c09f5816a0ad2236a2b77cee52aee504a8107d0bfa1d1e6ad4215e4d4ec7a
+overlay          75G   46G   26G  64% /var/lib/docker/rootfs/overlayfs/5868dcf79731bcca222e69f389220b2bcfdb8966e92a1b522a5bf0d4e683b049
+overlay          75G   46G   26G  64% /var/lib/docker/rootfs/overlayfs/5afda6011468c9c4f669344021cb0a657f5b6cb17682d2545d2358aa17278222
+overlay          75G   46G   26G  64% /var/lib/docker/rootfs/overlayfs/9bb858ed4e90d6cb82132d5fa5707a7cd76f5f7cdf08632be3ee78521b65a1cf
+overlay          75G   46G   26G  64% /var/lib/docker/rootfs/overlayfs/06dd6913693b6070b676404a27629c4f641fa25c9e1bc58ff71ed9c730a9ac85
+overlay          75G   46G   26G  64% /var/lib/docker/rootfs/overlayfs/0e8128b05a643fdc8042cb8f580f6bbcbe19992de0f3f16b839d9b2d73b37c19
+tmpfs           775M  4.0K  775M   1% /run/user/0
+
+--- Inode Usage (df -i) ---
+Filesystem      Inodes   IUsed   IFree IUse% Mounted on
+tmpfs           991657    1051  990606    1% /run
+/dev/sda1      4920720 3336406 1584314   68% /
+tmpfs           991657       1  991656    1% /dev/shm
+tmpfs           991657       3  991654    1% /run/lock
+/dev/sda15           0       0       0     - /boot/efi
+overlay        4920720 3336406 1584314   68% /var/lib/docker/rootfs/overlayfs/6b0b84699939a3e3b22e0b4b43dd1bdfe4b0e2c212312a871eaae68c4c7fd174
+overlay        4920720 3336406 1584314   68% /var/lib/docker/rootfs/overlayfs/83ea3e251f887163786ddef00a9573dc00a9e2b588d2a15a757852b6a765cdda
+overlay        4920720 3336406 1584314   68% /var/lib/docker/rootfs/overlayfs/603815ad8c1fdf004a019356b792e69ff9b3460d7b48b81d187a35e8eb0322dc
+overlay        4920720 3336406 1584314   68% /var/lib/docker/rootfs/overlayfs/95b6cb99a56a5ee7e48a9f7fdd6e3118f9027c1c6ecbbd0f2ec14faa9726c74a
+overlay        4920720 3336406 1584314   68% /var/lib/docker/rootfs/overlayfs/9e542a3a34e91fa1e901fae06f3c6a1d2aaa51c9419b40f43c286bd3aac64117
+overlay        4920720 3336406 1584314   68% /var/lib/docker/rootfs/overlayfs/9cbc527feaa1b1ceb6199b1be050b9156ae470078ef2b05e01a22ebd2752472b
+overlay        4920720 3336406 1584314   68% /var/lib/docker/rootfs/overlayfs/d06c09f5816a0ad2236a2b77cee52aee504a8107d0bfa1d1e6ad4215e4d4ec7a
+overlay        4920720 3336406 1584314   68% /var/lib/docker/rootfs/overlayfs/5868dcf79731bcca222e69f389220b2bcfdb8966e92a1b522a5bf0d4e683b049
+overlay        4920720 3336406 1584314   68% /var/lib/docker/rootfs/overlayfs/5afda6011468c9c4f669344021cb0a657f5b6cb17682d2545d2358aa17278222
+overlay        4920720 3336406 1584314   68% /var/lib/docker/rootfs/overlayfs/9bb858ed4e90d6cb82132d5fa5707a7cd76f5f7cdf08632be3ee78521b65a1cf
+overlay        4920720 3336406 1584314   68% /var/lib/docker/rootfs/overlayfs/06dd6913693b6070b676404a27629c4f641fa25c9e1bc58ff71ed9c730a9ac85
+overlay        4920720 3336406 1584314   68% /var/lib/docker/rootfs/overlayfs/0e8128b05a643fdc8042cb8f580f6bbcbe19992de0f3f16b839d9b2d73b37c19
+tmpfs           198331      26  198305    1% /run/user/0
+
+--- Top 20 Largest Directories (root filesystem) ---
+This may take a moment...
+46G	/
+38G	/var/lib
+38G	/var
+29G	/var/lib/docker/volumes/buildx_buildkit_singlecpu0_state/_data/runc-overlayfs/snapshots/snapshots
+29G	/var/lib/docker/volumes/buildx_buildkit_singlecpu0_state/_data/runc-overlayfs/snapshots
+29G	/var/lib/docker/volumes/buildx_buildkit_singlecpu0_state/_data/runc-overlayfs
+29G	/var/lib/docker/volumes/buildx_buildkit_singlecpu0_state/_data
+29G	/var/lib/docker/volumes/buildx_buildkit_singlecpu0_state
+29G	/var/lib/docker/volumes
+29G	/var/lib/docker
+8.3G	/var/lib/containerd
+6.4G	/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots
+6.4G	/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs
+2.2G	/root
+1.9G	/var/lib/containerd/io.containerd.content.v1.content/blobs/sha256
+1.9G	/var/lib/containerd/io.containerd.content.v1.content/blobs
+1.9G	/var/lib/containerd/io.containerd.content.v1.content
+1.7G	/usr
+1.3G	/var/lib/docker/volumes/buildx_buildkit_singlecpu0_state/_data/runc-overlayfs/snapshots/snapshots/75/fs/openedx/app/node_modules
+1.3G	/var/lib/docker/volumes/buildx_buildkit_singlecpu0_state/_data/runc-overlayfs/snapshots/snapshots/75/fs/openedx/app
+
+--- Largest Files (>100 MB) ---
+128T /proc/kcore
+4.0G /swapfile
+270M /var/lib/containerd/io.containerd.content.v1.content/blobs/sha256/a06f6bec79548324e61cfc8b52e9b8b3907b8825c1859ea8746373366e1f8e26
+245M /var/lib/docker/volumes/buildx_buildkit_singlecpu0_state/_data/runc-overlayfs/metadata_v2.db
+240M /var/lib/containerd/io.containerd.content.v1.content/blobs/sha256/31ab68bcb301f43c41dff9f35fc1d315207bec711f61387487098aea65550a97
+176M /var/lib/docker/rootfs/overlayfs/83ea3e251f887163786ddef00a9573dc00a9e2b588d2a15a757852b6a765cdda/usr/bin/mongod
+176M /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/2191/fs/usr/bin/mongod
+169M /var/lib/docker/buildkit/containerd-overlayfs/metadata_v2.db
+162M /var/lib/docker/rootfs/overlayfs/83ea3e251f887163786ddef00a9573dc00a9e2b588d2a15a757852b6a765cdda/usr/bin/mongosh
+162M /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/2191/fs/usr/bin/mongosh
+126M /var/lib/docker/rootfs/overlayfs/83ea3e251f887163786ddef00a9573dc00a9e2b588d2a15a757852b6a765cdda/usr/bin/mongos
+126M /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/2191/fs/usr/bin/mongos
+123M /var/lib/containerd/io.containerd.content.v1.content/blobs/sha256/5904ee271ffa3f3ad36c91650b49710be4cd6160caa18c6c8e5b14feb8118516
+118M /var/lib/docker/rootfs/overlayfs/603815ad8c1fdf004a019356b792e69ff9b3460d7b48b81d187a35e8eb0322dc/bin/meilisearch
+118M /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/1767/fs/bin/meilisearch
+118M /root/.nvm/versions/node/v24.18.0/bin/node
+117M /var/lib/docker/volumes/buildx_buildkit_singlecpu0_state/_data/runc-overlayfs/snapshots/snapshots/27/fs/usr/local/bin/node
+116M /var/lib/docker/rootfs/overlayfs/d06c09f5816a0ad2236a2b77cee52aee504a8107d0bfa1d1e6ad4215e4d4ec7a/openedx/nodeenv/src/node-v24.12.0-linux-x64/bin/node
+116M /var/lib/docker/rootfs/overlayfs/d06c09f5816a0ad2236a2b77cee52aee504a8107d0bfa1d1e6ad4215e4d4ec7a/openedx/nodeenv/bin/node
+116M /var/lib/docker/rootfs/overlayfs/9cbc527feaa1b1ceb6199b1be050b9156ae470078ef2b05e01a22ebd2752472b/openedx/nodeenv/src/node-v24.12.0-linux-x64/bin/node
+
+--- Log Directory Sizes (/var/log) ---
+177M	/var/log/journal
+43M	/var/log/btmp
+7.3M	/var/log/auth.log
+7.2M	/var/log/syslog
+2.1M	/var/log/kern.log
+2.0M	/var/log/ufw.log
+420K	/var/log/cloud-init.log
+68K	/var/log/dmesg.0
+68K	/var/log/dmesg
+40K	/var/log/wtmp
+
+--- Package Manager Cache Size ---
+APT cache: 24K
+
+--- Installed Kernels (Debian/Ubuntu) ---
+linux-image-5.15.0-179-generic 5.15.0-179.189
+linux-image-5.15.0-181-generic 5.15.0-181.191
+linux-image-5.15.0-185-generic 5.15.0-185.195
+linux-image-virtual 5.15.0.185.166
+Consider removing old kernels with: sudo apt autoremove --purge
+
+--- Docker Disk Usage ---
+TYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE
+Images          12        10        9.227GB   649.3MB (7%)
+Containers      13        12        522.8MB   69.63kB (0%)
+Local Volumes   3         3         21.52GB   0B (0%)
+Build Cache     0         0         0B        0B
+
+========================================
+     Recommendations                    
+========================================
+⚠️  Swap is being used (2681764 KB). Consider adding more RAM or optimizing services.
+⚠️  Multiple kernels installed (4). Run 'sudo apt autoremove --purge' to clean.
+
+Report complete. For further analysis, consider installing:
+  - ncdu   (interactive disk usage)
+  - iotop  (I/O monitoring)
+  - htop   (better process viewer)
+  - iftop  (network bandwidth)

@@ -1,0 +1,39 @@
+@startuml
+!define RECTANGLE class
+
+title Moove Education Platform - Context DFD
+
+skinparam backgroundColor #FEFEFE
+skinparam actor {
+  BorderColor #2C3E50
+  BackgroundColor #E8E8E8
+}
+skinparam rectangle {
+  BorderColor #2980B9
+  BackgroundColor #D6EAF8
+}
+
+actor "Learner" as Learner
+actor "Educator" as Educator
+actor "Administrator" as Admin
+
+rectangle "Moove Education\nPlatform" as System {
+  ' just a boundary, no internal details
+}
+
+Learner --> System : credentials, enrollments,\ncontent requests, assessments
+System --> Learner : course content, progress,\ngrades, notifications
+
+Educator --> System : course creation,\ncontent management,\ngrading, analytics
+System --> Educator : course data, analytics,\nreports
+
+Admin --> System : user management,\nsite configuration,\nsystem monitoring
+System --> Admin : system status, logs,\nstatistics
+
+note right of System
+  Boundary represents the
+  entire system (LMS, CMS,
+  MFE, databases, etc.)
+end note
+
+@enduml

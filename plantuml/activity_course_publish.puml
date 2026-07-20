@@ -1,0 +1,23 @@
+@startuml
+start
+:Instructor creates course outline;
+:Adds sections, subsections, units;
+:Adds content (video, HTML, problems);
+:Configures grading policy;
+if (Course ready for publishing?) then (yes)
+    :Click "Publish" button;
+    :System validates content;
+    if (Validation passes?) then (yes)
+        :Update course status to "Published";
+        :Send notification to learners;
+        stop
+    else (no)
+        :Show validation errors;
+        :Instructor fixes errors;
+        stop
+    endif
+else (no)
+    :Save as draft;
+    stop
+endif
+@enduml

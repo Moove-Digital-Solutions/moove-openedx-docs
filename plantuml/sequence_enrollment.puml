@@ -1,0 +1,16 @@
+@startuml
+actor Learner
+participant "LMS" as LMS
+participant "MySQL" as DB
+participant "MongoDB" as MDB
+participant "Celery" as Celery
+
+Learner -> LMS: POST /api/enrollment/v1/
+LMS -> DB: INSERT course_enrollment
+DB --> LMS: OK
+LMS -> MDB: Initialize discussion for learner
+MDB --> LMS: OK
+LMS -> Celery: send enrollment confirmation email
+Celery -> Learner: Email sent
+LMS --> Learner: 201 Created
+@enduml

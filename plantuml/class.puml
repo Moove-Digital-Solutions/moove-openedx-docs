@@ -1,0 +1,74 @@
+@startuml
+class User {
+  +id: int
+  +username: string
+  +email: string
+  +password_hash: string
+  +is_staff: boolean
+  +is_superuser: boolean
+  +last_login: datetime
+}
+
+class Course {
+  +id: string (course_key)
+  +display_name: string
+  +start: datetime
+  +end: datetime
+  +enrollment_track: string
+  +is_published: boolean
+}
+
+class Enrollment {
+  +id: int
+  +user: User
+  +course: Course
+  +created: datetime
+  +is_active: boolean
+  +mode: string
+}
+
+class Assessment {
+  +id: int
+  +course: Course
+  +section: string
+  +type: string (quiz, assignment, peer)
+  +max_score: float
+}
+
+class Grade {
+  +id: int
+  +user: User
+  +course: Course
+  +assessment: Assessment
+  +score: float
+  +percent: float
+  +passed: boolean
+}
+
+class DiscussionThread {
+  +id: int
+  +course: Course
+  +title: string
+  +author: User
+  +created: datetime
+}
+
+class DiscussionPost {
+  +id: int
+  +thread: DiscussionThread
+  +body: text
+  +author: User
+  +created: datetime
+}
+
+User "1" -- "0..*" Enrollment
+Course "1" -- "0..*" Enrollment
+User "1" -- "0..*" Grade
+Course "1" -- "0..*" Grade
+Assessment "1" -- "0..*" Grade
+Course "1" -- "0..*" DiscussionThread
+DiscussionThread "1" -- "0..*" DiscussionPost
+User "1" -- "0..*" DiscussionThread
+User "1" -- "0..*" DiscussionPost
+Course "1" -- "0..*" Assessment
+@enduml

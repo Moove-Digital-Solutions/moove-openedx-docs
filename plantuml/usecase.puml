@@ -1,0 +1,46 @@
+@startuml
+left to right direction
+actor "Learner" as Learner
+actor "Instructor" as Instructor
+actor "Administrator" as Admin
+actor "System" as System
+
+rectangle "Moove Education Virtual (Open edX)" {
+  usecase "Register" as UC1
+  usecase "Login" as UC2
+  usecase "View Dashboard" as UC3
+  usecase "Enroll in Course" as UC4
+  usecase "Access Course Content" as UC5
+  usecase "Take Assessments" as UC6
+  usecase "Participate in Discussions" as UC7
+  usecase "Create Course" as UC8
+  usecase "Publish Course" as UC9
+  usecase "Manage Enrollments" as UC10
+  usecase "Grade Learners" as UC11
+  usecase "Moderate Discussions" as UC12
+  usecase "Manage Users" as UC13
+  usecase "Configure Site" as UC14
+  usecase "View Analytics" as UC15
+  usecase "Send Notifications (email)" as UC16
+}
+
+Learner --> UC1
+Learner --> UC2
+Learner --> UC3
+Learner --> UC4
+Learner --> UC5
+Learner --> UC6
+Learner --> UC7
+
+Instructor --> UC8
+Instructor --> UC9
+Instructor --> UC10
+Instructor --> UC11
+Instructor --> UC12
+
+Admin --> UC13
+Admin --> UC14
+Admin --> UC15
+
+System --> UC16
+@enduml

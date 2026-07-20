@@ -1,0 +1,46 @@
+% === PACKAGES ===
+\documentclass[12pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm,headheight=24.65pt,footskip=1.5cm}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{listings}
+\usepackage{float}   % For [H] placement
+
+% === BRANDING COLOR ===
+\definecolor{mooveblue}{RGB}{0, 87, 184}
+\definecolor{codegray}{RGB}{240, 240, 240}
+
+% === HEADER / FOOTER SETUP ===
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{mooveblue}\leaders\hrule height \headrulewidth\hfill}}
+
+% Footer: Page number in center, left/right text for context
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\textit{Confidential - Internal Use Only}}
+\fancyfoot[R]{\textit{Contains Apache 2.0 Licensed Code}}
+
+% === SECTION STYLING ===
+\titleformat{\section}{\normalfont\Large\bfseries\color{mooveblue}}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries\color{mooveblue}}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalfont\normalsize\bfseries\color{mooveblue}}{\thesubsubsection}{1em}{}
+\titleformat{\paragraph}[runin]{\normalfont\normalsize\bfseries\color{mooveblue}}{\theparagraph}{1em}{}
+
+% === CODE LISTING STYLE ===
+\lstset{
+    backgroundcolor=\color{codegray},
+    basicstyle=\footnotesize\ttfamily,
+    breaklines=true,
+    frame=single
+}
