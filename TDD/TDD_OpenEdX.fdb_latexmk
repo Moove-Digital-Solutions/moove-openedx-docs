@@ -1,11 +1,11 @@
 # Fdb version 4
-["pdflatex"] 1784451126.45507 "/Users/macbookpro/educationvirtual.net/moove-openedx-docs/TDD/TDD_OpenEdX.tex" "TDD_OpenEdX.pdf" "TDD_OpenEdX" 1784451128.07259 0
+["pdflatex"] 1784627908.46666 "/Users/macbookpro/educationvirtual.net/moove-openedx-docs/TDD/TDD_OpenEdX.tex" "TDD_OpenEdX.pdf" "TDD_OpenEdX" 1784627910.10704 0
   "../common/cover.tex" 1783197070.20834 445 e6ab4c3457695f7ab49cff5452125071 ""
   "../common/footer.tex" 1783197051.23098 648 ef5528c86f28b48f43b93017d1bde956 ""
   "../common/license.tex" 1782934993.03771 0 d41d8cd98f00b204e9800998ecf8427e ""
   "../common/preamble.tex" 1783196332.93356 1566 73e1329224de055547676cbcbf66b80a ""
   "../logo.png" 1783195631.49143 47196 dd847530ac6f490e333d17a98e88091b ""
-  "/Users/macbookpro/educationvirtual.net/moove-openedx-docs/TDD/TDD_OpenEdX.tex" 1784451126.19003 5861 98a35a770529020caeda78ec7b1e8367 ""
+  "/Users/macbookpro/educationvirtual.net/moove-openedx-docs/TDD/TDD_OpenEdX.tex" 1784627908.15055 5861 095df94c7789f26d5968bed81e28c7c8 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -96,10 +96,10 @@
   "/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1775473485 5573038 b99aad5e4898a9034e953632f940512b ""
   "/usr/local/texlive/2026/texmf-var/web2c/pdftex/pdflatex.fmt" 1775473124 3636769 b495616e343b1ff933af198507f58673 ""
   "/usr/local/texlive/2026/texmf.cnf" 1774209515 577 648cd9f92f9c0eac486f4c71c85cfbbe ""
-  "TDD_OpenEdX.aux" 1784451127.85143 2676 b0ddcd88f6727385157badbeeae98f44 "pdflatex"
-  "TDD_OpenEdX.out" 1784451127.85253 2749 0903270d711130f2bfd40b0918d8a2df "pdflatex"
-  "TDD_OpenEdX.tex" 1784451126.19003 5861 98a35a770529020caeda78ec7b1e8367 ""
-  "TDD_OpenEdX.toc" 1784451127.85294 1359 fb7d1ba699d3d858b8bdbec0bed4e029 "pdflatex"
+  "TDD_OpenEdX.aux" 1784627909.62155 2676 b0ddcd88f6727385157badbeeae98f44 "pdflatex"
+  "TDD_OpenEdX.out" 1784627909.62249 2749 0903270d711130f2bfd40b0918d8a2df "pdflatex"
+  "TDD_OpenEdX.tex" 1784627908.15055 5861 095df94c7789f26d5968bed81e28c7c8 ""
+  "TDD_OpenEdX.toc" 1784627909.62289 1359 fb7d1ba699d3d858b8bdbec0bed4e029 "pdflatex"
   "diagrams/activity_course_publish.png" 1783195890.94236 15482 68db2c86f68964bd1edd8c4d7725402f ""
   "diagrams/activity_ora.png" 1783377552.85283 15482 68db2c86f68964bd1edd8c4d7725402f ""
   "diagrams/er.png" 1783195890.97586 38032 0bdcb9dcf7758d6f668e52c069bd1763 ""

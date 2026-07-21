@@ -1,27 +1,76 @@
 % === SET DOCUMENT METADATA ===
 \def\docTitle{System \& Architecture Design Document (SDD)}
-\def\docVersion{3.0}
-\def\docDate{July 19, 2026}
+\def\docVersion{3.1}
+\def\docDate{July 21, 2026}
 
 % === INCLUDE REUSABLE COMPONENTS ===
 \input{../common/preamble}
 
+% === ADDITIONAL PACKAGES ===
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{colortbl}
+
 % === FOOTER OVERRIDE ===
 \fancyhead[L]{\textcolor{mooveblue}{\textbf{Moove Education Platform}}}
-\fancyhead[R]{\textbf{SDD v3.0}}
+\fancyhead[R]{\textbf{SDD v4.1}}
 
 % === BEGIN DOCUMENT ===
 \begin{document}
-\sloppy % reduce overfull box warnings
+\sloppy
 
 % === COVER PAGE ===
 \input{../common/cover}
 
+% === TABLE OF CONTENTS ===
 \tableofcontents
 \newpage
 
+% === LIST OF FIGURES ===
+\listoffigures
+\addcontentsline{toc}{section}{List of Figures}
+\newpage
+
+% === LIST OF TABLES ===
+\listoftables
+\addcontentsline{toc}{section}{List of Tables}
+\newpage
+
+% === DOCUMENT MANAGEMENT SECTION ===
+\section{Document Management and Quality Assurance}
+
+\subsection{Document Purpose}
+This System \& Architecture Design Document (SDD) provides a comprehensive description of the Moove Education Platform's system architecture, including physical deployment, logical components, security architecture, and data flows. It serves as the primary reference for understanding how the system is built and how its components interact.
+
+\subsection{Diagram Management}
+All architectural and UML diagrams in this document are created using professional tools:
+
+\begin{itemize}
+    \item \textbf{Primary Tool}: PlantUML with custom styling for consistent, professional output
+    \item \textbf{Diagram Types}: System Architecture, DFD, Use Case, Class, Sequence diagrams
+    \item \textbf{Source Management}: All diagram source (.puml) files are stored in the \texttt{plantuml/} directory
+    \item \textbf{Build Integration}: Diagrams are automatically generated during the LaTeX build process
+    \item \textbf{Quality Control}: Each diagram is reviewed for accuracy and completeness
+\end{itemize}
+
+\subsection{Diagram Standards}
+\begin{itemize}
+    \item \textbf{System Architecture}: Uses C4 model style with clear component boundaries
+    \item \textbf{DFD}: Follows Yourdon \& Coad notation for consistency
+    \item \textbf{Use Case}: UML 2.0 standard notation
+    \item \textbf{Class Diagrams}: UML 2.0 with proper multiplicity notation
+    \item \textbf{Sequence Diagrams}: UML 2.0 with proper lifeline notation
+\end{itemize}
+
+\subsection{Quality Assurance}
+\begin{itemize}
+    \item All diagrams are validated against PlantUML syntax
+    \item Diagrams are reviewed against actual system implementation
+    \item Security architecture diagrams are validated against INSA requirements
+\end{itemize}
+
 \section{System Overview}
-Moove Education Platform is an Open edX instance deployed using Tutor (v21.0.7) on Ubuntu 22.04. The architecture is container-based (Docker) and microservices-oriented. All components are orchestrated by Tutor and run inside Docker containers, with Caddy acting as the reverse proxy and TLS terminator.
+Moove Education Platform is an Open edX instance deployed using Tutor (v21.0.8) on Ubuntu 22.04. The architecture is container-based (Docker) and microservices-oriented. All components are orchestrated by Tutor and run inside Docker containers, with Caddy acting as the reverse proxy and TLS terminator.
 
 \section{Physical Architecture}
 The deployment consists of the following containers:
@@ -54,7 +103,7 @@ The deployment consists of the following containers:
 - Meilisearch: Search index.
 
 % ---------------------------------------------------------------------
-% NEW: System Architecture and Data Flow
+% SYSTEM ARCHITECTURE AND DATA FLOW
 % ---------------------------------------------------------------------
 \section{System Architecture and Data Flow}
 
@@ -82,10 +131,43 @@ The following diagram illustrates the high‑level system architecture, showing 
 \label{fig:system_arch}
 \end{figure}
 
+\subsubsection*{Explanation of the System Architecture Diagram}
+This diagram depicts the entire Moove Education Platform as a set of networked components grouped into three logical networks: \textbf{Frontend}, \textbf{Backend}, and \textbf{Database}.
+
+- \textbf{External Users} (Learners, Educators, Administrators) connect to the system over the internet via HTTPS.
+- \textbf{Caddy} acts as the single entry point (reverse proxy). It terminates TLS, routes requests to the appropriate service, and serves static assets. It also provides load balancing and automatic certificate renewal via Let's Encrypt.
+- The \textbf{Frontend Network} contains only Caddy, which is exposed to the internet on ports 80 and 443.
+- The \textbf{Backend Network} hosts the core application services:
+  \begin{itemize}
+    \item \textbf{LMS (Django)}: handles all learner operations, including enrollment, content delivery, assessments, and grading.
+    \item \textbf{CMS (Django)}: the Studio interface for educators to create and manage courses.
+    \item \textbf{MFE (React)}: micro‑frontend applications that provide modern user interfaces for authentication, account management, and learner dashboard.
+    \item \textbf{Celery Workers}: process asynchronous tasks such as sending emails, grading background jobs, and updating analytics.
+    \item \textbf{SMTP Relay (Exim)}: sends system emails (notifications, confirmations) to users.
+  \end{itemize}
+- The \textbf{Database Network} is isolated from the backend and contains all persistent data stores:
+  \begin{itemize}
+    \item \textbf{MySQL 8.4}: stores relational data (users, courses, enrollments, grades, etc.).
+    \item \textbf{MongoDB 7.0}: stores course structure (XBlock content) and discussion forum data.
+    \item \textbf{Redis 7.4}: used for caching, session storage, and as a message broker for Celery.
+    \item \textbf{Meilisearch 1.8}: provides fast full‑text search over course content and discussions.
+  \end{itemize}
+
+Connections between components are shown with arrows:
+- Caddy proxies requests to LMS, CMS, MFE, and Meilisearch.
+- LMS and CMS communicate with MySQL, MongoDB, and Redis.
+- LMS interacts with Celery (via Redis) and SMTP.
+- MFE communicates with LMS and CMS via REST APIs.
+- Workers access MySQL, MongoDB, and SMTP for background tasks.
+
+This separation into networks enforces security boundaries: only Caddy is exposed externally; all other services are internal and accessible only within the Docker environment.
+
 \subsection{Data Flow Diagram (DFD)}
 The Data Flow Diagram shows how data moves through the system, from user interactions to storage and retrieval.
 
 \subsubsection{Context Diagram (Level 0)}
+The Context DFD shows the system boundary and external entities that interact with the platform.
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth,height=0.6\textheight,keepaspectratio]{diagrams/dfd_context.png}
@@ -93,13 +175,46 @@ The Data Flow Diagram shows how data moves through the system, from user interac
 \label{fig:dfd_context}
 \end{figure}
 
+\subsubsection*{Explanation of the Context DFD}
+The Context Diagram (Level 0) presents the entire Moove Education Platform as a single process (the system boundary) and identifies the three primary external entities that interact with it:
+
+- \textbf{Learner}: provides credentials, enrollment requests, content requests, and assessment submissions. Receives course content, progress data, grades, and notifications.
+- \textbf{Educator}: supplies course creation and management inputs, content updates, grading, and analytics queries. Receives course data, analytics reports, and system feedback.
+- \textbf{Administrator}: performs user management, site configuration, and system monitoring. Receives system status, logs, and statistics.
+
+The data flows are labelled with the type of information exchanged. This diagram establishes the overall scope of the system and the interfaces with external users.
+
 \subsubsection{Level 1 DFD}
+The Level 1 DFD shows the main processes within the system and how they interact with data stores and external entities.
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio]{diagrams/dfd_level1.png}
 \caption{Level 1 DFD showing main processes: Authentication, Course Management, Enrollment, Content Delivery, Assessment, and Reporting.}
 \label{fig:dfd_level1}
 \end{figure}
+
+\subsubsection*{Explanation of the Level 1 DFD}
+This diagram decomposes the system into six core processes and three data stores:
+
+\textbf{Processes:}
+\begin{enumerate}
+    \item \textbf{Authenticate} – validates user credentials (learner, educator, admin). Interacts with MySQL (user table) and Redis (session storage).
+    \item \textbf{Manage Courses} – handles course creation, updates, and publishing. Writes course metadata to MySQL and course structure (outline) to MongoDB.
+    \item \textbf{Enroll} – manages learner enrollment. Writes enrollment records to MySQL and triggers a Celery task (via Redis) to send a confirmation email.
+    \item \textbf{Deliver Content} – retrieves course content based on learner requests. Reads course metadata from MySQL and course structure from MongoDB; uses Redis for caching.
+    \item \textbf{Assess} – processes learner answers, stores grades in MySQL, and queues grading tasks via Redis.
+    \item \textbf{Report} – generates analytics and search results. Queries MySQL for aggregate data and uses Meilisearch for full‑text search.
+\end{enumerate}
+
+\textbf{Data Stores:}
+\begin{itemize}
+    \item \textbf{MySQL}: persistent storage for users, courses, grades, enrollments, and other relational data.
+    \item \textbf{MongoDB}: stores course structure (hierarchical content) and discussion data.
+    \item \textbf{Redis}: serves as a cache, session store, and Celery broker for asynchronous tasks.
+\end{itemize}
+
+Data flows between processes and stores are labelled with the type of operation (read/write). The diagram also shows that the Enroll process communicates with Deliver (enrollment status affects content visibility) and Manage Courses feeds published courses to Deliver.
 
 \subsection{Data Flow Explanation}
 The system processes data as follows:
@@ -138,13 +253,13 @@ This section describes the security controls implemented to meet INSA requiremen
 \subsection{Secrets Management}
 \begin{itemize}
     \item All sensitive configuration values (passwords, API keys, private keys) are stored encrypted and rotated regularly.
-    \item Secrets are managed via Tutor’s configuration system and not hard‑coded in source code.
+    \item Secrets are managed via Tutor's configuration system and not hard‑coded in source code.
     \item JWT RSA private key is stored securely and rotated periodically.
 \end{itemize}
 
 \subsection{Monitoring and Logging}
 \begin{itemize}
-    \item Centralised logging is implemented using the ELK stack (Elasticsearch, Logstash, Kibana).
+    \item Centralised logging is implemented using Tutor log analysis.
     \item Security events (login failures, privilege changes) are logged and monitored.
     \item Weekly vulnerability scanning of container images is performed using Trivy.
 \end{itemize}
@@ -162,7 +277,10 @@ For a complete threat model and risk assessment, refer to the \textit{Security A
 % UML DIAGRAMS
 % ---------------------------------------------------------------------
 \section{UML Diagrams}
+
 \subsection{Use Case Diagram}
+The Use Case Diagram shows the main interactions between actors and the system.
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio]{diagrams/usecase.png}
@@ -170,7 +288,30 @@ For a complete threat model and risk assessment, refer to the \textit{Security A
 \label{fig:usecase}
 \end{figure}
 
+\subsubsection*{Explanation of the Use Case Diagram}
+This UML Use Case Diagram identifies the primary actors and their interactions with the Moove Education Platform.
+
+- \textbf{Actors:}
+  \begin{itemize}
+    \item \textbf{Learner}: an end‑user who consumes educational content.
+    \item \textbf{Instructor}: a course creator and manager.
+    \item \textbf{Administrator}: a system operator with full control.
+    \item \textbf{System}: an automated component that sends notifications.
+  \end{itemize}
+
+- \textbf{Use Cases (grouped by actor):}
+  \begin{itemize}
+    \item \textbf{Learner}: Register, Login, View Dashboard, Enroll in Course, Access Course Content, Take Assessments, Participate in Discussions.
+    \item \textbf{Instructor}: Create Course, Publish Course, Manage Enrollments, Grade Learners, Moderate Discussions.
+    \item \textbf{Administrator}: Manage Users, Configure Site, View Analytics.
+    \item \textbf{System}: Send Notifications (email, triggered by various events).
+  \end{itemize}
+
+The diagram illustrates that learners interact primarily with content consumption and assessment, while instructors manage course creation and student progress. Administrators handle platform governance. The System use case represents automated background processes.
+
 \subsection{Class Diagram}
+The Class Diagram shows the core entities and their relationships.
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio]{diagrams/class.png}
@@ -178,7 +319,28 @@ For a complete threat model and risk assessment, refer to the \textit{Security A
 \label{fig:class}
 \end{figure}
 
+\subsubsection*{Explanation of the Class Diagram}
+This diagram defines the main domain classes and their associations, which map to the database tables.
+
+- \textbf{User}: represents a platform user (learner, instructor, admin). Attributes include \texttt{id}, \texttt{username}, \texttt{email}, \texttt{password\_hash}, \texttt{is\_staff}, \texttt{is\_superuser}, \texttt{last\_login}.
+
+- \textbf{Course}: a course offering. Attributes: \texttt{id} (course key), \texttt{display\_name}, \texttt{start}, \texttt{end}, \texttt{enrollment\_track}, \texttt{is\_published}.
+
+- \textbf{Enrollment}: links a User to a Course. Attributes: \texttt{created}, \texttt{is\_active}, \texttt{mode} (audit/verified). Multiplicity: a User can have many Enrollments; a Course can have many Enrollments.
+
+- \textbf{Assessment}: a learning activity (quiz, assignment, peer review). Attributes: \texttt{section}, \texttt{type}, \texttt{max\_score}. Each Course has multiple Assessments.
+
+- \textbf{Grade}: a score for a User on a specific Assessment in a Course. Attributes: \texttt{score}, \texttt{percent}, \texttt{passed}. Links User, Course, and Assessment.
+
+- \textbf{DiscussionThread}: a forum topic within a Course. Attributes: \texttt{title}, \texttt{created}. Each Course has many Threads; a User can author many Threads.
+
+- \textbf{DiscussionPost}: a reply within a Thread. Attributes: \texttt{body}, \texttt{created}. Each Thread has many Posts; a User can author many Posts.
+
+The relationships are shown with multiplicities (e.g., 1–*, 0–*). This class model underpins the relational database schema and the object‑relational mapping (Django ORM).
+
 \subsection{Sequence Diagram: Course Enrollment}
+The Sequence Diagram shows the flow of a learner enrollment process.
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio]{diagrams/sequence_enrollment.png}
@@ -186,13 +348,42 @@ For a complete threat model and risk assessment, refer to the \textit{Security A
 \label{fig:enrollment}
 \end{figure}
 
+\subsubsection*{Explanation of the Enrollment Sequence Diagram}
+This diagram illustrates the step‑by‑step interaction for a learner enrolling in a course.
+
+\begin{enumerate}
+    \item The \textbf{Learner} sends a \texttt{POST /api/enrollment/v1/} request to the \textbf{LMS}.
+    \item The LMS inserts a new record into the \textbf{MySQL} database (\texttt{course\_enrollment} table). MySQL confirms success.
+    \item The LMS then initialises discussion data for the learner in \textbf{MongoDB} (e.g., creating a discussion topic if needed). MongoDB confirms.
+    \item The LMS queues an asynchronous task to send a confirmation email by pushing a message to \textbf{Celery} (via Redis).
+    \item The Celery worker processes the task and sends an email to the Learner.
+    \item Finally, the LMS returns a \texttt{201 Created} response to the Learner.
+\end{enumerate}
+
+This sequence shows synchronous operations (database writes) and asynchronous tasks (email) to maintain responsiveness.
+
 \subsection{Sequence Diagram: Course Creation (Educator)}
+The Sequence Diagram shows the flow of an educator creating a course.
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio]{diagrams/sequence_course_creation.png}
 \caption{Educator course creation flow.}
 \label{fig:course_creation}
 \end{figure}
+
+\subsubsection*{Explanation of the Course Creation Sequence Diagram}
+This diagram details the process of creating a new course from the CMS.
+
+\begin{enumerate}
+    \item The \textbf{Educator} clicks “New Course” in the Studio UI.
+    \item The \textbf{CMS} validates the proposed course ID (ensuring uniqueness).
+    \item The CMS inserts a new row into the \textbf{MySQL} \texttt{course\_overview} table with course metadata. MySQL returns success.
+    \item The CMS initialises the course structure in \textbf{MongoDB} (e.g., creates the root node for the course). MongoDB confirms.
+    \item The CMS returns a confirmation to the Educator that the course skeleton has been created.
+\end{enumerate}
+
+This sequence is synchronous; the course is immediately ready for further content editing.
 
 \section{Module Interaction}
 Refer to the TDD for detailed component diagrams and API interactions.
@@ -202,6 +393,8 @@ Refer to the TDD for detailed component diagrams and API interactions.
     \item \textit{Security Architecture \& Threat Model – Moove Education Platform} (Security\_OpenEdX.tex)
     \item CMCSRS v2.0
     \item FDRE National Cybersecurity Policy (2024)
+    \item Computer Crime Proclamation No. 958/2016
+    \item Electronic Signature Proclamation No. 1072/2018
 \end{itemize}
 
 % === LICENSE ATTRIBUTION ===

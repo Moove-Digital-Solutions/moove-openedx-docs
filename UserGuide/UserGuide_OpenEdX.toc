@@ -1,121 +1,126 @@
-\contentsline {section}{\numberline {0.1}Introduction}{2}{section.0.1}%
-\contentsline {section}{\numberline {0.2}Educator Features}{2}{section.0.2}%
-\contentsline {subsection}{\numberline {0.2.1}Course Creation \& Planning}{2}{subsection.0.2.1}%
-\contentsline {subsubsection}{Create a New Course (UFR-OE-001-01)}{2}{subsubsection*.2}%
-\contentsline {subsubsection}{Plan a New Course (UFR-OE-001-02)}{3}{subsubsection*.3}%
-\contentsline {subsubsection}{Enroll Learners in a Course (UFR-OE-001-03)}{4}{subsubsection*.4}%
-\contentsline {subsection}{\numberline {0.2.2}Instructional Design Concepts (UFR-OE-002-01)}{5}{subsection.0.2.2}%
-\contentsline {subsection}{\numberline {0.2.3}Learner Engagement \& Communication}{5}{subsection.0.2.3}%
-\contentsline {subsubsection}{Course Discussions (UFR-OE-003-01)}{5}{subsubsection*.5}%
-\contentsline {subsubsection}{Bulk Emails (UFR-OE-003-02)}{6}{subsubsection*.6}%
-\contentsline {subsubsection}{Course Updates (UFR-OE-003-03)}{7}{subsubsection*.7}%
-\contentsline {subsection}{\numberline {0.2.4}Content Creation \& Management}{7}{subsection.0.2.4}%
-\contentsline {subsubsection}{Create and Manage Components (UFR-OE-004-01)}{7}{subsubsection*.8}%
-\contentsline {subsubsection}{Manage Text Components (UFR-OE-004-02)}{8}{subsubsection*.9}%
-\contentsline {subsubsection}{Manage Video Components (UFR-OE-004-03)}{9}{subsubsection*.10}%
-\contentsline {subsubsection}{Control Content Visibility \& Access (UFR-OE-004-04)}{10}{subsubsection*.11}%
-\contentsline {subsection}{\numberline {0.2.5}Components \& Activities}{11}{subsection.0.2.5}%
-\contentsline {subsubsection}{Dropdown Problem (UFR-OE-005-01)}{11}{subsubsection*.12}%
-\contentsline {subsubsection}{Multi-Select Problem (UFR-OE-005-02)}{11}{subsubsection*.13}%
-\contentsline {subsubsection}{Open Response Assessments (ORA) – UFR-OE-005-03}{12}{subsubsection*.14}%
-\contentsline {subsubsection}{Single Select Problem (UFR-OE-005-04)}{12}{subsubsection*.15}%
-\contentsline {subsubsection}{Text Input Problem (UFR-OE-005-05)}{13}{subsubsection*.16}%
-\contentsline {subsection}{\numberline {0.2.6}Data \& Analytics}{13}{subsection.0.2.6}%
-\contentsline {subsubsection}{View Course Enrollments (UFR-OE-006-01)}{13}{subsubsection*.17}%
-\contentsline {subsubsection}{View Learner Data (UFR-OE-006-02)}{14}{subsubsection*.18}%
-\contentsline {subsubsection}{View Learner Grades (UFR-OE-006-03)}{14}{subsubsection*.19}%
-\contentsline {subsubsection}{View Answer Data (UFR-OE-006-04)}{15}{subsubsection*.20}%
-\contentsline {subsubsection}{View Certificate Data (UFR-OE-006-05)}{15}{subsubsection*.21}%
-\contentsline {subsection}{\numberline {0.2.7}Accessibility}{15}{subsection.0.2.7}%
-\contentsline {subsubsection}{Open edX Accessibility Guidelines (UFR-OE-007-01)}{15}{subsubsection*.22}%
-\contentsline {subsubsection}{Design for Mobile Experience (UFR-OE-007-02)}{16}{subsubsection*.23}%
-\contentsline {subsubsection}{Accessibility Best Practices Checklist (UFR-OE-007-03)}{16}{subsubsection*.24}%
-\contentsline {subsubsection}{Manage Video Transcripts (UFR-OE-007-04)}{16}{subsubsection*.25}%
-\contentsline {subsection}{\numberline {0.2.8}Import/Export / OLX}{17}{subsection.0.2.8}%
-\contentsline {subsubsection}{Open Learning XML (OLX) Support (UFR-OE-008-01)}{17}{subsubsection*.26}%
-\contentsline {subsubsection}{Getting Started with OLX (UFR-OE-008-02)}{18}{subsubsection*.27}%
-\contentsline {section}{\numberline {0.3}Learner Features}{18}{section.0.3}%
-\contentsline {subsection}{\numberline {0.3.1}Dashboard \& Profile}{18}{subsection.0.3.1}%
-\contentsline {subsubsection}{Exploring Your Dashboard and Profile (UFR-OE-101-01)}{18}{subsubsection*.28}%
-\contentsline {subsubsection}{Access Your Courses from the Dashboard (UFR-OE-101-02)}{19}{subsubsection*.29}%
-\contentsline {subsubsection}{Share Your Courses on Social Media (UFR-OE-101-03)}{19}{subsubsection*.30}%
-\contentsline {subsubsection}{Update Your Profile Image (UFR-OE-101-04)}{19}{subsubsection*.31}%
-\contentsline {subsubsection}{Update Your Profile Details (UFR-OE-101-05)}{19}{subsubsection*.32}%
-\contentsline {subsubsection}{Add Links to Your Personal Social Media Accounts (UFR-OE-101-06)}{20}{subsubsection*.33}%
-\contentsline {subsubsection}{Toggle Profile Information Visibility (UFR-OE-101-07)}{20}{subsubsection*.34}%
-\contentsline {subsubsection}{View Another Learner’s Profile (UFR-OE-101-08)}{20}{subsubsection*.35}%
-\contentsline {subsubsection}{Updating Course-Specific Settings (UFR-OE-101-09)}{21}{subsubsection*.36}%
-\contentsline {subsection}{\numberline {0.3.2}Course Navigation}{21}{subsection.0.3.2}%
-\contentsline {subsubsection}{View Course Sections from the Navigation Sidebar (UFR-OE-102-01)}{21}{subsubsection*.37}%
-\contentsline {subsection}{\numberline {0.3.3}Enrollment}{21}{subsection.0.3.3}%
-\contentsline {subsubsection}{Enroll in a Course (UFR-OE-103-01)}{21}{subsubsection*.38}%
-\contentsline {subsubsection}{Open and Start a Course (UFR-OE-103-02)}{22}{subsubsection*.39}%
-\contentsline {subsection}{\numberline {0.3.4}Course Prerequisites}{22}{subsection.0.3.4}%
-\contentsline {subsubsection}{Overview of Prerequisites (UFR-OE-104-01)}{22}{subsubsection*.40}%
-\contentsline {subsubsection}{Prerequisite Course (UFR-OE-104-02)}{22}{subsubsection*.41}%
-\contentsline {subsubsection}{Entrance Exam (UFR-OE-104-03)}{23}{subsubsection*.42}%
-\contentsline {subsection}{\numberline {0.3.5}Course Content Access}{23}{subsection.0.3.5}%
-\contentsline {subsubsection}{Troubleshoot Accessing Course Content (UFR-OE-105-01)}{23}{subsubsection*.43}%
-\contentsline {subsubsection}{Access an Archived Course (UFR-OE-105-02)}{23}{subsubsection*.44}%
-\contentsline {subsubsection}{View a Final Course Grade (UFR-OE-105-03)}{23}{subsubsection*.45}%
-\contentsline {subsubsection}{View Certificate Status (UFR-OE-105-04)}{23}{subsubsection*.46}%
-\contentsline {subsection}{\numberline {0.3.6}Course Progress}{24}{subsection.0.3.6}%
-\contentsline {subsubsection}{Find a Course Start Date (UFR-OE-106-01)}{24}{subsubsection*.47}%
-\contentsline {subsubsection}{Start or Resume a Course (UFR-OE-106-02)}{24}{subsubsection*.48}%
-\contentsline {subsubsection}{Progress Indicators (UFR-OE-106-03)}{24}{subsubsection*.49}%
-\contentsline {subsubsection}{The Progress Page (UFR-OE-106-04)}{25}{subsubsection*.50}%
-\contentsline {subsection}{\numberline {0.3.7}Certificates \& Badges}{25}{subsection.0.3.7}%
-\contentsline {subsubsection}{Accessing a Certificate (UFR-OE-107-01)}{25}{subsubsection*.51}%
-\contentsline {subsubsection}{Viewing Earned Badges in Your Profile (UFR-OE-107-02)}{25}{subsubsection*.52}%
-\contentsline {subsubsection}{Sharing Badges on Mozilla Backpack (UFR-OE-107-03)}{26}{subsubsection*.53}%
-\contentsline {subsection}{\numberline {0.3.8}Watching Videos}{26}{subsection.0.3.8}%
-\contentsline {subsubsection}{Watching Videos on the Open edX Video Player (UFR-OE-108-01)}{26}{subsubsection*.54}%
-\contentsline {subsection}{\numberline {0.3.9}Participating in Course Discussions}{27}{subsection.0.3.9}%
-\contentsline {subsubsection}{Getting Started with Discussions (UFR-OE-109-01)}{27}{subsubsection*.55}%
-\contentsline {subsubsection}{Finding and Following the Right Conversations (UFR-OE-109-02)}{28}{subsubsection*.56}%
-\contentsline {subsubsection}{Taking Part in Discussions (UFR-OE-109-03)}{28}{subsubsection*.57}%
-\contentsline {subsubsection}{Staying Updated with Notifications (UFR-OE-109-04)}{28}{subsubsection*.58}%
-\contentsline {subsection}{\numberline {0.3.10}Completing Different Types of Assignments}{29}{subsection.0.3.10}%
-\contentsline {subsubsection}{Completing Mathematical and Scientific Assignments (UFR-OE-110-01)}{29}{subsubsection*.59}%
-\contentsline {subsubsection}{Taking a Timed Exam (UFR-OE-110-02)}{29}{subsubsection*.60}%
-\contentsline {subsubsection}{Proctored Exams (UFR-OE-110-03)}{29}{subsubsection*.61}%
-\contentsline {subsubsection}{Explaining Multiple Choice Answers (UFR-OE-110-04)}{29}{subsubsection*.62}%
-\contentsline {subsubsection}{Completing Essay Assignments (UFR-OE-110-05)}{29}{subsubsection*.63}%
-\contentsline {subsubsection}{The Steps in an Open Response Assessment (UFR-OE-110-06)}{30}{subsubsection*.64}%
-\contentsline {subsubsection}{How Grading Is Done in Open Response Assessments (UFR-OE-110-07)}{30}{subsubsection*.65}%
-\contentsline {subsubsection}{Completing an Open Response Assessment (UFR-OE-110-08)}{30}{subsubsection*.66}%
-\contentsline {subsubsection}{Receive Your Score and Provide Feedback (UFR-OE-110-09)}{30}{subsubsection*.67}%
-\contentsline {subsubsection}{How Peer Assessment Scores Are Calculated (UFR-OE-110-10)}{30}{subsubsection*.68}%
-\contentsline {subsubsection}{Canceled Responses (UFR-OE-110-11)}{30}{subsubsection*.69}%
-\contentsline {subsection}{\numberline {0.3.11}Working on Team Projects and Activities}{31}{subsection.0.3.11}%
-\contentsline {subsubsection}{About Teams and Topics (UFR-OE-111-01)}{31}{subsubsection*.70}%
-\contentsline {subsubsection}{Search for a Team (UFR-OE-111-02)}{31}{subsubsection*.71}%
-\contentsline {subsubsection}{Join a Team (UFR-OE-111-03)}{31}{subsubsection*.72}%
-\contentsline {subsubsection}{Leave a Team (UFR-OE-111-04)}{31}{subsubsection*.73}%
-\contentsline {subsubsection}{Create a Team (UFR-OE-111-05)}{31}{subsubsection*.74}%
-\contentsline {subsubsection}{Participating in Team Discussions (UFR-OE-111-06)}{31}{subsubsection*.75}%
-\contentsline {subsection}{\numberline {0.3.12}Searching the Course}{32}{subsection.0.3.12}%
-\contentsline {subsubsection}{Overview of Search (UFR-OE-112-01)}{32}{subsubsection*.76}%
-\contentsline {subsubsection}{Search a Single Course (UFR-OE-112-02)}{32}{subsubsection*.77}%
-\contentsline {subsubsection}{Search All Your Courses (UFR-OE-112-03)}{32}{subsubsection*.78}%
-\contentsline {subsection}{\numberline {0.3.13}Bookmarking Course Content}{32}{subsection.0.3.13}%
-\contentsline {subsubsection}{Add or Remove a Bookmark (UFR-OE-113-01)}{32}{subsubsection*.79}%
-\contentsline {subsubsection}{View Your Bookmarks (UFR-OE-113-02)}{32}{subsubsection*.80}%
-\contentsline {subsection}{\numberline {0.3.14}Notifications \& Preferences}{33}{subsection.0.3.14}%
-\contentsline {subsubsection}{Where Notifications Appear (UFR-OE-114-01)}{33}{subsubsection*.81}%
-\contentsline {subsubsection}{Activity Types (UFR-OE-114-02)}{33}{subsubsection*.82}%
-\contentsline {subsubsection}{Managing Preferences (UFR-OE-114-03)}{33}{subsubsection*.83}%
-\contentsline {subsubsection}{Notifications Expiry (UFR-OE-114-04)}{34}{subsubsection*.84}%
-\contentsline {subsection}{\numberline {0.3.15}Using the Course Wiki}{34}{subsection.0.3.15}%
-\contentsline {subsubsection}{View Live Course (UFR-OE-115-01)}{34}{subsubsection*.85}%
-\contentsline {subsubsection}{View Live Course (UFR-OE-115-02)}{34}{subsubsection*.86}%
-\contentsline {section}{\numberline {0.4}Security and Privacy (Mandatory)}{34}{section.0.4}%
-\contentsline {subsection}{\numberline {0.4.1}Password Management}{34}{subsection.0.4.1}%
-\contentsline {subsection}{\numberline {0.4.2}Protecting Personal Information}{34}{subsection.0.4.2}%
-\contentsline {subsection}{\numberline {0.4.3}Recognising Phishing and Suspicious Activities}{35}{subsection.0.4.3}%
-\contentsline {subsection}{\numberline {0.4.4}Secure Use of the Platform}{35}{subsection.0.4.4}%
-\contentsline {subsection}{\numberline {0.4.5}Reporting Security Incidents}{35}{subsection.0.4.5}%
-\contentsline {subsection}{\numberline {0.4.6}Compliance and Consequences}{35}{subsection.0.4.6}%
-\contentsline {section}{\numberline {0.5}Troubleshooting}{35}{section.0.5}%
-\contentsline {section}{\numberline {0.6}References}{36}{section.0.6}%
-\contentsline {section}{\numberline {.1}Full Apache License 2.0 Text}{37}{section.Alph0.1}%
+\contentsline {section}{List of Figures}{3}{chapter*.2}%
+\contentsline {section}{\numberline {0.1}Document Management and Quality Assurance}{4}{section.0.1}%
+\contentsline {subsection}{\numberline {0.1.1}Document Purpose}{4}{subsection.0.1.1}%
+\contentsline {subsection}{\numberline {0.1.2}Quality Assurance}{4}{subsection.0.1.2}%
+\contentsline {subsection}{\numberline {0.1.3}Document Conventions}{4}{subsection.0.1.3}%
+\contentsline {section}{\numberline {0.2}Introduction}{5}{section.0.2}%
+\contentsline {section}{\numberline {0.3}Educator Features}{5}{section.0.3}%
+\contentsline {subsection}{\numberline {0.3.1}Course Creation \& Planning}{5}{subsection.0.3.1}%
+\contentsline {subsubsection}{Create a New Course (UFR-OE-001-01)}{5}{subsubsection*.3}%
+\contentsline {subsubsection}{Plan a New Course (UFR-OE-001-02)}{6}{subsubsection*.4}%
+\contentsline {subsubsection}{Enroll Learners in a Course (UFR-OE-001-03)}{7}{subsubsection*.5}%
+\contentsline {subsection}{\numberline {0.3.2}Instructional Design Concepts (UFR-OE-002-01)}{8}{subsection.0.3.2}%
+\contentsline {subsection}{\numberline {0.3.3}Learner Engagement \& Communication}{8}{subsection.0.3.3}%
+\contentsline {subsubsection}{Course Discussions (UFR-OE-003-01)}{8}{subsubsection*.6}%
+\contentsline {subsubsection}{Bulk Emails (UFR-OE-003-02)}{9}{subsubsection*.7}%
+\contentsline {subsubsection}{Course Updates (UFR-OE-003-03)}{10}{subsubsection*.8}%
+\contentsline {subsection}{\numberline {0.3.4}Content Creation \& Management}{10}{subsection.0.3.4}%
+\contentsline {subsubsection}{Create and Manage Components (UFR-OE-004-01)}{10}{subsubsection*.9}%
+\contentsline {subsubsection}{Manage Text Components (UFR-OE-004-02)}{11}{subsubsection*.10}%
+\contentsline {subsubsection}{Manage Video Components (UFR-OE-004-03)}{12}{subsubsection*.11}%
+\contentsline {subsubsection}{Control Content Visibility \& Access (UFR-OE-004-04)}{13}{subsubsection*.12}%
+\contentsline {subsection}{\numberline {0.3.5}Components \& Activities}{14}{subsection.0.3.5}%
+\contentsline {subsubsection}{Dropdown Problem (UFR-OE-005-01)}{14}{subsubsection*.13}%
+\contentsline {subsubsection}{Multi-Select Problem (UFR-OE-005-02)}{14}{subsubsection*.14}%
+\contentsline {subsubsection}{Open Response Assessments (ORA) – UFR-OE-005-03}{15}{subsubsection*.15}%
+\contentsline {subsubsection}{Single Select Problem (UFR-OE-005-04)}{15}{subsubsection*.16}%
+\contentsline {subsubsection}{Text Input Problem (UFR-OE-005-05)}{16}{subsubsection*.17}%
+\contentsline {subsection}{\numberline {0.3.6}Data \& Analytics}{16}{subsection.0.3.6}%
+\contentsline {subsubsection}{View Course Enrollments (UFR-OE-006-01)}{16}{subsubsection*.18}%
+\contentsline {subsubsection}{View Learner Data (UFR-OE-006-02)}{17}{subsubsection*.19}%
+\contentsline {subsubsection}{View Learner Grades (UFR-OE-006-03)}{17}{subsubsection*.20}%
+\contentsline {subsubsection}{View Answer Data (UFR-OE-006-04)}{18}{subsubsection*.21}%
+\contentsline {subsubsection}{View Certificate Data (UFR-OE-006-05)}{18}{subsubsection*.22}%
+\contentsline {subsection}{\numberline {0.3.7}Accessibility}{18}{subsection.0.3.7}%
+\contentsline {subsubsection}{Open edX Accessibility Guidelines (UFR-OE-007-01)}{18}{subsubsection*.23}%
+\contentsline {subsubsection}{Design for Mobile Experience (UFR-OE-007-02)}{19}{subsubsection*.24}%
+\contentsline {subsubsection}{Accessibility Best Practices Checklist (UFR-OE-007-03)}{19}{subsubsection*.25}%
+\contentsline {subsubsection}{Manage Video Transcripts (UFR-OE-007-04)}{19}{subsubsection*.26}%
+\contentsline {subsection}{\numberline {0.3.8}Import/Export / OLX}{20}{subsection.0.3.8}%
+\contentsline {subsubsection}{Open Learning XML (OLX) Support (UFR-OE-008-01)}{20}{subsubsection*.27}%
+\contentsline {subsubsection}{Getting Started with OLX (UFR-OE-008-02)}{21}{subsubsection*.28}%
+\contentsline {section}{\numberline {0.4}Learner Features}{21}{section.0.4}%
+\contentsline {subsection}{\numberline {0.4.1}Dashboard \& Profile}{21}{subsection.0.4.1}%
+\contentsline {subsubsection}{Exploring Your Dashboard and Profile (UFR-OE-101-01)}{21}{subsubsection*.29}%
+\contentsline {subsubsection}{Access Your Courses from the Dashboard (UFR-OE-101-02)}{22}{subsubsection*.30}%
+\contentsline {subsubsection}{Share Your Courses on Social Media (UFR-OE-101-03)}{22}{subsubsection*.31}%
+\contentsline {subsubsection}{Update Your Profile Image (UFR-OE-101-04)}{22}{subsubsection*.32}%
+\contentsline {subsubsection}{Update Your Profile Details (UFR-OE-101-05)}{22}{subsubsection*.33}%
+\contentsline {subsubsection}{Add Links to Your Personal Social Media Accounts (UFR-OE-101-06)}{23}{subsubsection*.34}%
+\contentsline {subsubsection}{Toggle Profile Information Visibility (UFR-OE-101-07)}{23}{subsubsection*.35}%
+\contentsline {subsubsection}{View Another Learner’s Profile (UFR-OE-101-08)}{23}{subsubsection*.36}%
+\contentsline {subsubsection}{Updating Course-Specific Settings (UFR-OE-101-09)}{24}{subsubsection*.37}%
+\contentsline {subsection}{\numberline {0.4.2}Course Navigation}{24}{subsection.0.4.2}%
+\contentsline {subsubsection}{View Course Sections from the Navigation Sidebar (UFR-OE-102-01)}{24}{subsubsection*.38}%
+\contentsline {subsection}{\numberline {0.4.3}Enrollment}{24}{subsection.0.4.3}%
+\contentsline {subsubsection}{Enroll in a Course (UFR-OE-103-01)}{24}{subsubsection*.39}%
+\contentsline {subsubsection}{Open and Start a Course (UFR-OE-103-02)}{25}{subsubsection*.40}%
+\contentsline {subsection}{\numberline {0.4.4}Course Prerequisites}{25}{subsection.0.4.4}%
+\contentsline {subsubsection}{Overview of Prerequisites (UFR-OE-104-01)}{25}{subsubsection*.41}%
+\contentsline {subsubsection}{Prerequisite Course (UFR-OE-104-02)}{25}{subsubsection*.42}%
+\contentsline {subsubsection}{Entrance Exam (UFR-OE-104-03)}{26}{subsubsection*.43}%
+\contentsline {subsection}{\numberline {0.4.5}Course Content Access}{26}{subsection.0.4.5}%
+\contentsline {subsubsection}{Troubleshoot Accessing Course Content (UFR-OE-105-01)}{26}{subsubsection*.44}%
+\contentsline {subsubsection}{Access an Archived Course (UFR-OE-105-02)}{26}{subsubsection*.45}%
+\contentsline {subsubsection}{View a Final Course Grade (UFR-OE-105-03)}{26}{subsubsection*.46}%
+\contentsline {subsubsection}{View Certificate Status (UFR-OE-105-04)}{26}{subsubsection*.47}%
+\contentsline {subsection}{\numberline {0.4.6}Course Progress}{27}{subsection.0.4.6}%
+\contentsline {subsubsection}{Find a Course Start Date (UFR-OE-106-01)}{27}{subsubsection*.48}%
+\contentsline {subsubsection}{Start or Resume a Course (UFR-OE-106-02)}{27}{subsubsection*.49}%
+\contentsline {subsubsection}{Progress Indicators (UFR-OE-106-03)}{27}{subsubsection*.50}%
+\contentsline {subsubsection}{The Progress Page (UFR-OE-106-04)}{28}{subsubsection*.51}%
+\contentsline {subsection}{\numberline {0.4.7}Certificates \& Badges}{28}{subsection.0.4.7}%
+\contentsline {subsubsection}{Accessing a Certificate (UFR-OE-107-01)}{28}{subsubsection*.52}%
+\contentsline {subsubsection}{Viewing Earned Badges in Your Profile (UFR-OE-107-02)}{28}{subsubsection*.53}%
+\contentsline {subsubsection}{Sharing Badges on Mozilla Backpack (UFR-OE-107-03)}{29}{subsubsection*.54}%
+\contentsline {subsection}{\numberline {0.4.8}Watching Videos}{29}{subsection.0.4.8}%
+\contentsline {subsubsection}{Watching Videos on the Open edX Video Player (UFR-OE-108-01)}{29}{subsubsection*.55}%
+\contentsline {subsection}{\numberline {0.4.9}Participating in Course Discussions}{30}{subsection.0.4.9}%
+\contentsline {subsubsection}{Getting Started with Discussions (UFR-OE-109-01)}{30}{subsubsection*.56}%
+\contentsline {subsubsection}{Finding and Following the Right Conversations (UFR-OE-109-02)}{31}{subsubsection*.57}%
+\contentsline {subsubsection}{Taking Part in Discussions (UFR-OE-109-03)}{31}{subsubsection*.58}%
+\contentsline {subsubsection}{Staying Updated with Notifications (UFR-OE-109-04)}{31}{subsubsection*.59}%
+\contentsline {subsection}{\numberline {0.4.10}Completing Different Types of Assignments}{32}{subsection.0.4.10}%
+\contentsline {subsubsection}{Completing Mathematical and Scientific Assignments (UFR-OE-110-01)}{32}{subsubsection*.60}%
+\contentsline {subsubsection}{Taking a Timed Exam (UFR-OE-110-02)}{32}{subsubsection*.61}%
+\contentsline {subsubsection}{Proctored Exams (UFR-OE-110-03)}{32}{subsubsection*.62}%
+\contentsline {subsubsection}{Explaining Multiple Choice Answers (UFR-OE-110-04)}{32}{subsubsection*.63}%
+\contentsline {subsubsection}{Completing Essay Assignments (UFR-OE-110-05)}{32}{subsubsection*.64}%
+\contentsline {subsubsection}{The Steps in an Open Response Assessment (UFR-OE-110-06)}{33}{subsubsection*.65}%
+\contentsline {subsubsection}{How Grading Is Done in Open Response Assessments (UFR-OE-110-07)}{33}{subsubsection*.66}%
+\contentsline {subsubsection}{Completing an Open Response Assessment (UFR-OE-110-08)}{33}{subsubsection*.67}%
+\contentsline {subsubsection}{Receive Your Score and Provide Feedback (UFR-OE-110-09)}{33}{subsubsection*.68}%
+\contentsline {subsubsection}{How Peer Assessment Scores Are Calculated (UFR-OE-110-10)}{33}{subsubsection*.69}%
+\contentsline {subsubsection}{Canceled Responses (UFR-OE-110-11)}{33}{subsubsection*.70}%
+\contentsline {subsection}{\numberline {0.4.11}Working on Team Projects and Activities}{34}{subsection.0.4.11}%
+\contentsline {subsubsection}{About Teams and Topics (UFR-OE-111-01)}{34}{subsubsection*.71}%
+\contentsline {subsubsection}{Search for a Team (UFR-OE-111-02)}{34}{subsubsection*.72}%
+\contentsline {subsubsection}{Join a Team (UFR-OE-111-03)}{34}{subsubsection*.73}%
+\contentsline {subsubsection}{Leave a Team (UFR-OE-111-04)}{34}{subsubsection*.74}%
+\contentsline {subsubsection}{Create a Team (UFR-OE-111-05)}{34}{subsubsection*.75}%
+\contentsline {subsubsection}{Participating in Team Discussions (UFR-OE-111-06)}{34}{subsubsection*.76}%
+\contentsline {subsection}{\numberline {0.4.12}Searching the Course}{35}{subsection.0.4.12}%
+\contentsline {subsubsection}{Overview of Search (UFR-OE-112-01)}{35}{subsubsection*.77}%
+\contentsline {subsubsection}{Search a Single Course (UFR-OE-112-02)}{35}{subsubsection*.78}%
+\contentsline {subsubsection}{Search All Your Courses (UFR-OE-112-03)}{35}{subsubsection*.79}%
+\contentsline {subsection}{\numberline {0.4.13}Bookmarking Course Content}{35}{subsection.0.4.13}%
+\contentsline {subsubsection}{Add or Remove a Bookmark (UFR-OE-113-01)}{35}{subsubsection*.80}%
+\contentsline {subsubsection}{View Your Bookmarks (UFR-OE-113-02)}{35}{subsubsection*.81}%
+\contentsline {subsection}{\numberline {0.4.14}Notifications \& Preferences}{36}{subsection.0.4.14}%
+\contentsline {subsubsection}{Where Notifications Appear (UFR-OE-114-01)}{36}{subsubsection*.82}%
+\contentsline {subsubsection}{Activity Types (UFR-OE-114-02)}{36}{subsubsection*.83}%
+\contentsline {subsubsection}{Managing Preferences (UFR-OE-114-03)}{36}{subsubsection*.84}%
+\contentsline {subsubsection}{Notifications Expiry (UFR-OE-114-04)}{37}{subsubsection*.85}%
+\contentsline {subsection}{\numberline {0.4.15}Using the Course Wiki}{37}{subsection.0.4.15}%
+\contentsline {subsubsection}{View Live Course (UFR-OE-115-01)}{37}{subsubsection*.86}%
+\contentsline {subsubsection}{View Live Course (UFR-OE-115-02)}{37}{subsubsection*.87}%
+\contentsline {section}{\numberline {0.5}Security and Privacy (Mandatory)}{37}{section.0.5}%
+\contentsline {subsection}{\numberline {0.5.1}Password Management}{37}{subsection.0.5.1}%
+\contentsline {subsection}{\numberline {0.5.2}Protecting Personal Information}{37}{subsection.0.5.2}%
+\contentsline {subsection}{\numberline {0.5.3}Recognising Phishing and Suspicious Activities}{38}{subsection.0.5.3}%
+\contentsline {subsection}{\numberline {0.5.4}Secure Use of the Platform}{38}{subsection.0.5.4}%
+\contentsline {subsection}{\numberline {0.5.5}Reporting Security Incidents}{38}{subsection.0.5.5}%
+\contentsline {subsection}{\numberline {0.5.6}Compliance and Consequences}{38}{subsection.0.5.6}%
+\contentsline {section}{\numberline {0.6}Troubleshooting}{38}{section.0.6}%
+\contentsline {section}{\numberline {0.7}References}{39}{section.0.7}%
+\contentsline {section}{\numberline {.1}Full Apache License 2.0 Text}{40}{section.Alph0.1}%

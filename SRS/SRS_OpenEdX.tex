@@ -1,14 +1,19 @@
 % === SET DOCUMENT METADATA ===
 \def\docTitle{Software Requirements Specification (SRS)}
-\def\docVersion{3.0}
-\def\docDate{July 19, 2026}
+\def\docVersion{3.1}
+\def\docDate{July 20, 2026}
 
 % === INCLUDE REUSABLE COMPONENTS ===
 \input{../common/preamble}
 
+% === ADDITIONAL PACKAGES ===
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{colortbl}   % added for rowcolor
+
 % === FOOTER OVERRIDE ===
 \fancyhead[L]{\textcolor{mooveblue}{\textbf{Moove Education Platform}}}
-\fancyhead[R]{\textbf{SRS v3.0}}
+\fancyhead[R]{\textbf{SRS v4.0}}
 
 % === BEGIN DOCUMENT ===
 \begin{document}
@@ -17,13 +22,67 @@
 % === COVER PAGE ===
 \input{../common/cover}
 
-% === DOCUMENT BODY ===
+% === TABLE OF CONTENTS ===
 \tableofcontents
 \newpage
+
+% === LIST OF TABLES ===
+\listoftables
+\addcontentsline{toc}{section}{List of Tables}
+\newpage
+
+% === LIST OF FIGURES ===
+\listoffigures
+\addcontentsline{toc}{section}{List of Figures}
+\newpage
+
+% === DOCUMENT MANAGEMENT SECTION ===
+\section{Document Management and Quality Assurance}
+
+\subsection{Document Purpose and Scope}
+This Software Requirements Specification (SRS) serves as the authoritative source of system requirements for the Moove Education Platform—an Open edX-based learning management system deployed using Tutor. This document is a living artifact maintained in a Git repository, subject to version control, peer review, and continuous improvement.
+
+\subsection{Document Management}
+\begin{itemize}
+    \item \textbf{Version Control}: All documents are managed in a Git repository (git@github.com:Moove-Digital-Solutions/moove-openedx-docs.git)
+    \item \textbf{Branching Strategy}: Main branch contains production-ready documentation; feature branches are used for improvements
+    \item \textbf{Review Process}: All changes require peer review before merging
+    \item \textbf{Release Process}: Documentation versions align with software releases
+\end{itemize}
+
+\subsection{Tools and Methodology}
+\begin{itemize}
+    \item \textbf{Documentation Tool}: LaTeX with a custom preamble for consistent styling
+    \item \textbf{Diagramming}: PlantUML for UML diagrams, with PNG exports for inclusion
+    \item \textbf{Screenshots}: Captured from the production environment
+    \item \textbf{Build Automation}: \texttt{build.sh} script compiles all documents with latexmk
+    \item \textbf{Continuous Improvement}: Regular reviews against INSA regulations
+\end{itemize}
+
+\subsection{Compliance Framework}
+This document and the system it describes are designed to comply with:
+\begin{itemize}
+    \item Critical Mass Cyber Security Requirement Standard (CMCSRS) v2.0
+    \item FDRE National Cybersecurity Policy (2024)
+    \item Computer Crime Proclamation No. 958/2016
+    \item Electronic Signature Proclamation No. 1072/2018
+    \item Cyber Security Audit and Evaluation Guideline v1.0
+    \item Cyber Security Risk Assessment Framework v1.0
+\end{itemize}
+
+\subsection{Quality Assurance Measures}
+\begin{itemize}
+    \item \textbf{Automated Validation}: The \texttt{assess\_security.sh} script validates security controls
+    \item \textbf{Vulnerability Scanning}: Trivy performs daily container image scanning
+    \item \textbf{Log Review}: Centralized logging via Tutor log analysis
+    \item \textbf{Health Checks}: Container health checks configured for all services
+\end{itemize}
 
 \section{Introduction}
 \subsection{Purpose}
 This document defines the functional and non‑functional requirements for the Moove Education Platform, an Open edX‑based learning management system deployed using Tutor. It serves as the living source of truth for system capabilities, guiding continuous development, internal quality assurance, and security assessment activities. The requirements are aligned with Ethiopian regulatory frameworks, including the Critical Mass Cyber Security Requirement Standard (CMCSRS), the National Cybersecurity Policy, the Computer Crime Proclamation, and the Electronic Signature Proclamation.
+
+The SRS has been developed following IEEE Std 830-1998 guidelines for software requirements specifications, ensuring completeness, consistency, and traceability.
 
 \subsection{Scope}
 The system provides a comprehensive online learning environment supporting:
@@ -51,7 +110,7 @@ The platform is a client‑server application based on Open edX, deployed in Doc
 \subsection{System Constraints}
 \begin{itemize}
     \item The system must comply with Ethiopian laws and regulations, including the Computer Crime Proclamation and the Electronic Signature Proclamation.
-    \item All user data must be stored and processed within the country’s jurisdiction.
+    \item All user data must be stored and processed within the country's jurisdiction.
     \item The system must support English and Amharic (planned) interfaces.
     \item The system shall be accessible via modern web browsers and mobile devices.
 \end{itemize}
@@ -127,7 +186,16 @@ And the course appears in my course list
         \item Within a subsection, clicks “Add Unit” to create content pages.
         \item Drags and drops to reorder.
     \end{enumerate}
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Sections, subsections, and units have a hierarchical order; reordering is allowed.
 \item \textbf{Input/Output:} Input: section/subsection/unit metadata. Output: updated course structure.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am an educator with a course
+When I add a section named "Week 1"
+Then the section appears in the course outline
+And I can add subsections under it
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-001-03: Enroll Learners in a Course}
@@ -144,8 +212,15 @@ And the course appears in my course list
         \item Clicks “Enroll”.
         \item System sends confirmation email.
     \end{enumerate}
-\item \textbf{Alt:} Bulk enrollment via CSV upload.
-\item \textbf{Acceptance:} Bulk upload processes 500+ enrollments within 5 minutes.
+\item \textbf{Alternative Flows:} Bulk enrollment via CSV upload.
+\item \textbf{Business Rules:} CSV format: \texttt{email,enrollment\_mode}; only valid emails are processed.
+\item \textbf{Input/Output:} Input: email(s), enrollment mode. Output: enrollment confirmation.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am an educator
+When I enroll a learner with email student@example.com in verified mode
+Then the learner is enrolled and receives a confirmation email
+    \end{verbatim}
 \end{enumerate}
 
 \subsection{Instructional Design Concepts}
@@ -162,6 +237,10 @@ And the course appears in my course list
         \item Creates assessments aligned with objectives.
         \item Uses Open edX best practices (backward design, Bloom's taxonomy).
     \end{enumerate}
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} None.
+\item \textbf{Input/Output:} None; this is a guideline.
+\item \textbf{Acceptance Criteria:} The course structure follows backward design and includes assessments at appropriate levels.
 \end{enumerate}
 
 \subsection{Learner Engagement \& Communication Module}
@@ -177,6 +256,15 @@ And the course appears in my course list
         \item Educator goes to “Advanced Settings” and enables discussions.
         \item Configures topics and moderation policies.
     \end{enumerate}
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Discussions are enabled only if the platform supports them.
+\item \textbf{Input/Output:} Input: enable flag, topics. Output: updated course settings.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am an educator
+When I enable discussions and set topics
+Then the Discussions tab appears in the course navigation
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-003-02: Bulk Emails}
@@ -192,6 +280,15 @@ And the course appears in my course list
         \item Clicks “Send”.
         \item System queues via Celery.
     \end{enumerate}
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Emails are sent in batches; rate limits apply.
+\item \textbf{Input/Output:} Input: subject, body, recipient list. Output: task ID.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am an educator
+When I send a bulk email to all learners
+Then the email is queued and delivered within 5 minutes
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-003-03: Course Updates}
@@ -199,8 +296,18 @@ And the course appears in my course list
 \item \textbf{Title:} Publish course updates.
 \item \textbf{UML Traceability:} – (simple notification).
 \item \textbf{Actor:} Educator.
+\item \textbf{Pre:} Course exists.
 \item \textbf{Post:} Update appears on course home page.
 \item \textbf{Normal Flow:} Educator creates an update post (title, content) and publishes.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Updates are visible to all enrolled learners.
+\item \textbf{Input/Output:} Input: title, content. Output: published update.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am an educator
+When I publish a course update
+Then it appears on the course home page immediately
+    \end{verbatim}
 \end{enumerate}
 
 \subsection{Content Creation \& Management Module}
@@ -218,13 +325,33 @@ And the course appears in my course list
         \item Configures component content.
         \item Saves.
     \end{enumerate}
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Component types are defined by the XBlock system.
+\item \textbf{Input/Output:} Input: component type, configuration. Output: component stored.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am an educator
+When I add a Video component to a unit
+Then the video appears in the unit content
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-004-02: Manage Text Components}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Create and edit HTML/text components.
 \item \textbf{Actor:} Educator.
+\item \textbf{Pre:} Unit exists.
+\item \textbf{Post:} Text component saved.
 \item \textbf{Normal Flow:} Uses rich text editor or raw HTML; supports LaTeX, code snippets.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} HTML must be sanitized to prevent XSS.
+\item \textbf{Input/Output:} Input: HTML content. Output: stored component.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am an educator
+When I edit a text component with LaTeX
+Then the rendered content displays the math correctly
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-004-03: Manage Video Components}
@@ -235,6 +362,15 @@ And the course appears in my course list
 \item \textbf{Pre:} Video file available.
 \item \textbf{Post:} Video player embedded.
 \item \textbf{Normal Flow:} Uploads video file or enters URL; system processes and displays player with transcripts, speed control.
+\item \textbf{Alternative Flows:} URL from YouTube/Vimeo.
+\item \textbf{Business Rules:} Video must be in supported formats; transcripts are optional.
+\item \textbf{Input/Output:} Input: video file or URL, transcript (optional). Output: video player.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am an educator
+When I upload a video file
+Then the video player appears and plays the video
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-004-04: Control Content Visibility \& Access}
@@ -242,7 +378,18 @@ And the course appears in my course list
 \item \textbf{Title:} Control content visibility and access.
 \item \textbf{UML Traceability:} – (settings).
 \item \textbf{Actor:} Educator.
+\item \textbf{Pre:} Content exists.
+\item \textbf{Post:} Visibility rules applied.
 \item \textbf{Normal Flow:} Sets release dates, prerequisites, and visibility rules.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Release dates must be in the future; prerequisites must be valid content IDs.
+\item \textbf{Input/Output:} Input: release date, prerequisites. Output: updated content visibility.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am an educator
+When I set a release date in the future
+Then the content is hidden until that date
+    \end{verbatim}
 \end{enumerate}
 
 \subsection{Components \& Activities Module}
@@ -261,13 +408,33 @@ And the course appears in my course list
         \item Marks correct answer.
         \item Saves.
     \end{enumerate}
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} One correct answer.
+\item \textbf{Input/Output:} Input: question, options, correct answer. Output: problem stored.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am an educator
+When I create a dropdown problem
+Then the problem is displayed and grades the learner's selection
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-005-02: Multi-Select Problem}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Create multi-select problem.
 \item \textbf{Actor:} Educator.
-\item \textbf{Normal Flow:} Adds Problem component, selects “Multi-Select”, enters options and marks multiple correct answers.
+\item \textbf{Pre:} Unit exists.
+\item \textbf{Post:} Problem added.
+\item \textbf{Normal Flow:} Adds Problem, selects “Multi-Select”, enters options and marks multiple correct answers.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Multiple correct answers; partial credit possible.
+\item \textbf{Input/Output:} Input: question, options, correct options. Output: problem stored.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am an educator
+When I create a multi-select problem
+Then the problem allows selection of multiple options and grades accordingly
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-005-03: Open Response Assessments (ORA)}
@@ -275,6 +442,8 @@ And the course appears in my course list
 \item \textbf{Title:} Create open response assessment.
 \item \textbf{UML Traceability:} Activity: “ORA Flow”.
 \item \textbf{Actor:} Educator.
+\item \textbf{Pre:} Unit exists.
+\item \textbf{Post:} ORA created.
 \item \textbf{Normal Flow:} 
     \begin{enumerate}
         \item Adds Advanced component → “Open Response Assessment”.
@@ -283,20 +452,51 @@ And the course appears in my course list
         \item Sets deadlines.
         \item Saves.
     \end{enumerate}
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Rubric criteria defined; deadlines must be in order.
+\item \textbf{Input/Output:} Input: prompt, rubric, steps, deadlines. Output: ORA stored.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am an educator
+When I create an ORA with peer assessment
+Then learners can submit responses and review peers
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-005-04: Single Select Problem}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Create single select (radio button) problem.
 \item \textbf{Actor:} Educator.
+\item \textbf{Pre:} Unit exists.
+\item \textbf{Post:} Problem added.
 \item \textbf{Normal Flow:} Adds Problem, selects “Single Select”, enters options, marks correct answer.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} One correct answer.
+\item \textbf{Input/Output:} Input: question, options, correct answer. Output: problem stored.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am an educator
+When I create a single select problem
+Then the problem displays radio buttons and grades accordingly
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-005-05: Text Input Problem}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Create text input problem.
 \item \textbf{Actor:} Educator.
+\item \textbf{Pre:} Unit exists.
+\item \textbf{Post:} Problem added.
 \item \textbf{Normal Flow:} Adds Problem, selects “Text Input”, enters question and expected answer(s).
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Supports multiple accepted answers (case-insensitive).
+\item \textbf{Input/Output:} Input: question, expected answers. Output: problem stored.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am an educator
+When I create a text input problem
+Then the learner can type an answer and receive immediate feedback
+    \end{verbatim}
 \end{enumerate}
 
 \subsection{Data \& Analytics Module}
@@ -305,14 +505,36 @@ And the course appears in my course list
 \item \textbf{Title:} View course enrollment data.
 \item \textbf{UML Traceability:} Use Case: “View Analytics”.
 \item \textbf{Actor:} Educator.
+\item \textbf{Pre:} Educator has instructor access.
+\item \textbf{Post:} Enrollment report displayed.
 \item \textbf{Normal Flow:} Accesses Instructor Dashboard → Data Downloads → Enrollment Data; views totals, trends, demographics.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Data is real-time.
+\item \textbf{Input/Output:} Output: CSV with enrollment details.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am an educator
+When I download enrollment data
+Then I receive a CSV with all active enrollments
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-006-02: View Learner Data}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View learner data and activity.
 \item \textbf{Actor:} Educator.
+\item \textbf{Pre:} Educator has instructor access.
+\item \textbf{Post:} Learner information displayed.
 \item \textbf{Normal Flow:} Instructor Dashboard → Student Admin; searches learner; views progress, engagement, activity history.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Data is anonymized if required.
+\item \textbf{Input/Output:} Input: learner identifier. Output: learner profile with activity.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am an educator
+When I search for a learner
+Then I see their progress and activity logs
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-006-03: View Learner Grades}
@@ -320,21 +542,54 @@ And the course appears in my course list
 \item \textbf{Title:} View and manage learner grades.
 \item \textbf{UML Traceability:} Sequence: “Grade View”.
 \item \textbf{Actor:} Educator.
+\item \textbf{Pre:} Educator has instructor access.
+\item \textbf{Post:} Gradebook displayed.
 \item \textbf{Normal Flow:} Accesses Gradebook; views grades per assignment; adjusts manually if needed; exports CSV.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Grade changes are logged.
+\item \textbf{Input/Output:} Output: gradebook; input: grade adjustments.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am an educator
+When I adjust a grade in the gradebook
+Then the grade is updated and an audit log is created
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-006-04: View Answer Data}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View answer distribution data.
 \item \textbf{Actor:} Educator.
+\item \textbf{Pre:} Educator has instructor access.
+\item \textbf{Post:} Distribution displayed.
 \item \textbf{Normal Flow:} Data Downloads → Answer Distribution; sees \% correct per problem.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Data is aggregated.
+\item \textbf{Input/Output:} Output: distribution report.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am an educator
+When I view answer distribution
+Then I see the percentage of correct answers for each problem
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-006-05: View Certificate Data}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View certificate issuance data.
 \item \textbf{Actor:} Educator.
+\item \textbf{Pre:} Educator has instructor access.
+\item \textbf{Post:} Certificate data displayed.
 \item \textbf{Normal Flow:} Data Downloads → Certificate Data; views list of issued certificates and download stats.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Data includes learner names, certificate URLs, and generation dates.
+\item \textbf{Input/Output:} Output: certificate report.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am an educator
+When I download certificate data
+Then I get a list of all issued certificates
+    \end{verbatim}
 \end{enumerate}
 
 \subsection{Accessibility Module}
@@ -342,28 +597,57 @@ And the course appears in my course list
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Ensure accessibility compliance.
 \item \textbf{Actor:} Educator.
-\item \textbf{Description:} Course content must follow Open edX accessibility guidelines (WCAG 2.1 AA).
+\item \textbf{Pre:} Course content being developed.
+\item \textbf{Post:} Content meets WCAG 2.1 AA.
+\item \textbf{Normal Flow:} Educator follows guidelines; uses alt text, transcripts, proper structure.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Compliance is checked during audit.
+\item \textbf{Input/Output:} None.
+\item \textbf{Acceptance Criteria:} All content passes accessibility checks.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-007-02: Mobile Experience Design}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Design for mobile experience.
 \item \textbf{Actor:} Educator.
-\item \textbf{Description:} Course content must be responsive and functional on mobile devices.
+\item \textbf{Pre:} Course content created.
+\item \textbf{Post:} Content is responsive and functional on mobile.
+\item \textbf{Normal Flow:} Educator tests content on mobile devices; adjusts interactions.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Must work on iOS and Android.
+\item \textbf{Input/Output:} None.
+\item \textbf{Acceptance Criteria:} Course renders correctly on mobile browsers.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-007-03: Accessibility Best Practices Checklist}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Follow accessibility best practices.
 \item \textbf{Actor:} Educator.
-\item \textbf{Description:} Use alt text, proper heading structure, accessible color contrast, keyboard navigation.
+\item \textbf{Pre:} Content created.
+\item \textbf{Post:} Checklist items satisfied.
+\item \textbf{Normal Flow:} Educator reviews checklist (alt text, headings, contrast, keyboard navigation, descriptive links).
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} All items must be satisfied.
+\item \textbf{Input/Output:} None.
+\item \textbf{Acceptance Criteria:} Checklist is completed and verified.
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-007-04: Manage Video Transcripts}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Upload and manage video transcripts.
 \item \textbf{Actor:} Educator.
+\item \textbf{Pre:} Video component exists.
+\item \textbf{Post:} Transcript attached.
 \item \textbf{Normal Flow:} Uploads .srt/.vtt files for video components; transcripts appear as captions.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Transcript must be in supported format.
+\item \textbf{Input/Output:} Input: transcript file. Output: captions enabled.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am an educator
+When I upload a transcript for a video
+Then the video player shows closed captions
+    \end{verbatim}
 \end{enumerate}
 
 \subsection{Import/Export / OLX Module}
@@ -371,14 +655,33 @@ And the course appears in my course list
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Support for Open Learning XML.
 \item \textbf{Actor:} Educator.
-\item \textbf{Description:} Course content can be exported and imported using OLX format.
+\item \textbf{Pre:} Course exists.
+\item \textbf{Post:} Course can be exported/imported.
+\item \textbf{Normal Flow:} Educator uses export/import features; system generates or consumes OLX archives.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} OLX must be valid.
+\item \textbf{Input/Output:} Input: OLX archive; output: exported archive.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am an educator
+When I export a course
+Then I receive a .tar.gz file containing OLX files
+When I import the same file
+Then the course structure is recreated exactly
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-008-02: Getting Started with OLX}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Access OLX documentation and tools.
 \item \textbf{Actor:} Educator.
-\item \textbf{Description:} Provide resources for educators to learn and use OLX.
+\item \textbf{Pre:} None.
+\item \textbf{Post:} Educator can learn OLX.
+\item \textbf{Normal Flow:} System provides links to documentation and command-line tools.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Documentation must be current.
+\item \textbf{Input/Output:} None.
+\item \textbf{Acceptance Criteria:} Documentation is accessible from the platform.
 \end{enumerate}
 
 % ---------------------------------------------------------------------
@@ -399,63 +702,159 @@ And the course appears in my course list
         \item Learner logs in.
         \item Dashboard shows course cards with progress bars, recent activity, and site announcements.
     \end{enumerate}
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Dashboard is personalized.
+\item \textbf{Input/Output:} Output: dashboard view.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I log in
+Then I see my enrolled courses and progress
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-101-02: Access Courses from Dashboard}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Access enrolled courses from dashboard.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Learner logged in.
+\item \textbf{Post:} Course opens.
 \item \textbf{Normal Flow:} Clicks on course card; enters the course.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} None.
+\item \textbf{Input/Output:} Input: click on card. Output: course home page.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I click on a course card
+Then I am taken to the course home page
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-101-03: Share Courses on Social Media}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Share course links on social media.
 \item \textbf{Actor:} Learner.
-\item \textbf{Normal Flow:} Clicks “Share” button; selects platform (Facebook, Twitter, LinkedIn); link posted.
+\item \textbf{Pre:} Course page open.
+\item \textbf{Post:} Link shared.
+\item \textbf{Normal Flow:} Clicks “Share” button; selects platform; link posted.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Must use standard sharing APIs.
+\item \textbf{Input/Output:} Input: share action. Output: social media post.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I share a course on Facebook
+Then the course link appears on my timeline
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-101-04: Update Profile Image}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Upload or update profile image.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Learner logged in.
+\item \textbf{Post:} Image updated.
 \item \textbf{Normal Flow:} Clicks on profile, selects image file; system resizes and stores.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Image must be under 5MB; supported formats: PNG, JPG.
+\item \textbf{Input/Output:} Input: image file. Output: updated profile.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I upload a new profile image
+Then my profile displays the new image
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-101-05: Update Profile Details}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Update profile information.
 \item \textbf{Actor:} Learner.
-\item \textbf{Fields:} Name, email, location, bio, language preferences.
-\item \textbf{Normal Flow:} Edits fields and saves.
+\item \textbf{Pre:} Learner logged in.
+\item \textbf{Post:} Profile updated.
+\item \textbf{Normal Flow:} Edits fields (name, email, location, bio, language) and saves.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Email must be unique.
+\item \textbf{Input/Output:} Input: updated fields. Output: saved profile.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I change my bio and save
+Then my profile shows the new bio
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-101-06: Add Social Media Links}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Add personal social media links.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Profile edit page open.
+\item \textbf{Post:} Links added.
 \item \textbf{Normal Flow:} Adds URLs for Twitter, LinkedIn, GitHub, etc.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} URLs must be valid.
+\item \textbf{Input/Output:} Input: URLs. Output: icons on profile.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I add my Twitter URL
+Then the Twitter icon appears on my profile
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-101-07: Toggle Profile Visibility}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Control profile visibility.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Profile edit page open.
+\item \textbf{Post:} Visibility updated.
 \item \textbf{Normal Flow:} Toggles visibility of profile sections (public/private).
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Default is private.
+\item \textbf{Input/Output:} Input: toggle setting. Output: updated visibility.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I set my profile to public
+Then other users can see my profile information
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-101-08: View Another Learner’s Profile}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View other learners' profiles.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Another learner's username is visible.
+\item \textbf{Post:} Profile displayed.
 \item \textbf{Normal Flow:} Clicks on username in discussions or roster; profile opens (public info only).
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Only public information is shown.
+\item \textbf{Input/Output:} Input: username. Output: profile view.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I click on another learner's username
+Then I see their public profile information
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-101-09: Update Course-Specific Settings}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Update course-specific settings.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Enrolled in a course.
+\item \textbf{Post:} Settings updated.
 \item \textbf{Normal Flow:} In course, clicks avatar → Course Settings; adjusts email notifications, language.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Settings are per course.
+\item \textbf{Input/Output:} Input: settings changes. Output: saved.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner enrolled in a course
+When I disable email notifications
+Then I no longer receive course emails
+    \end{verbatim}
 \end{enumerate}
 
 \subsection{Course Navigation Module}
@@ -463,7 +862,18 @@ And the course appears in my course list
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Navigate course using sidebar.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Enrolled in a course.
+\item \textbf{Post:} Navigation displays sections.
 \item \textbf{Normal Flow:} Sidebar displays all sections/subsections; click to navigate.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Only published content is visible.
+\item \textbf{Input/Output:} Input: click on item. Output: content displayed.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner in a course
+When I click on a section in the sidebar
+Then I am taken to that section's content
+    \end{verbatim}
 \end{enumerate}
 
 \subsection{Enrollment Module}
@@ -481,13 +891,33 @@ And the course appears in my course list
         \item Selects enrollment track (Audit/Verified).
         \item Confirms enrollment.
     \end{enumerate}
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Enrollment may require payment for verified track.
+\item \textbf{Input/Output:} Input: course selection, track. Output: enrollment confirmation.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I enroll in a course
+Then the course appears in my dashboard
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-103-02: Open and Start a Course}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Open and start a course.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Enrolled.
+\item \textbf{Post:} Course opens to first content.
 \item \textbf{Normal Flow:} Clicks “Start Course” or “Resume Course” from dashboard; goes to last visited content.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Resume picks last visited unit.
+\item \textbf{Input/Output:} Input: click start/resume. Output: course content.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner enrolled in a course
+When I click "Resume Course"
+Then I am taken to the last content I viewed
+    \end{verbatim}
 \end{enumerate}
 
 \subsection{Course Prerequisites Module}
@@ -495,21 +925,54 @@ And the course appears in my course list
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View course prerequisites.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Course info page.
+\item \textbf{Post:} Prerequisites listed.
 \item \textbf{Normal Flow:} Prerequisites displayed on course info page; learner can check completion status.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Prerequisites are defined by educator.
+\item \textbf{Input/Output:} Output: prerequisite list.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I view a course with prerequisites
+Then I see the required courses and my completion status
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-104-02: Complete Prerequisite Course}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Complete prerequisite course.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Prerequisite course defined.
+\item \textbf{Post:} Prerequisite marked complete.
 \item \textbf{Normal Flow:} Must complete prerequisite course before enrolling in advanced course.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Completion is based on passing grade.
+\item \textbf{Input/Output:} None.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I complete a prerequisite course with a passing grade
+Then the advanced course becomes available
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-104-03: Pass Entrance Exam}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Pass entrance exam.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Course requires entrance exam.
+\item \textbf{Post:} Exam passed.
 \item \textbf{Normal Flow:} Takes and passes an entrance exam to gain access.
+\item \textbf{Alternative Flows:} If fail, retake allowed after cooldown.
+\item \textbf{Business Rules:} Minimum score set by educator.
+\item \textbf{Input/Output:} Input: exam answers. Output: pass/fail.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I pass the entrance exam
+Then I can access the course content
+    \end{verbatim}
 \end{enumerate}
 
 \subsection{Course Content Access Module}
@@ -517,28 +980,72 @@ And the course appears in my course list
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Troubleshoot content access issues.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Content not accessible.
+\item \textbf{Post:} Issue resolved or guidance given.
 \item \textbf{Normal Flow:} System provides error messages and support links; contact course staff.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Error messages are user-friendly.
+\item \textbf{Input/Output:} Output: error message.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I try to access locked content
+Then I see a message explaining why and how to gain access
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-105-02: Access an Archived Course}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Access archived course.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Course archived.
+\item \textbf{Post:} Read-only access.
 \item \textbf{Normal Flow:} Views read‑only archived course content.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} No submissions allowed.
+\item \textbf{Input/Output:} Input: click on archived course. Output: read-only view.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I access an archived course
+Then I can view content but not submit assignments
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-105-03: View Final Course Grade}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View final course grade.
 \item \textbf{Actor:} Learner.
-\item \textbf{Post:} Sees final grade and passing status.
+\item \textbf{Pre:} Course completed.
+\item \textbf{Post:} Grade displayed.
+\item \textbf{Normal Flow:} Goes to course dashboard; clicks Grades; final grade displayed.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Grade calculated from all assessments.
+\item \textbf{Input/Output:} Output: final grade.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I view my course grades
+Then I see my final grade and passing status
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-105-04: View Certificate Status}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View certificate status.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Course completed.
+\item \textbf{Post:} Status displayed.
 \item \textbf{Normal Flow:} In profile → Certificates, sees status (Eligible, Available, Not Eligible).
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Certificate available if passing grade.
+\item \textbf{Input/Output:} Output: certificate status.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I view my certificate status
+Then I see if I am eligible and can download it
+    \end{verbatim}
 \end{enumerate}
 
 \subsection{Course Progress Module}
@@ -546,28 +1053,72 @@ And the course appears in my course list
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View course start date.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Course info page.
+\item \textbf{Post:} Start date displayed.
 \item \textbf{Normal Flow:} Start date displayed on course info and dashboard.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Start date set by educator.
+\item \textbf{Input/Output:} Output: start date.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I view a course
+Then I see the start date
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-106-02: Start or Resume a Course}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Start or resume a course.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Enrolled.
+\item \textbf{Post:} Course content opened.
 \item \textbf{Normal Flow:} Clicks “Start” or “Resume” from dashboard; goes to last visited content.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Resume picks last unit.
+\item \textbf{Input/Output:} Input: click. Output: content.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I click "Resume"
+Then I am taken to the last unit I viewed
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-106-03: Progress Indicators}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View progress indicators.
 \item \textbf{Actor:} Learner.
-\item \textbf{Description:} Visual indicators show completion percentage for sections, subsections, and overall.
+\item \textbf{Pre:} Enrolled.
+\item \textbf{Post:} Progress shown.
+\item \textbf{Normal Flow:} Visual indicators show completion percentage for sections, subsections, and overall.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Progress is calculated automatically.
+\item \textbf{Input/Output:} Output: progress bars.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I view a course section
+Then I see a progress bar indicating completion
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-106-04: The Progress Page}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Access the Progress page.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Enrolled.
+\item \textbf{Post:} Detailed progress displayed.
 \item \textbf{Normal Flow:} Navigates to Progress page to view detailed completion status.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Shows per-assignment scores.
+\item \textbf{Input/Output:} Output: progress detail.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I view the Progress page
+Then I see scores for each assignment and overall completion
+    \end{verbatim}
 \end{enumerate}
 
 \subsection{Certificates \& Badges Module}
@@ -575,21 +1126,54 @@ And the course appears in my course list
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Access earned certificate.
 \item \textbf{Actor:} Learner.
-\item \textbf{Post:} Downloads or prints certificate.
+\item \textbf{Pre:} Certificate available.
+\item \textbf{Post:} Certificate downloaded.
+\item \textbf{Normal Flow:} Goes to profile → Certificates → download.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Certificate is PDF with digital signature.
+\item \textbf{Input/Output:} Input: click download. Output: PDF file.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner with an available certificate
+When I click download
+Then a PDF certificate is generated and downloaded
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-107-02: Viewing Earned Badges in Profile}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View earned badges in profile.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Badges earned.
+\item \textbf{Post:} Badges displayed.
 \item \textbf{Normal Flow:} Badges appear in profile; click to view details.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Badges are awarded based on achievements.
+\item \textbf{Input/Output:} Output: badge list.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I view my profile
+Then I see all earned badges
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-107-03: Sharing Badges on Mozilla Backpack}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Share badges to Mozilla Backpack.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Badge earned.
+\item \textbf{Post:} Badge shared.
 \item \textbf{Normal Flow:} Clicks “Share to Backpack” and authorises.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Requires Mozilla Backpack account.
+\item \textbf{Input/Output:} Input: share action. Output: badge added to Backpack.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I share a badge to Mozilla Backpack
+Then the badge appears in my Backpack
+    \end{verbatim}
 \end{enumerate}
 
 \subsection{Video Player Module}
@@ -597,7 +1181,18 @@ And the course appears in my course list
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Use the video player.
 \item \textbf{Actor:} Learner.
-\item \textbf{Features:} Play, pause, volume, speed control, full‑screen, CC/subtitles.
+\item \textbf{Pre:} Video component.
+\item \textbf{Post:} Video plays.
+\item \textbf{Normal Flow:} Player controls: play, pause, volume, speed, full-screen, CC/subtitles.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Video must be compatible.
+\item \textbf{Input/Output:} Input: user interactions. Output: video playback.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I play a video
+Then I can control playback and see captions if available
+    \end{verbatim}
 \end{enumerate}
 
 \subsection{Discussions Module}
@@ -605,28 +1200,72 @@ And the course appears in my course list
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Access course discussions.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Enrolled.
+\item \textbf{Post:} Discussions view.
 \item \textbf{Normal Flow:} Clicks “Discussions” tab; sees threads and topics.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Discussions enabled by educator.
+\item \textbf{Input/Output:} Output: forum view.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I click "Discussions"
+Then I see all threads and can create new posts
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-109-02: Finding and Following Conversations}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Find and follow conversations.
 \item \textbf{Actor:} Learner.
-\item \textbf{Features:} Search, filter, follow threads, get notifications.
+\item \textbf{Pre:} Discussions open.
+\item \textbf{Post:} Followed thread.
+\item \textbf{Normal Flow:} Search, filter, follow threads, get notifications.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Following sends email notifications.
+\item \textbf{Input/Output:} Input: follow action. Output: notification preference set.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I follow a discussion thread
+Then I receive email notifications for new replies
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-109-03: Taking Part in Discussions}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Participate in discussions.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Discussions open.
+\item \textbf{Post:} Post created.
 \item \textbf{Normal Flow:} Creates new threads, replies to existing ones.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Posts are moderated.
+\item \textbf{Input/Output:} Input: post content. Output: visible post.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I reply to a thread
+Then my reply appears in the discussion
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-109-04: Staying Updated with Notifications}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Receive discussion notifications.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Following threads.
+\item \textbf{Post:} Notification received.
 \item \textbf{Normal Flow:} System sends email notifications for followed threads.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Notifications respect user preferences.
+\item \textbf{Input/Output:} Output: email.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner following a thread
+When someone replies
+Then I receive an email notification
+    \end{verbatim}
 \end{enumerate}
 
 \subsection{Assignments \& Assessments Module}
@@ -634,77 +1273,198 @@ And the course appears in my course list
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Complete mathematical assignments.
 \item \textbf{Actor:} Learner.
-\item \textbf{Features:} Support for LaTeX, math symbols, scientific notation.
+\item \textbf{Pre:} Assignment open.
+\item \textbf{Post:} Answer submitted.
+\item \textbf{Normal Flow:} Uses LaTeX for math expressions.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} LaTeX must be valid.
+\item \textbf{Input/Output:} Input: answer with LaTeX. Output: graded answer.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I submit an answer with LaTeX
+Then the math renders correctly and is graded
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-110-02: Taking a Timed Exam}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Take timed exam.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Exam open.
+\item \textbf{Post:} Exam submitted.
 \item \textbf{Normal Flow:} Starts exam; timer counts down; auto‑submit at expiration.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Time limit set by educator.
+\item \textbf{Input/Output:} Input: answers. Output: grade.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I start a timed exam
+Then I must submit before time expires or it auto-submits
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-110-03: Proctored Exams}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Take proctored exam.
 \item \textbf{Actor:} Learner.
-\item \textbf{Features:} Proctoring software integration, identity verification.
+\item \textbf{Pre:} Proctored exam assigned.
+\item \textbf{Post:} Exam taken with monitoring.
+\item \textbf{Normal Flow:} Installs proctoring extension; verifies identity; takes exam; monitoring active.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Proctoring software must be installed.
+\item \textbf{Input/Output:} Input: identity verification. Output: exam session.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I take a proctored exam
+Then my session is monitored and recorded
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-110-04: Explaining Multiple Choice Answers}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Provide explanation for multiple choice answers.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Multiple choice question.
+\item \textbf{Post:} Explanation saved.
 \item \textbf{Normal Flow:} Selects answer and optionally enters explanation.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Explanation optional.
+\item \textbf{Input/Output:} Input: explanation. Output: stored with answer.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I select an answer and add an explanation
+Then the explanation is stored for review
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-110-05: Completing Essay Assignments}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Complete essay assignment.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Assignment open.
+\item \textbf{Post:} Essay submitted.
 \item \textbf{Normal Flow:} Writes essay in text editor (supports formatting).
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Minimum length may be set.
+\item \textbf{Input/Output:} Input: essay text. Output: submission confirmation.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I submit an essay
+Then it is saved and available for grading
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-110-06: Open Response Assessment Steps}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Follow ORA workflow.
 \item \textbf{Actor:} Learner.
-\item \textbf{Steps:} Submit response, self‑assessment, peer assessment, receive score.
+\item \textbf{Pre:} ORA assigned.
+\item \textbf{Post:} Assessment completed.
+\item \textbf{Normal Flow:} Steps: submit response, self‑assessment, peer assessment, receive score.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Order of steps fixed.
+\item \textbf{Input/Output:} Input: response, assessments. Output: final score.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I complete all ORA steps
+Then I receive a final score
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-110-07: How Grading Is Done In Open Response Assessments}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Understand ORA grading.
 \item \textbf{Actor:} Learner.
-\item \textbf{Description:} System displays grading rubric and peer review scores.
+\item \textbf{Pre:} ORA available.
+\item \textbf{Post:} Grading explanation shown.
+\item \textbf{Normal Flow:} System displays grading rubric and peer review scores.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Rubric defined by educator.
+\item \textbf{Input/Output:} Output: grading description.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I view the ORA grading criteria
+Then I see the rubric and how scores are calculated
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-110-08: Completing an Open Response Assessment}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Complete ORA.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} ORA open.
+\item \textbf{Post:} ORA completed.
 \item \textbf{Normal Flow:} Submits response, performs self/peer assessments.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Peer assessment requires reviewing others.
+\item \textbf{Input/Output:} Input: response, peer reviews. Output: final score.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I complete an ORA
+Then I see my final grade and feedback
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-110-09: Receive Score and Provide Feedback}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Receive ORA score and provide feedback.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Assessment done.
+\item \textbf{Post:} Score displayed.
 \item \textbf{Normal Flow:} Views score and provides feedback on assessment experience.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Feedback optional.
+\item \textbf{Input/Output:} Input: feedback. Output: stored.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I receive my ORA score
+Then I can optionally submit feedback on the process
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-110-10: How Peer Assessment Scores Are Calculated}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Understand peer assessment scoring.
 \item \textbf{Actor:} Learner.
-\item \textbf{Description:} System explains scoring algorithm (average, median, adjusted).
+\item \textbf{Pre:} ORA with peer assessment.
+\item \textbf{Post:} Scoring explained.
+\item \textbf{Normal Flow:} System explains scoring algorithm (average, median, adjusted).
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Outliers may be removed.
+\item \textbf{Input/Output:} Output: scoring description.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I view how peer scores are calculated
+Then I understand the algorithm used
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-110-11: Canceled Responses}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Handle canceled responses.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Response submitted.
+\item \textbf{Post:} Cancellation confirmed.
 \item \textbf{Normal Flow:} Can cancel submission before assessment.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Cancellation allowed before assessment phase.
+\item \textbf{Input/Output:} Input: cancel action. Output: submission removed.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I cancel my submission before assessment
+Then I can resubmit later
+    \end{verbatim}
 \end{enumerate}
 
 \subsection{Team Projects Module}
@@ -712,42 +1472,108 @@ And the course appears in my course list
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Understand teams and topics.
 \item \textbf{Actor:} Learner.
-\item \textbf{Description:} System provides team and topic overview.
+\item \textbf{Pre:} Course with team feature.
+\item \textbf{Post:} Teams explained.
+\item \textbf{Normal Flow:} System provides team and topic overview.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Topics defined by educator.
+\item \textbf{Input/Output:} Output: description.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I view the Teams page
+Then I see an explanation of teams and topics
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-111-02: Search for a Team}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Search for a team.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Teams page.
+\item \textbf{Post:} Search results.
 \item \textbf{Normal Flow:} Searches teams by name, topic, or member.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Search is case-insensitive.
+\item \textbf{Input/Output:} Input: search term. Output: list of teams.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I search for a team name
+Then I see matching teams
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-111-03: Join a Team}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Join an existing team.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Team visible.
 \item \textbf{Post:} Added to team.
+\item \textbf{Normal Flow:} Clicks “Join Team”; may require approval.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Team size may be limited.
+\item \textbf{Input/Output:} Input: join request. Output: membership.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I join a team
+Then I become a member and can access team discussions
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-111-04: Leave a Team}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Leave a team.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Member of team.
 \item \textbf{Post:} Removed from team.
+\item \textbf{Normal Flow:} Clicks “Leave Team” and confirms.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Cannot leave if only member (may dissolve team).
+\item \textbf{Input/Output:} Input: leave action. Output: removed.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a team member
+When I leave the team
+Then I am removed and lose access to team resources
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-111-05: Create a Team}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Create a new team.
 \item \textbf{Actor:} Learner.
-\item \textbf{Post:} Team created; learner becomes member.
+\item \textbf{Pre:} Course allows team creation.
+\item \textbf{Post:} Team created.
+\item \textbf{Normal Flow:} Enters name, description, topic, enrollment type; clicks Create.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Team name unique within course.
+\item \textbf{Input/Output:} Input: team details. Output: new team.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I create a team with a unique name
+Then the team appears in the team list
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-111-06: Participating in Team Discussions}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Participate in team discussions.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Member of team.
+\item \textbf{Post:} Discussion posted.
 \item \textbf{Normal Flow:} Team members discuss within team‑specific forum.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Team discussions are private.
+\item \textbf{Input/Output:} Input: post. Output: visible to team.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a team member
+When I post in team discussion
+Then only team members can see my post
+    \end{verbatim}
 \end{enumerate}
 
 \subsection{Search Module}
@@ -755,21 +1581,54 @@ And the course appears in my course list
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Understand search capabilities.
 \item \textbf{Actor:} Learner.
-\item \textbf{Description:} Full‑text search across course content.
+\item \textbf{Pre:} None.
+\item \textbf{Post:} Search explained.
+\item \textbf{Normal Flow:} System provides help text about full-text search.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Search powered by Meilisearch.
+\item \textbf{Input/Output:} Output: help text.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I look for search help
+Then I see a description of what is searchable
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-112-02: Search a Single Course}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Search within a course.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} In a course.
+\item \textbf{Post:} Results displayed.
 \item \textbf{Normal Flow:} Enters query; returns relevant content within course.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Search scope is the current course.
+\item \textbf{Input/Output:} Input: query. Output: results.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner in a course
+When I search for a term
+Then I see results only from that course
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-112-03: Search All Your Courses}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Search across all courses.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} On dashboard.
+\item \textbf{Post:} Results displayed.
 \item \textbf{Normal Flow:} Enters query; returns results from all enrolled courses.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Search scope is all enrolled courses.
+\item \textbf{Input/Output:} Input: query. Output: results.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner on the dashboard
+When I search for a term
+Then I see results from all my courses
+    \end{verbatim}
 \end{enumerate}
 
 \subsection{Bookmarking Module}
@@ -777,14 +1636,36 @@ And the course appears in my course list
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Bookmark course content.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Viewing content.
+\item \textbf{Post:} Bookmark toggled.
 \item \textbf{Normal Flow:} Clicks bookmark icon to save/remove bookmark.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} One bookmark per user per content.
+\item \textbf{Input/Output:} Input: click icon. Output: bookmark status.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner viewing content
+When I click the bookmark icon
+Then the content is bookmarked and appears in my bookmarks list
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-113-02: View Your Bookmarks}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View bookmarked content.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Bookmarks exist.
+\item \textbf{Post:} List displayed.
 \item \textbf{Normal Flow:} Accesses bookmarks page to view and navigate saved items.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Sorted by date added.
+\item \textbf{Input/Output:} Output: bookmark list.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I have bookmarks
+When I view my bookmarks
+Then I see a list of all bookmarked content
+    \end{verbatim}
 \end{enumerate}
 
 \subsection{Notifications \& Preferences Module}
@@ -792,28 +1673,72 @@ And the course appears in my course list
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Access notifications.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Logged in.
+\item \textbf{Post:} Notifications visible.
 \item \textbf{Normal Flow:} Notifications appear in dashboard, email, and in‑app alerts.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} In-app via bell icon.
+\item \textbf{Input/Output:} Output: notification display.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I have unread notifications
+Then I see the bell icon with a badge count
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-114-02: Activity Types}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Understand notification activity types.
 \item \textbf{Actor:} Learner.
-\item \textbf{Description:} Types include discussion replies, assignment due dates, course updates.
+\item \textbf{Pre:} None.
+\item \textbf{Post:} Types explained.
+\item \textbf{Normal Flow:} System lists notification types (discussion replies, due dates, updates, feedback).
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Types defined by system.
+\item \textbf{Input/Output:} Output: list of types.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I view notification settings
+Then I see all available activity types
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-114-03: Managing Preferences}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Manage notification preferences.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Logged in.
+\item \textbf{Post:} Preferences saved.
 \item \textbf{Normal Flow:} Configures which notifications to receive and via which channels.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Preferences stored per user.
+\item \textbf{Input/Output:} Input: settings. Output: saved.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I change notification preferences
+Then my preferences are updated
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-114-04: Notifications Expiry}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Notification expiry.
 \item \textbf{Actor:} System.
-\item \textbf{Description:} Notifications expire after 30 days.
+\item \textbf{Pre:} Notification older than 30 days.
+\item \textbf{Post:} Notification archived.
+\item \textbf{Normal Flow:} Notifications expire after 30 days.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Archived notifications can still be viewed.
+\item \textbf{Input/Output:} None.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given a notification is 30 days old
+When the system runs the expiry job
+Then the notification is moved to archive
+    \end{verbatim}
 \end{enumerate}
 
 \subsection{Course Wiki Module}
@@ -821,18 +1746,40 @@ And the course appears in my course list
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Use the course wiki.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Course has wiki enabled.
+\item \textbf{Post:} Wiki displayed.
 \item \textbf{Normal Flow:} Accesses wiki from course navigation; views and edits (if allowed).
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Edit permissions controlled by educator.
+\item \textbf{Input/Output:} Input: edit (if allowed). Output: wiki page.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I open the course wiki
+Then I can view and optionally edit pages
+    \end{verbatim}
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-115-02: View Live Course}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View live course content.
 \item \textbf{Actor:} Learner.
+\item \textbf{Pre:} Content published.
+\item \textbf{Post:} Content visible.
 \item \textbf{Normal Flow:} Accesses content that is currently active/published.
+\item \textbf{Alternative Flows:} None.
+\item \textbf{Business Rules:} Only published and released content is visible.
+\item \textbf{Input/Output:} Input: navigation. Output: content.
+\item \textbf{Acceptance Criteria:}
+    \begin{verbatim}
+Given I am a learner
+When I view a course
+Then I only see content that has been published and released
+    \end{verbatim}
 \end{enumerate}
 
 % ---------------------------------------------------------------------
-% SECURITY AND COMPLIANCE REQUIREMENTS
+% SECURITY AND COMPLIANCE REQUIREMENTS (NON-FUNCTIONAL)
 % ---------------------------------------------------------------------
 \section{Security and Compliance Requirements (Non‑Functional)}
 This section defines mandatory security requirements derived from INSA’s CMCSRS, the Computer Crime Proclamation, and the Electronic Signature Proclamation. All requirements are traceable to the \textit{Security Architecture \& Threat Model} document.
@@ -947,11 +1894,13 @@ This section defines mandatory security requirements derived from INSA’s CMCSR
 \begin{center}
 \begin{longtable}{|p{3.5cm}|p{3.5cm}|p{3cm}|}
 \hline
-\textbf{Requirement ID} & \textbf{Test Case ID} & \textbf{Security Reference} \\
+\rowcolor{mooveblue}
+\textcolor{white}{\textbf{Requirement ID}} & \textcolor{white}{\textbf{Test Case ID}} & \textcolor{white}{\textbf{Security Reference}} \\
 \hline
 \endfirsthead
 \hline
-\textbf{Requirement ID} & \textbf{Test Case ID} & \textbf{Security Reference} \\
+\rowcolor{mooveblue}
+\textcolor{white}{\textbf{Requirement ID}} & \textcolor{white}{\textbf{Test Case ID}} & \textcolor{white}{\textbf{Security Reference}} \\
 \hline
 \endhead
 \hline
@@ -977,6 +1926,50 @@ UFR-OE-112-02 & TC-014 & – \\
 UFR-OE-113-01 & TC-015 & – \\
 UFR-OE-114-03 & TC-016 & SEC-NFR-006 \\
 SEC-NFR-001..007 & Security doc & CMCSRS, Proc.958/2016 \\
+\hline
+\end{longtable}
+\end{center}
+
+% ---------------------------------------------------------------------
+% COMPLIANCE MATRIX
+% ---------------------------------------------------------------------
+\section{Compliance Matrix}
+The following table maps system requirements to specific INSA regulations.
+
+\begin{center}
+\begin{longtable}{|p{3cm}|p{3cm}|p{4.5cm}|}
+\hline
+\rowcolor{mooveblue}
+\textcolor{white}{\textbf{INSA Regulation}} & \textcolor{white}{\textbf{Section}} & \textcolor{white}{\textbf{System Compliance Evidence}} \\
+\hline
+\endfirsthead
+\hline
+\rowcolor{mooveblue}
+\textcolor{white}{\textbf{INSA Regulation}} & \textcolor{white}{\textbf{Section}} & \textcolor{white}{\textbf{System Compliance Evidence}} \\
+\hline
+\endhead
+\hline
+\multicolumn{3}{|r|}{Continued} \\
+\hline
+\endfoot
+\hline
+\endlastfoot
+CMCSRS v2.0 & 5.3 Leadership & Top leadership allocated 0.5\% budget; strategic awareness program \\
+CMCSRS v2.0 & 5.4 Governance & Security committee established; CISO appointed \\
+CMCSRS v2.0 & 5.5 Management & Risk-based approach implemented; comprehensive risk profiles \\
+CMCSRS v2.0 & 5.7 Technology & Firewall, network segmentation, vulnerability scanning \\
+CMCSRS v2.0 & 6.4 Risk Assessment & SGOC+PESTLE, BMIS, ISO 27001 assessments \\
+CMCSRS v2.0 & 6.17 Access Control & RBAC enforced; non-root user; secrets rotated \\
+CMCSRS v2.0 & 6.18 Cryptography & TLS 1.2; AES-256; JWT RSA keys rotated \\
+CMCSRS v2.0 & 6.25 Monitoring & Trivy daily scans; centralised logging; health checks \\
+CMCSRS v2.0 & 6.26 Incident Response & Fail2ban; IRP documented; reporting to Ethio-CERT \\
+CMCSRS v2.0 & 6.28 Backup & Daily automated backups; retention policy \\
+Computer Crime Proc. & Art 3-8 & Access controls; firewall; logging; incident detection \\
+Electronic Signature Proc. & Art 5-8 & Digital signatures; certificate verification \\
+National Cyber Policy & 2.2 Legal Framework & Compliance with all applicable laws \\
+National Cyber Policy & 2.3 Awareness & Security awareness program established \\
+National Cyber Policy & 2.4 Capacity Building & Staff training; career path alignment \\
+\hline
 \end{longtable}
 \end{center}
 
@@ -1000,11 +1993,16 @@ SEC-NFR-001..007 & Security doc & CMCSRS, Proc.958/2016 \\
 % ---------------------------------------------------------------------
 \section{References}
 \begin{itemize}
-    \item \textit{Security Architecture \& Threat Model – Moove Education Platform}
+    \item \textit{Security Architecture \& Threat Model – Moove Education Platform} (Security\_OpenEdX.tex)
     \item CMCSRS v2.0 (2025)
     \item FDRE National Cybersecurity Policy (2024)
     \item Computer Crime Proclamation No. 958/2016
     \item Electronic Signature Proclamation No. 1072/2018
+    \item Cyber Security Audit and Evaluation Guideline v1.0
+    \item Cyber Security Risk Assessment Framework v1.0
+    \item Swagger API Documentation (swagger-docs.json)
+    \item Deployment Report (deployment-report.txt)
+    \item VPS Health Check (vps\_health\_check.txt)
 \end{itemize}
 
 % === LICENSE ATTRIBUTION ===

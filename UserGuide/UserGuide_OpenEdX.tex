@@ -1,14 +1,18 @@
 % === SET DOCUMENT METADATA ===
 \def\docTitle{User Documentation (User Guide)}
-\def\docVersion{3.0}
-\def\docDate{July 19, 2026}
+\def\docVersion{3.1}
+\def\docDate{July 20, 2026}
 
 % === INCLUDE REUSABLE COMPONENTS ===
 \input{../common/preamble}
 
+% === ADDITIONAL PACKAGES ===
+\usepackage{enumitem}
+\usepackage{colortbl}   % added for consistency
+
 % === FOOTER OVERRIDE ===
 \fancyhead[L]{\textcolor{mooveblue}{\textbf{Moove Education Platform}}}
-\fancyhead[R]{\textbf{User Guide v3.0}}
+\fancyhead[R]{\textbf{User Guide v4.0}}
 
 % === BEGIN DOCUMENT ===
 \begin{document}
@@ -16,11 +20,39 @@
 % === COVER PAGE ===
 \input{../common/cover}
 
+% === TABLE OF CONTENTS ===
 \tableofcontents
 \newpage
 
+% === LIST OF FIGURES ===
+\listoffigures
+\addcontentsline{toc}{section}{List of Figures}
+\newpage
+
+% === DOCUMENT MANAGEMENT SECTION ===
+\section{Document Management and Quality Assurance}
+
+\subsection{Document Purpose}
+This User Guide provides comprehensive, step‑by‑step instructions for all users of the Moove Education Platform. It is organized into three main sections: \textbf{Educator Features} (for instructors and course staff), \textbf{Learner Features} (for students), and mandatory \textbf{Security and Privacy} guidelines that every user must follow.
+
+\subsection{Quality Assurance}
+\begin{itemize}
+    \item All screenshots are captured from the production environment
+    \item Steps are verified against the live system
+    \item Security guidelines are aligned with INSA regulations
+    \item Document is reviewed quarterly and updated with each release
+\end{itemize}
+
+\subsection{Document Conventions}
+\begin{itemize}
+    \item \textbf{Bold text}: Indicates UI elements, buttons, and menu items
+    \item \texttt{Monospace text}: Indicates URLs, commands, and code
+    \item \textit{Italic text}: Indicates emphasis and important notes
+\end{itemize}
+
+\newpage
 \section{Introduction}
-Welcome to the Moove Education Platform. This guide provides step‑by‑step instructions for all user activities, organised into two main sections: \textbf{Educator Features} (for instructors and course staff) and \textbf{Learner Features} (for students). It also includes important \textbf{Security and Privacy} guidelines that every user must follow to help protect the platform and personal data.
+Welcome to the Moove Education Platform. This guide provides step‑by‑step instructions for all user activities, organised into three main sections: \textbf{Educator Features} (for instructors and course staff), \textbf{Learner Features} (for students), and mandatory \textbf{Security and Privacy} guidelines that every user must follow.
 
 Screenshots are included for clarity. All images are located in the \texttt{screenshots/} directory.
 
@@ -48,6 +80,7 @@ This section covers all features available to course instructors and staff.
 \centering
 \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{screenshots/create_course.png}
 \caption{Course Creation Form}
+\label{fig:create-course}
 \end{figure}
 
 \subsubsection{Plan a New Course (UFR-OE-001-02)}
@@ -63,6 +96,7 @@ This section covers all features available to course instructors and staff.
 \centering
 \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{screenshots/course_outline.png}
 \caption{Course Outline View}
+\label{fig:course-outline}
 \end{figure}
 
 \subsubsection{Enroll Learners in a Course (UFR-OE-001-03)}
@@ -78,6 +112,7 @@ This section covers all features available to course instructors and staff.
 \centering
 \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{screenshots/enroll_learners.png}
 \caption{Bulk Enrollment Upload}
+\label{fig:bulk-enrollment}
 \end{figure}
 
 \subsection{Instructional Design Concepts (UFR-OE-002-01)}
@@ -101,6 +136,7 @@ This section covers all features available to course instructors and staff.
 \centering
 \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{screenshots/discussion_settings.png}
 \caption{Discussion Settings}
+\label{fig:discussion-settings}
 \end{figure}
 
 \subsubsection{Bulk Emails (UFR-OE-003-02)}
@@ -120,6 +156,7 @@ This section covers all features available to course instructors and staff.
 \centering
 \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{screenshots/bulk_email.png}
 \caption{Bulk Email Composition}
+\label{fig:bulk-email}
 \end{figure}
 
 \subsubsection{Course Updates (UFR-OE-003-03)}
@@ -135,6 +172,7 @@ This section covers all features available to course instructors and staff.
 \centering
 \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{screenshots/course_update.png}
 \caption{Course Update Form}
+\label{fig:course-update}
 \end{figure}
 
 \subsection{Content Creation \& Management}
@@ -158,6 +196,7 @@ This section covers all features available to course instructors and staff.
 \centering
 \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{screenshots/add_component.png}
 \caption{Add Component Dialog}
+\label{fig:add-component}
 \end{figure}
 
 \subsubsection{Manage Text Components (UFR-OE-004-02)}
@@ -173,6 +212,7 @@ This section covers all features available to course instructors and staff.
 \centering
 \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{screenshots/html_editor.png}
 \caption{HTML/Text Editor}
+\label{fig:html-editor}
 \end{figure}
 
 \subsubsection{Manage Video Components (UFR-OE-004-03)}
@@ -193,6 +233,7 @@ This section covers all features available to course instructors and staff.
 \centering
 \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{screenshots/video_component.png}
 \caption{Video Component Editor}
+\label{fig:video-component}
 \end{figure}
 
 \subsubsection{Control Content Visibility \& Access (UFR-OE-004-04)}
@@ -208,6 +249,7 @@ This section covers all features available to course instructors and staff.
 \centering
 \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{screenshots/visibility_settings.png}
 \caption{Visibility \& Access Settings}
+\label{fig:visibility-settings}
 \end{figure}
 
 \subsection{Components \& Activities}
@@ -250,6 +292,7 @@ This section covers all features available to course instructors and staff.
 \centering
 \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{screenshots/ora_settings.png}
 \caption{Open Response Assessment Settings}
+\label{fig:ora-settings}
 \end{figure}
 
 \subsubsection{Single Select Problem (UFR-OE-005-04)}
@@ -285,6 +328,7 @@ This section covers all features available to course instructors and staff.
 \centering
 \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{screenshots/enrollment_data.png}
 \caption{Enrollment Data Report}
+\label{fig:enrollment-data}
 \end{figure}
 
 \subsubsection{View Learner Data (UFR-OE-006-02)}
@@ -308,6 +352,7 @@ This section covers all features available to course instructors and staff.
 \centering
 \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{screenshots/gradebook.png}
 \caption{Gradebook View}
+\label{fig:gradebook}
 \end{figure}
 
 \subsubsection{View Answer Data (UFR-OE-006-04)}
@@ -364,6 +409,7 @@ This section covers all features available to course instructors and staff.
 \centering
 \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{screenshots/transcript_upload.png}
 \caption{Transcript Upload}
+\label{fig:transcript-upload}
 \end{figure}
 
 \subsection{Import/Export / OLX}
@@ -381,6 +427,7 @@ This section covers all features available to course instructors and staff.
 \centering
 \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{screenshots/export_course.png}
 \caption{Course Export/Import}
+\label{fig:export-course}
 \end{figure}
 
 \subsubsection{Getting Started with OLX (UFR-OE-008-02)}
@@ -407,6 +454,7 @@ This section covers all features available to learners (students).
 \centering
 \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{screenshots/dashboard.png}
 \caption{Learner Dashboard}
+\label{fig:dashboard}
 \end{figure}
 
 \subsubsection{Access Your Courses from the Dashboard (UFR-OE-101-02)}
@@ -443,6 +491,7 @@ This section covers all features available to learners (students).
 \centering
 \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{screenshots/profile_edit.png}
 \caption{Profile Edit Form}
+\label{fig:profile-edit}
 \end{figure}
 
 \subsubsection{Add Links to Your Personal Social Media Accounts (UFR-OE-101-06)}
@@ -488,6 +537,7 @@ This section covers all features available to learners (students).
 \centering
 \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{screenshots/sidebar_navigation.png}
 \caption{Sidebar Navigation}
+\label{fig:sidebar-navigation}
 \end{figure}
 
 \subsection{Enrollment}
@@ -505,6 +555,7 @@ This section covers all features available to learners (students).
 \centering
 \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{screenshots/enroll_course.png}
 \caption{Course Enrollment}
+\label{fig:enroll-course}
 \end{figure}
 
 \subsubsection{Open and Start a Course (UFR-OE-103-02)}
@@ -576,6 +627,7 @@ This section covers all features available to learners (students).
 \centering
 \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{screenshots/certificate_status.png}
 \caption{Certificate Status}
+\label{fig:certificate-status}
 \end{figure}
 
 \subsection{Course Progress}
@@ -617,6 +669,7 @@ This section covers all features available to learners (students).
 \centering
 \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{screenshots/progress_page.png}
 \caption{Progress Page}
+\label{fig:progress-page}
 \end{figure}
 
 \subsection{Certificates \& Badges}
@@ -665,6 +718,7 @@ This section covers all features available to learners (students).
 \centering
 \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{screenshots/video_player.png}
 \caption{Video Player}
+\label{fig:video-player}
 \end{figure}
 
 \subsection{Participating in Course Discussions}
@@ -680,6 +734,7 @@ This section covers all features available to learners (students).
 \centering
 \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{screenshots/discussions.png}
 \caption{Discussions View}
+\label{fig:discussions}
 \end{figure}
 
 \subsubsection{Finding and Following the Right Conversations (UFR-OE-109-02)}
@@ -886,6 +941,7 @@ This section covers all features available to learners (students).
 \centering
 \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{screenshots/bookmarks.png}
 \caption{Bookmarks View}
+\label{fig:bookmarks}
 \end{figure}
 
 \subsection{Notifications \& Preferences}

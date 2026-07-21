@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.6)  19 JUL 2026 11:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.6)  21 JUL 2026 12:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -292,30 +292,35 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \float@box=\box64
 \@float@everytoks=\toks29
 \@floatcapt=\box65
-)) (/usr/local/texlive/2026/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+)) (/usr/local/texlive/2026/texmf-dist/tex/latex/colortbl/colortbl.sty
+Package: colortbl 2024/10/29 v1.0k Color table columns (DPC)
+\everycr=\toks30
+\minrowclearance=\skip75
+\rownum=\count316
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count316
+\l__color_backend_stack_int=\count317
 ) (./UserGuide_OpenEdX.aux)
 \openout1 = `UserGuide_OpenEdX.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -353,31 +358,31 @@ LaTeX Font Info:    ... okay on input line 14.
 
 (/usr/local/texlive/2026/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count317
+\scratchcounter=\count318
 \scratchdimen=\dimen181
 \scratchbox=\box66
-\nofMPsegments=\count318
-\nofMParguments=\count319
-\everyMPshowfont=\toks30
-\MPscratchCnt=\count320
+\nofMPsegments=\count319
+\nofMParguments=\count320
+\everyMPshowfont=\toks31
+\MPscratchCnt=\count321
 \MPscratchDim=\dimen182
-\MPnumerator=\count321
-\makeMPintoPDFobject=\count322
-\everyMPtoPDFconversion=\toks31
+\MPnumerator=\count322
+\makeMPintoPDFobject=\count323
+\everyMPtoPDFconversion=\toks32
 ) (/usr/local/texlive/2026/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
  (/usr/local/texlive/2026/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring OFF on input line 14.
+Package hyperref Info: Link coloring OFF on input line 18.
  (./UserGuide_OpenEdX.out) (./UserGuide_OpenEdX.out)
 \@outlinefile=\write3
 \openout3 = `UserGuide_OpenEdX.out'.
 
-\c@lstlisting=\count323
+\c@lstlisting=\count324
  (../common/cover.tex
-<../logo.png, id=148, 1712.3975pt x 1174.3875pt>
+<../logo.png, id=168, 1712.3975pt x 1174.3875pt>
 File: ../logo.png Graphic file (type png)
 <use ../logo.png>
 Package pdftex.def Info: ../logo.png  used on input line 4.
@@ -391,314 +396,320 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 1.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 1.
-)
-\tf@toc=\write4
-\openout4 = `UserGuide_OpenEdX.toc'.
-
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.20 \newpage
-              [1
+l.126 ...he License 2.0 Text}{40}{section.Alph0.1}
+                                                  % [1
 
-]
-Overfull \hbox (6.71268pt too wide) in paragraph at lines 34--35
+])
+\tf@toc=\write4
+\openout4 = `UserGuide_OpenEdX.toc'.
+
+ [2] (./UserGuide_OpenEdX.lof)
+\tf@lof=\write5
+\openout5 = `UserGuide_OpenEdX.lof'.
+
+ [3
+
+] [4{/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+Overfull \hbox (6.71268pt too wide) in paragraph at lines 66--67
 []\T1/cmr/m/n/12 Log in to the CMS (Course Man-age-ment Sys-tem) at \T1/cmtt/m/n/12 studio.educationvirtual.net\T1/cmr/m/n/12 . 
  []
 
-<screenshots/create_course.png, id=203, 1075.01625pt x 811.03pt>
+<screenshots/create_course.png, id=292, 1075.01625pt x 811.03pt>
 File: screenshots/create_course.png Graphic file (type png)
 <use screenshots/create_course.png>
-Package pdftex.def Info: screenshots/create_course.png  used on input line 49.
+Package pdftex.def Info: screenshots/create_course.png  used on input line 81.
 (pdftex.def)             Requested size: 455.24373pt x 343.45184pt.
-[2{/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-<screenshots/course_outline.png, id=218, 1798.72pt x 893.3375pt>
+[5]
+<screenshots/course_outline.png, id=303, 1798.72pt x 893.3375pt>
 File: screenshots/course_outline.png Graphic file (type png)
 <use screenshots/course_outline.png>
-Package pdftex.def Info: screenshots/course_outline.png  used on input line 64.
+Package pdftex.def Info: screenshots/course_outline.png  used on input line 97.
 (pdftex.def)             Requested size: 455.25049pt x 226.10095pt.
- [3
+ [6
 pdfTeX warning (ext4): destination with the same identifier (name{figure.0.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.67 
-      <./screenshots/create_course.png>]
-Overfull \hbox (45.05458pt too wide) in paragraph at lines 74--75
+l.101 
+       <./screenshots/create_course.png>]
+Overfull \hbox (45.05458pt too wide) in paragraph at lines 108--109
 []\T1/cmr/m/n/12 The CSV for-mat should be: \T1/cmtt/m/n/12 email,enrollment_mode \T1/cmr/m/n/12 (e.g., \T1/cmtt/m/n/12 student@email.com,verified\T1/cmr/m/n/12 ). 
  []
 
-<screenshots/enroll_learners.png, id=231, 1106.1325pt x 649.42625pt>
+<screenshots/enroll_learners.png, id=316, 1106.1325pt x 649.42625pt>
 File: screenshots/enroll_learners.png Graphic file (type png)
 <use screenshots/enroll_learners.png>
-Package pdftex.def Info: screenshots/enroll_learners.png  used on input line 79.
+Package pdftex.def Info: screenshots/enroll_learners.png  used on input line 113.
 (pdftex.def)             Requested size: 455.23885pt x 267.27725pt.
-[4
+[7
 pdfTeX warning (ext4): destination with the same identifier (name{figure.0.2}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.82 
-      <./screenshots/course_outline.png>]
-<screenshots/discussion_settings.png, id=244, 413.545pt x 845.1575pt>
+l.117 
+       <./screenshots/course_outline.png>]
+<screenshots/discussion_settings.png, id=329, 413.545pt x 845.1575pt>
 File: screenshots/discussion_settings.png Graphic file (type png)
 <use screenshots/discussion_settings.png>
-Package pdftex.def Info: screenshots/discussion_settings.png  used on input line 102.
+Package pdftex.def Info: screenshots/discussion_settings.png  used on input line 137.
 (pdftex.def)             Requested size: 206.33658pt x 421.68788pt.
- [5
+ [8
 pdfTeX warning (ext4): destination with the same identifier (name{figure.0.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.105 
+l.141 
        <./screenshots/enroll_learners.png>]
-<screenshots/bulk_email.png, id=256, 1093.08376pt x 594.22pt>
+<screenshots/bulk_email.png, id=340, 1093.08376pt x 594.22pt>
 File: screenshots/bulk_email.png Graphic file (type png)
 <use screenshots/bulk_email.png>
-Package pdftex.def Info: screenshots/bulk_email.png  used on input line 121.
+Package pdftex.def Info: screenshots/bulk_email.png  used on input line 157.
 (pdftex.def)             Requested size: 455.23918pt x 247.47621pt.
- [6
+ [9
 pdfTeX warning (ext4): destination with the same identifier (name{figure.0.4}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.124 
+l.161 
        <./screenshots/discussion_settings.png>]
-<screenshots/course_update.png, id=270, 1693.32625pt x 459.7175pt>
+<screenshots/course_update.png, id=352, 1693.32625pt x 459.7175pt>
 File: screenshots/course_update.png Graphic file (type png)
 <use screenshots/course_update.png>
-Package pdftex.def Info: screenshots/course_update.png  used on input line 136.
+Package pdftex.def Info: screenshots/course_update.png  used on input line 173.
 (pdftex.def)             Requested size: 455.24051pt x 123.59225pt.
- [7
+ [10
 pdfTeX warning (ext4): destination with the same identifier (name{figure.0.5}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.146     \item S
+l.184     \item S
                  elect component type:
 pdfTeX warning (ext4): destination with the same identifier (name{figure.0.6}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.146     \item S
+l.184     \item S
                  elect component type: <./screenshots/bulk_email.png> <./screenshots/course_update.png>]
-<screenshots/add_component.png, id=287, 1791.69376pt x 892.33376pt>
+<screenshots/add_component.png, id=367, 1791.69376pt x 892.33376pt>
 File: screenshots/add_component.png Graphic file (type png)
 <use screenshots/add_component.png>
-Package pdftex.def Info: screenshots/add_component.png  used on input line 159.
+Package pdftex.def Info: screenshots/add_component.png  used on input line 197.
 (pdftex.def)             Requested size: 455.22186pt x 226.71834pt.
-<screenshots/html_editor.png, id=288, 1766.6pt x 870.25125pt>
+<screenshots/html_editor.png, id=368, 1766.6pt x 870.25125pt>
 File: screenshots/html_editor.png Graphic file (type png)
 <use screenshots/html_editor.png>
-Package pdftex.def Info: screenshots/html_editor.png  used on input line 174.
+Package pdftex.def Info: screenshots/html_editor.png  used on input line 213.
 (pdftex.def)             Requested size: 455.2348pt x 224.25487pt.
- [8
+ [11
 pdfTeX warning (ext4): destination with the same identifier (name{figure.0.7}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.177 
+l.217 
        <./screenshots/add_component.png>]
-<screenshots/video_component.png, id=304, 584.1825pt x 635.37375pt>
+<screenshots/video_component.png, id=383, 584.1825pt x 635.37375pt>
 File: screenshots/video_component.png Graphic file (type png)
 <use screenshots/video_component.png>
-Package pdftex.def Info: screenshots/video_component.png  used on input line 194.
+Package pdftex.def Info: screenshots/video_component.png  used on input line 234.
 (pdftex.def)             Requested size: 387.70988pt x 421.68446pt.
- [9
+ [12
 pdfTeX warning (ext4): destination with the same identifier (name{figure.0.8}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.197 
+l.238 
        <./screenshots/html_editor.png>]
-<screenshots/visibility_settings.png, id=321, 817.0525pt x 612.2875pt>
+<screenshots/visibility_settings.png, id=399, 817.0525pt x 612.2875pt>
 File: screenshots/visibility_settings.png Graphic file (type png)
 <use screenshots/visibility_settings.png>
-Package pdftex.def Info: screenshots/visibility_settings.png  used on input line 209.
+Package pdftex.def Info: screenshots/visibility_settings.png  used on input line 250.
 (pdftex.def)             Requested size: 455.25232pt x 341.15959pt.
- [10
+ [13
 pdfTeX warning (ext4): destination with the same identifier (name{figure.0.9}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.212 
-       <./screenshots/video_component.png>] [11
+l.254 
+       <./screenshots/video_component.png>] [14
 pdfTeX warning (ext4): destination with the same identifier (name{figure.0.10}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.233 ...onse Assessments (ORA) – UFR-OE-005-03}
+l.275 ...onse Assessments (ORA) – UFR-OE-005-03}
                                                    <./screenshots/visibility_settings.png>]
-<screenshots/ora_settings.png, id=352, 402.50375pt x 255.95625pt>
+<screenshots/ora_settings.png, id=428, 402.50375pt x 255.95625pt>
 File: screenshots/ora_settings.png Graphic file (type png)
 <use screenshots/ora_settings.png>
-Package pdftex.def Info: screenshots/ora_settings.png  used on input line 251.
+Package pdftex.def Info: screenshots/ora_settings.png  used on input line 293.
 (pdftex.def)             Requested size: 455.24158pt x 289.49275pt.
- [12
+ [15
 pdfTeX warning (ext4): destination with the same identifier (name{figure.0.11}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.262 \end{enumerate}
+l.305 \end{enumerate}
                       <./screenshots/ora_settings.png>]
-<screenshots/enrollment_data.png, id=372, 1116.17pt x 895.345pt>
+<screenshots/enrollment_data.png, id=447, 1116.17pt x 895.345pt>
 File: screenshots/enrollment_data.png Graphic file (type png)
 <use screenshots/enrollment_data.png>
-Package pdftex.def Info: screenshots/enrollment_data.png  used on input line 286.
+Package pdftex.def Info: screenshots/enrollment_data.png  used on input line 329.
 (pdftex.def)             Requested size: 455.24828pt x 365.18117pt.
- [13]
-<screenshots/gradebook.png, id=391, 1788.6825pt x 894.34125pt>
+ [16]
+<screenshots/gradebook.png, id=466, 1788.6825pt x 894.34125pt>
 File: screenshots/gradebook.png Graphic file (type png)
 <use screenshots/gradebook.png>
-Package pdftex.def Info: screenshots/gradebook.png  used on input line 309.
+Package pdftex.def Info: screenshots/gradebook.png  used on input line 353.
 (pdftex.def)             Requested size: 455.24828pt x 227.62413pt.
- [14
+ [17
 pdfTeX warning (ext4): destination with the same identifier (name{figure.0.12}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.312 
-       <./screenshots/enrollment_data.png>] [15
+l.357 
+       <./screenshots/enrollment_data.png>] [18
 pdfTeX warning (ext4): destination with the same identifier (name{figure.0.13}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.342     \item E
+l.387     \item E
                  nsure buttons and links are large enough to tap. <./screenshots/gradebook.png>]
-<screenshots/transcript_upload.png, id=427, 389.455pt x 669.50125pt>
+<screenshots/transcript_upload.png, id=500, 389.455pt x 669.50125pt>
 File: screenshots/transcript_upload.png Graphic file (type png)
 <use screenshots/transcript_upload.png>
-Package pdftex.def Info: screenshots/transcript_upload.png  used on input line 365.
+Package pdftex.def Info: screenshots/transcript_upload.png  used on input line 410.
 (pdftex.def)             Requested size: 245.29851pt x 421.68587pt.
- [16]
-<screenshots/export_course.png, id=439, 1619.04875pt x 902.37125pt>
+ [19]
+<screenshots/export_course.png, id=512, 1619.04875pt x 902.37125pt>
 File: screenshots/export_course.png Graphic file (type png)
 <use screenshots/export_course.png>
-Package pdftex.def Info: screenshots/export_course.png  used on input line 382.
+Package pdftex.def Info: screenshots/export_course.png  used on input line 428.
 (pdftex.def)             Requested size: 455.23282pt x 253.72244pt.
- [17
+ [20
 pdfTeX warning (ext4): destination with the same identifier (name{figure.0.14}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.385 
+l.432 
        <./screenshots/transcript_upload.png>]
-<screenshots/dashboard.png, id=452, 1689.31125pt x 828.09375pt>
+<screenshots/dashboard.png, id=524, 1689.31125pt x 828.09375pt>
 File: screenshots/dashboard.png Graphic file (type png)
 <use screenshots/dashboard.png>
-Package pdftex.def Info: screenshots/dashboard.png  used on input line 408.
+Package pdftex.def Info: screenshots/dashboard.png  used on input line 455.
 (pdftex.def)             Requested size: 455.24373pt x 223.15869pt.
- [18
+ [21
 pdfTeX warning (ext4): destination with the same identifier (name{figure.0.15}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.411 
+l.459 
        <./screenshots/export_course.png>]
-<screenshots/profile_edit.png, id=465, 1594.95876pt x 864.22874pt>
+<screenshots/profile_edit.png, id=535, 1594.95876pt x 864.22874pt>
 File: screenshots/profile_edit.png Graphic file (type png)
 <use screenshots/profile_edit.png>
-Package pdftex.def Info: screenshots/profile_edit.png  used on input line 444.
+Package pdftex.def Info: screenshots/profile_edit.png  used on input line 492.
 (pdftex.def)             Requested size: 455.22508pt x 246.66379pt.
- [19
+ [22
 pdfTeX warning (ext4): destination with the same identifier (name{figure.0.16}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.447 
-       <./screenshots/dashboard.png>] [20
+l.496 
+       <./screenshots/dashboard.png>] [23
 pdfTeX warning (ext4): destination with the same identifier (name{figure.0.17}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.474     \item A
+l.523     \item A
                  djust email notifications, language preference, etc. <./screenshots/profile_edit.png>]
-<screenshots/sidebar_navigation.png, id=509, 1443.3925pt x 817.0525pt>
+<screenshots/sidebar_navigation.png, id=578, 1443.3925pt x 817.0525pt>
 File: screenshots/sidebar_navigation.png Graphic file (type png)
 <use screenshots/sidebar_navigation.png>
-Package pdftex.def Info: screenshots/sidebar_navigation.png  used on input line 489.
+Package pdftex.def Info: screenshots/sidebar_navigation.png  used on input line 538.
 (pdftex.def)             Requested size: 455.24368pt x 257.69705pt.
- [21
+ [24
 pdfTeX warning (ext4): destination with the same identifier (name{figure.0.18}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.502 \end{enumerate}
+l.552 \end{enumerate}
                       <./screenshots/sidebar_navigation.png>]
-<screenshots/enroll_course.png, id=529, 1443.3925pt x 817.0525pt>
+<screenshots/enroll_course.png, id=598, 1443.3925pt x 817.0525pt>
 File: screenshots/enroll_course.png Graphic file (type png)
 <use screenshots/enroll_course.png>
-Package pdftex.def Info: screenshots/enroll_course.png  used on input line 506.
+Package pdftex.def Info: screenshots/enroll_course.png  used on input line 556.
 (pdftex.def)             Requested size: 455.24368pt x 257.69705pt.
- [22
+ [25
 pdfTeX warning (ext4): destination with the same identifier (name{figure.0.19}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.536     \item Y
+l.587     \item Y
                  ou must pass to gain access to the course. <./screenshots/enroll_course.png>]
-<screenshots/certificate_status.png, id=547, 1213.53375pt x 757.83125pt>
+<screenshots/certificate_status.png, id=614, 1213.53375pt x 757.83125pt>
 File: screenshots/certificate_status.png Graphic file (type png)
 <use screenshots/certificate_status.png>
-Package pdftex.def Info: screenshots/certificate_status.png  used on input line 577.
+Package pdftex.def Info: screenshots/certificate_status.png  used on input line 628.
 (pdftex.def)             Requested size: 455.24069pt x 284.29008pt.
- [23] [24
+ [26] [27
 pdfTeX warning (ext4): destination with the same identifier (name{figure.0.20}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.608     \item Y
+l.660     \item Y
                  ou will see a detailed breakdown: <./screenshots/certificate_status.png>]
-<screenshots/progress_page.png, id=586, 1449.415pt x 787.94376pt>
+<screenshots/progress_page.png, id=651, 1449.415pt x 787.94376pt>
 File: screenshots/progress_page.png Graphic file (type png)
 <use screenshots/progress_page.png>
-Package pdftex.def Info: screenshots/progress_page.png  used on input line 618.
+Package pdftex.def Info: screenshots/progress_page.png  used on input line 670.
 (pdftex.def)             Requested size: 455.24117pt x 247.48221pt.
- [25
+ [28
 pdfTeX warning (ext4): destination with the same identifier (name{figure.0.21}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.640 ...dges on Mozilla Backpack (UFR-OE-107-03)}
+l.693 ...dges on Mozilla Backpack (UFR-OE-107-03)}
                                                    <./screenshots/progress_page.png>]
-<screenshots/video_player.png, id=606, 1221.56375pt x 902.37125pt>
+<screenshots/video_player.png, id=671, 1221.56375pt x 902.37125pt>
 File: screenshots/video_player.png Graphic file (type png)
 <use screenshots/video_player.png>
-Package pdftex.def Info: screenshots/video_player.png  used on input line 666.
+Package pdftex.def Info: screenshots/video_player.png  used on input line 719.
 (pdftex.def)             Requested size: 455.25208pt x 336.29549pt.
- [26]
-<screenshots/discussions.png, id=620, 1197.47375pt x 741.77126pt>
+ [29]
+<screenshots/discussions.png, id=685, 1197.47375pt x 741.77126pt>
 File: screenshots/discussions.png Graphic file (type png)
 <use screenshots/discussions.png>
-Package pdftex.def Info: screenshots/discussions.png  used on input line 681.
+Package pdftex.def Info: screenshots/discussions.png  used on input line 735.
 (pdftex.def)             Requested size: 455.22748pt x 281.9892pt.
- [27
+ [30
 pdfTeX warning (ext4): destination with the same identifier (name{figure.0.22}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.684 
-       <./screenshots/video_player.png>] [28
+l.739 
+       <./screenshots/video_player.png>] [31
 pdfTeX warning (ext4): destination with the same identifier (name{figure.0.23}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.711 \end{itemize}
-                    <./screenshots/discussions.png>] [29] [30] [31]
-<screenshots/bookmarks.png, id=729, 1604.99625pt x 687.56876pt>
+l.766 \end{itemize}
+                    <./screenshots/discussions.png>] [32] [33] [34]
+<screenshots/bookmarks.png, id=792, 1604.99625pt x 687.56876pt>
 File: screenshots/bookmarks.png Graphic file (type png)
 <use screenshots/bookmarks.png>
-Package pdftex.def Info: screenshots/bookmarks.png  used on input line 887.
+Package pdftex.def Info: screenshots/bookmarks.png  used on input line 942.
 (pdftex.def)             Requested size: 455.24905pt x 195.02539pt.
- [32] [33
+ [35] [36
 pdfTeX warning (ext4): destination with the same identifier (name{figure.0.24}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.927     \item E
-                 xpired notifications are automatically archived. <./screenshots/bookmarks.png>] [34]
-Overfull \hbox (42.64938pt too wide) in paragraph at lines 1007--1008
+l.983     \item E
+                 xpired notifications are automatically archived. <./screenshots/bookmarks.png>] [37]
+Overfull \hbox (42.64938pt too wide) in paragraph at lines 1063--1064
 []\T1/cmr/m/it/12 Security Ar-chi-tec-ture & Threat Model ^^U Moove Ed-u-ca-tion Plat-form \T1/cmr/m/n/12 (Se-cu-rity_OpenEdX.tex) 
  []
 
-[35] (../common/footer.tex [36] (../common/license.tex) [37] (./UserGuide_OpenEdX.aux)
+[38] (../common/footer.tex [39] (../common/license.tex) [40] (./UserGuide_OpenEdX.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
 Package rerunfilecheck Info: File `UserGuide_OpenEdX.out' has not changed.
-(rerunfilecheck)             Checksum: 92B6E3EBD27A62C4F5D8B6D4DCE69712;6671.
+(rerunfilecheck)             Checksum: B1EAD13BC7404B97AE235622D4EF1523;7520.
  ) ) 
 Here is how much of TeX's memory you used:
- 12922 strings out of 467525
- 199419 string characters out of 5418983
- 629703 words of memory out of 5000000
- 41229 multiletter control sequences out of 15000+600000
+ 13058 strings out of 467525
+ 201564 string characters out of 5418983
+ 635224 words of memory out of 5000000
+ 41350 multiletter control sequences out of 15000+600000
  637965 words of font info for 60 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 80i,12n,82p,521b,586s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 80i,12n,82p,467b,586s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on UserGuide_OpenEdX.pdf (38 pages, 4963937 bytes).
+Output written on UserGuide_OpenEdX.pdf (41 pages, 4970178 bytes).
 PDF statistics:
- 939 PDF objects out of 1000 (max. 8388607)
- 821 compressed objects within 9 object streams
- 457 named destinations out of 1000 (max. 500000)
- 414 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1001 PDF objects out of 1200 (max. 8388607)
+ 880 compressed objects within 9 object streams
+ 465 named destinations out of 1000 (max. 500000)
+ 454 words of extra memory for PDF output out of 10000 (max. 10000000)
 
