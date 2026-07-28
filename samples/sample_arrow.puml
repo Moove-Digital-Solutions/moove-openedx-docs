@@ -1,0 +1,8 @@
+@startuml
+!define GREEN #2E8B57
+
+rectangle "Step 1: Enroll" as step1
+rectangle "Step 2: Access" as step2
+
+step1 -[GREEN]-> step2 : "Click Enroll"
+@enduml

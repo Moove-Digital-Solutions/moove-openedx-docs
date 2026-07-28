@@ -1,0 +1,28 @@
+@startuml
+!define GREEN #2E8B57
+!define WHITE #FFFFFF
+
+' Define a dashed rectangle style for the highlight box
+skinparam rectangle<<dashed>> {
+    BorderColor GREEN
+    BorderStyle dashed
+    BackgroundColor WHITE
+}
+
+' Main dashboard
+rectangle "Dashboard" {
+    rectangle "Course Card" as card {
+        rectangle "Progress Bar"
+        rectangle "Resume Button"
+    }
+}
+
+' Highlight box – using the dashed stereotype
+rectangle "Highlight Box" <<dashed>> as highlight
+
+' Connect with dashed green line
+highlight -[GREEN,dashed]-> card
+
+' Note describing the highlight
+note right of highlight : "This area is highlighted"
+@enduml

@@ -1,0 +1,31 @@
+@startuml
+!define BLUE #0057B8
+!define WHITE #FFFFFF
+
+' Style all rectangles with blue background and white text
+skinparam rectangle {
+    BackgroundColor BLUE
+    FontColor WHITE
+    BorderColor BLUE
+    FontStyle bold
+}
+
+' Draw the UI
+rectangle "Login Form" {
+    rectangle "Username field" as user
+    rectangle "Password field" as pass
+    rectangle "Sign In button" as btn
+}
+
+' Callouts – will inherit the blue style
+rectangle "1" as c1
+rectangle "2" as c2
+
+' Arrows connecting callouts to fields
+c1 -[BLUE]-> user
+c2 -[BLUE]-> btn
+
+' Annotations
+note right of c1 : "Enter your username"
+note right of c2 : "Click to sign in"
+@enduml
