@@ -1,8 +1,3 @@
-## 1. How to Contribute Guide
-
-**File:** `CONTRIBUTING.md` (place in the root of the repository)
-
-```markdown
 # How to Contribute to Moove Education Platform Documentation
 
 Thank you for contributing to the Moove Education Platform documentation project. This guide outlines the workflow, standards, and best practices for all team members.
