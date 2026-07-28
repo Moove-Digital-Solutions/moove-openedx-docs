@@ -1,0 +1,94 @@
+# =====================================================
+#  LaTeX / TeX generated files
+# =====================================================
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.lof
+*.lot
+*.out
+*.toc
+*.synctex.gz
+*.bbl
+*.blg
+*.brf
+*.idx
+*.ilg
+*.ind
+*.ist
+*.maf
+*.mtc*
+*.nav
+*.snm
+*.vrb
+*.acn
+*.acr
+*.alg
+*.glg
+*.glo
+*.gls
+*.glsdefs
+*.pstex
+*.run.xml
+*.xdv
+*.dvi
+*.ps
+*.eps
+*.pdfsync
+
+# =====================================================
+#  Generated PDFs (optional – remove if you want to
+#  keep release PDFs in version control)
+# =====================================================
+# *.pdf
+# !README.pdf               # keep specific PDFs if needed
+
+# =====================================================
+#  Backup / temporary / editor files
+# =====================================================
+*.bak
+*.BACK.*
+*~
+*.swp
+*.swo
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.orig
+*.rej
+
+# =====================================================
+#  Build outputs (if any)
+# =====================================================
+_build/
+build/
+out/
+dist/
+
+# =====================================================
+#  Logs and large report files
+# =====================================================
+*.log
+*.txt.log
+*.out.log
+assess_security.txt       # if this is generated during assessment
+vps_health_check.txt      # if generated
+
+# =====================================================
+#  OS / IDE / tool specific
+# =====================================================
+.idea/
+.vscode/
+*.iml
+*.class
+*.pyc
+__pycache__/
+
+# =====================================================
+#  Project-specific generated artifacts (optional)
+# =====================================================
+# deployment-report.txt   # uncomment if generated
+# swagger-docs.json       # uncomment if generated
