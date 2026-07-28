@@ -156,6 +156,6 @@ This documentation itself is licensed under the **Apache License 2.0** to be com
 
 ## 📧 Contact
 
-For questions or support regarding this documentation suite, contact the Moove Education Engineering Team at [your-email@example.com].
+For questions or support regarding this documentation suite, contact the Moove at digmoove@gmail.com.
 
 ---
