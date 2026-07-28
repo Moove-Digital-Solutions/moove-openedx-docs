@@ -41,8 +41,8 @@
 #  Generated PDFs (optional – remove if you want to
 #  keep release PDFs in version control)
 # =====================================================
-*.pdf
-!README.pdf               # keep specific PDFs if needed
+# *.pdf
+# !README.pdf               # keep specific PDFs if needed
 
 # =====================================================
 #  Backup / temporary / editor files
