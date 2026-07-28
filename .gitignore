@@ -76,7 +76,7 @@ dist/
 *.out.log
 assess_security.txt       # if this is generated during assessment
 vps_health_check.txt      # if generated
-
+*.txt 
 # =====================================================
 #  OS / IDE / tool specific
 # =====================================================
@@ -90,5 +90,5 @@ __pycache__/
 # =====================================================
 #  Project-specific generated artifacts (optional)
 # =====================================================
-# deployment-report.txt   # uncomment if generated
-# swagger-docs.json       # uncomment if generated
+deployment-report.txt   # uncomment if generated
+swagger-docs.json       # uncomment if generated
