@@ -132,6 +132,8 @@ The platform is a client‑server application based on Open edX, deployed in Doc
 Provides tools for educators to create, plan, and structure courses.
 
 \subsubsection{Requirement UFR-OE-001-01: Create a New Course}
+\paragraph{Overview}
+Educators need a straightforward way to instantiate a new course shell without requiring technical intervention. This requirement ensures that course creation is guided, that the unique course identifier (composed of organisation, course number, and run) is validated, and that the system automatically sets up the necessary database records, audit logs, and default settings. This allows instructors to focus on content authoring rather than administrative setup.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Create a new course.
 \item \textbf{UML Traceability:} Use Case: “Create Course”; Activity: “Course Creation Flow”.
@@ -172,6 +174,8 @@ And the course appears in my course list
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-001-02: Plan a New Course (Outline)}
+\paragraph{Overview}
+Once a course shell exists, the educator must define its structure. This requirement covers the creation of a hierarchical outline using sections, subsections, and units. A clear outline helps learners navigate the material logically and enables the educator to organise content progressively. Reordering via drag‑and‑drop adds flexibility for iterative design.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Plan course outline.
 \item \textbf{UML Traceability:} Activity: “Course Outline Flow”.
@@ -199,6 +203,8 @@ And I can add subsections under it
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-001-03: Enroll Learners in a Course}
+\paragraph{Overview}
+Educators may need to manually add learners to a course, especially for closed cohorts or corporate training. This requirement provides both individual and bulk enrollment options, along with email confirmation to keep learners informed. The system must validate email addresses and enrollment modes to ensure data integrity.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Enroll learners manually.
 \item \textbf{UML Traceability:} Use Case: “Manage Enrollments”.
@@ -225,6 +231,8 @@ Then the learner is enrolled and receives a confirmation email
 
 \subsection{Instructional Design Concepts}
 \subsubsection{Requirement UFR-OE-002-01: Apply Instructional Design Principles}
+\paragraph{Overview}
+Beyond technical features, the platform should encourage sound pedagogical practices. This guideline reminds educators to structure their courses with clear learning objectives, align assessments to those objectives, and follow proven models such as backward design and Bloom’s taxonomy. Adherence to these principles improves learner outcomes and course quality.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Apply instructional design concepts.
 \item \textbf{UML Traceability:} – (guideline).
@@ -245,6 +253,8 @@ Then the learner is enrolled and receives a confirmation email
 
 \subsection{Learner Engagement \& Communication Module}
 \subsubsection{Requirement UFR-OE-003-01: Course Discussions}
+\paragraph{Overview}
+Discussion forums are a critical component of collaborative learning. Educators need to enable and configure forum topics, moderation rules, and visibility settings. This requirement ensures that the discussion feature can be activated per course and that the instructor can set up a structure that encourages meaningful interaction.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Configure course discussions.
 \item \textbf{UML Traceability:} Use Case: “Manage Discussions”.
@@ -268,6 +278,8 @@ Then the Discussions tab appears in the course navigation
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-003-02: Bulk Emails}
+\paragraph{Overview}
+Effective communication with large learner cohorts often requires sending announcements, reminders, or personalised messages. This requirement enables educators to compose and send bulk emails to all or segmented groups of enrolled learners. The system handles queuing and delivery asynchronously to avoid performance bottlenecks.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Send bulk emails to learners.
 \item \textbf{UML Traceability:} Sequence: “Bulk Email Flow”.
@@ -292,6 +304,8 @@ Then the email is queued and delivered within 5 minutes
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-003-03: Course Updates}
+\paragraph{Overview}
+Educators frequently need to post time‑sensitive news, clarifications, or motivational messages on the course home page. This requirement allows them to create and publish short updates that are immediately visible to all enrolled learners, keeping the community informed and engaged.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Publish course updates.
 \item \textbf{UML Traceability:} – (simple notification).
@@ -312,6 +326,8 @@ Then it appears on the course home page immediately
 
 \subsection{Content Creation \& Management Module}
 \subsubsection{Requirement UFR-OE-004-01: Create and Manage Components}
+\paragraph{Overview}
+At the core of course authoring is the ability to add diverse learning materials – videos, HTML texts, problems, discussions, and more – to any unit. This requirement provides a unified interface for selecting component types, configuring their content, and saving them into the course structure. Each component type leverages the XBlock framework for extensibility.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Add and manage course components.
 \item \textbf{UML Traceability:} Activity: “Component Management”.
@@ -337,6 +353,8 @@ Then the video appears in the unit content
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-004-02: Manage Text Components}
+\paragraph{Overview}
+Text components are the most basic but also the most versatile building block. Educators need a rich editing environment that supports formatting, images, LaTeX for mathematics, and code snippets. The system must also sanitize HTML to prevent cross‑site scripting, ensuring safe rendering for all learners.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Create and edit HTML/text components.
 \item \textbf{Actor:} Educator.
@@ -355,6 +373,8 @@ Then the rendered content displays the math correctly
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-004-03: Manage Video Components}
+\paragraph{Overview}
+Video is a primary medium for online courses. Educators need to upload video files or embed from external sources (YouTube, Vimeo) and optionally attach transcripts. The video player must provide standard controls (play, speed, captions) and support adaptive bitrate streaming for varied network conditions.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Upload and manage video content.
 \item \textbf{UML Traceability:} Use Case: “Manage Video”.
@@ -374,6 +394,8 @@ Then the video player appears and plays the video
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-004-04: Control Content Visibility \& Access}
+\paragraph{Overview}
+Not all content should be available immediately; educators often schedule release dates, set prerequisites, or restrict access to specific groups. This requirement provides fine‑grained visibility controls so that content can be rolled out in a controlled manner, supporting just‑in‑time learning and course pacing.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Control content visibility and access.
 \item \textbf{UML Traceability:} – (settings).
@@ -394,6 +416,8 @@ Then the content is hidden until that date
 
 \subsection{Components \& Activities Module}
 \subsubsection{Requirement UFR-OE-005-01: Dropdown Problem}
+\paragraph{Overview}
+Single‑select dropdown problems are useful for concise assessments where space is limited. Educators can define a question, a list of options, and mark the correct answer. The system automatically grades the learner’s selection and provides immediate feedback.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Create dropdown problem.
 \item \textbf{UML Traceability:} – (component type).
@@ -420,6 +444,8 @@ Then the problem is displayed and grades the learner's selection
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-005-02: Multi-Select Problem}
+\paragraph{Overview}
+Multi‑select problems allow learners to choose multiple correct answers from a list. This format is ideal for questions with more than one correct option. Educators can define partial credit rules to reward partially correct selections, making assessments more nuanced.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Create multi-select problem.
 \item \textbf{Actor:} Educator.
@@ -438,6 +464,8 @@ Then the problem allows selection of multiple options and grades accordingly
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-005-03: Open Response Assessments (ORA)}
+\paragraph{Overview}
+Open Response Assessments go beyond simple multiple‑choice questions by enabling learners to submit free‑text responses and participate in peer review. Educators can define a prompt, a detailed rubric, and configure the assessment workflow (self, peer, staff). This promotes higher‑order thinking and collaborative learning.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Create open response assessment.
 \item \textbf{UML Traceability:} Activity: “ORA Flow”.
@@ -464,6 +492,8 @@ Then learners can submit responses and review peers
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-005-04: Single Select Problem}
+\paragraph{Overview}
+Single‑select (radio button) problems are straightforward for yes/no or one‑correct‑answer questions. This requirement ensures that educators can quickly add this assessment type, with the system handling grading and feedback consistently.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Create single select (radio button) problem.
 \item \textbf{Actor:} Educator.
@@ -482,6 +512,8 @@ Then the problem displays radio buttons and grades accordingly
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-005-05: Text Input Problem}
+\paragraph{Overview}
+Text input problems require learners to type a short answer. Educators define the expected answer(s) and the system checks the input (case‑insensitive). This format is ideal for fill‑in‑the‑blank or short‑answer questions, providing immediate correctness feedback.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Create text input problem.
 \item \textbf{Actor:} Educator.
@@ -501,6 +533,8 @@ Then the learner can type an answer and receive immediate feedback
 
 \subsection{Data \& Analytics Module}
 \subsubsection{Requirement UFR-OE-006-01: View Course Enrollments}
+\paragraph{Overview}
+Educators need insights into enrollment trends to gauge course popularity and plan capacity. This requirement provides access to real‑time enrollment statistics and downloadable CSV reports, enabling data‑driven decisions about marketing, outreach, and resource allocation.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View course enrollment data.
 \item \textbf{UML Traceability:} Use Case: “View Analytics”.
@@ -520,6 +554,8 @@ Then I receive a CSV with all active enrollments
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-006-02: View Learner Data}
+\paragraph{Overview}
+To support individual learners effectively, educators must be able to look up a specific learner’s progress, engagement metrics, and activity history. This requirement provides a search interface that returns a comprehensive profile, enabling personalised intervention and support.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View learner data and activity.
 \item \textbf{Actor:} Educator.
@@ -538,6 +574,8 @@ Then I see their progress and activity logs
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-006-03: View Learner Grades}
+\paragraph{Overview}
+The gradebook is the central hub for monitoring learner performance. Educators can view grades per assignment, adjust them manually if needed, and export the entire gradebook to CSV for offline analysis. All grade changes are audited to maintain integrity.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View and manage learner grades.
 \item \textbf{UML Traceability:} Sequence: “Grade View”.
@@ -557,6 +595,8 @@ Then the grade is updated and an audit log is created
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-006-04: View Answer Data}
+\paragraph{Overview}
+Understanding which problems are difficult for learners helps educators improve course content. This requirement provides aggregated answer distribution statistics, showing the percentage of correct answers per problem. This data informs decisions about revising questions or adding remedial material.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View answer distribution data.
 \item \textbf{Actor:} Educator.
@@ -575,6 +615,8 @@ Then I see the percentage of correct answers for each problem
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-006-05: View Certificate Data}
+\paragraph{Overview}
+Educators need to track certificate issuance to confirm completion and verify learner achievements. This requirement provides a report of all issued certificates, including learner names, URLs, and generation dates, supporting both internal review and external verification requests.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View certificate issuance data.
 \item \textbf{Actor:} Educator.
@@ -594,6 +636,8 @@ Then I get a list of all issued certificates
 
 \subsection{Accessibility Module}
 \subsubsection{Requirement UFR-OE-007-01: Open edX Accessibility Guidelines}
+\paragraph{Overview}
+The platform must be usable by all learners, including those with disabilities. This requirement mandates that educators follow Open edX’s accessibility guidelines, which align with WCAG 2.1 AA standards. Compliance is verified during course audits, ensuring equal access to learning.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Ensure accessibility compliance.
 \item \textbf{Actor:} Educator.
@@ -607,6 +651,8 @@ Then I get a list of all issued certificates
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-007-02: Mobile Experience Design}
+\paragraph{Overview}
+Many learners access courses via mobile devices. This requirement ensures that all content is responsive and functions correctly on iOS and Android browsers. Educators are encouraged to test their materials on mobile and adjust interactions (e.g., touch targets, font sizes) to provide a seamless experience.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Design for mobile experience.
 \item \textbf{Actor:} Educator.
@@ -620,6 +666,8 @@ Then I get a list of all issued certificates
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-007-03: Accessibility Best Practices Checklist}
+\paragraph{Overview}
+To simplify adherence to accessibility standards, this requirement provides a checklist that educators can review and confirm for each course. The checklist covers alt text, heading structure, colour contrast, keyboard navigation, and descriptive links – all items that contribute to an inclusive learning environment.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Follow accessibility best practices.
 \item \textbf{Actor:} Educator.
@@ -633,6 +681,8 @@ Then I get a list of all issued certificates
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-007-04: Manage Video Transcripts}
+\paragraph{Overview}
+Closed captions are essential for hearing‑impaired learners and beneficial for all in noisy environments. This requirement enables educators to upload transcript files (SRT/VTT) for any video component, which then appear as captions in the video player, improving accessibility and comprehension.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Upload and manage video transcripts.
 \item \textbf{Actor:} Educator.
@@ -652,6 +702,8 @@ Then the video player shows closed captions
 
 \subsection{Import/Export / OLX Module}
 \subsubsection{Requirement UFR-OE-008-01: Open Learning XML (OLX) Support}
+\paragraph{Overview}
+OLX is the standard exchange format for Open edX courses. This requirement ensures that educators can export a course as an OLX archive (for backup, versioning, or transfer) and import an archive to recreate a course. This interoperability is vital for collaboration and disaster recovery.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Support for Open Learning XML.
 \item \textbf{Actor:} Educator.
@@ -672,6 +724,8 @@ Then the course structure is recreated exactly
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-008-02: Getting Started with OLX}
+\paragraph{Overview}
+Educators new to OLX need accessible documentation and tools to understand the format. This requirement ensures that the platform provides links to official Open edX OLX documentation, command‑line utilities, and examples, lowering the barrier to using advanced import/export features.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Access OLX documentation and tools.
 \item \textbf{Actor:} Educator.
@@ -691,6 +745,8 @@ Then the course structure is recreated exactly
 
 \subsection{Dashboard \& Profile Module}
 \subsubsection{Requirement UFR-OE-101-01: Explore Dashboard and Profile}
+\paragraph{Overview}
+After logging in, learners are greeted by a personalised dashboard that aggregates their enrolled courses, progress summaries, announcements, and recent activity. This central hub provides an at‑a‑glance view of their learning journey, making it easy to resume courses or discover new opportunities.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Access and explore learner dashboard.
 \item \textbf{UML Traceability:} Use Case: “View Dashboard”.
@@ -714,6 +770,8 @@ Then I see my enrolled courses and progress
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-101-02: Access Courses from Dashboard}
+\paragraph{Overview}
+The dashboard presents each enrolled course as a card. Clicking on a card should take the learner directly into the course home page, where they can resume learning. This requirement ensures a seamless entry point into course content.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Access enrolled courses from dashboard.
 \item \textbf{Actor:} Learner.
@@ -732,6 +790,8 @@ Then I am taken to the course home page
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-101-03: Share Courses on Social Media}
+\paragraph{Overview}
+Learners often want to share interesting courses with their network. This requirement provides a share button that, when clicked, opens a social media sharing dialog (Facebook, Twitter, LinkedIn, etc.) with a pre‑populated link to the course, facilitating organic promotion.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Share course links on social media.
 \item \textbf{Actor:} Learner.
@@ -750,6 +810,8 @@ Then the course link appears on my timeline
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-101-04: Update Profile Image}
+\paragraph{Overview}
+Learners can personalise their profile by uploading a profile picture. The system resizes and stores the image, ensuring it meets size and format constraints. A recognisable profile image helps build community and trust among peers.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Upload or update profile image.
 \item \textbf{Actor:} Learner.
@@ -768,6 +830,8 @@ Then my profile displays the new image
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-101-05: Update Profile Details}
+\paragraph{Overview}
+Learners can maintain their personal information (name, email, location, bio, language) through a profile editing interface. The system enforces uniqueness of email addresses and validates input, ensuring data quality across the platform.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Update profile information.
 \item \textbf{Actor:} Learner.
@@ -786,6 +850,8 @@ Then my profile shows the new bio
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-101-06: Add Social Media Links}
+\paragraph{Overview}
+To facilitate networking and professional connections, learners can add links to their social media profiles (Twitter, LinkedIn, GitHub, etc.). These appear as icons on their public profile, enabling others to connect outside the platform.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Add personal social media links.
 \item \textbf{Actor:} Learner.
@@ -804,6 +870,8 @@ Then the Twitter icon appears on my profile
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-101-07: Toggle Profile Visibility}
+\paragraph{Overview}
+Privacy is important. This requirement allows learners to control who can see their profile information – either making it public (visible to all logged‑in users) or private (visible only to themselves). The default is private, giving learners control over their data.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Control profile visibility.
 \item \textbf{Actor:} Learner.
@@ -822,6 +890,8 @@ Then other users can see my profile information
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-101-08: View Another Learner’s Profile}
+\paragraph{Overview}
+In collaborative courses, learners may want to see more about their peers. This requirement enables viewing another learner’s public profile (if they have set it to public) by clicking on their username in discussions or the course roster. Only public information is shown.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View other learners' profiles.
 \item \textbf{Actor:} Learner.
@@ -840,6 +910,8 @@ Then I see their public profile information
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-101-09: Update Course-Specific Settings}
+\paragraph{Overview}
+Learners can customise their experience per course – for example, disabling email notifications or choosing a preferred language. This requirement provides a settings panel within each course, allowing learners to tailor their notification preferences and other options without affecting other courses.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Update course-specific settings.
 \item \textbf{Actor:} Learner.
@@ -859,6 +931,8 @@ Then I no longer receive course emails
 
 \subsection{Course Navigation Module}
 \subsubsection{Requirement UFR-OE-102-01: View Course Sections from Navigation Sidebar}
+\paragraph{Overview}
+A clear navigation sidebar helps learners move through the course material intuitively. This requirement ensures that the sidebar displays all sections and subsections, and that clicking on any item takes the learner directly to that content. Only published and released content is visible, preventing confusion.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Navigate course using sidebar.
 \item \textbf{Actor:} Learner.
@@ -878,6 +952,8 @@ Then I am taken to that section's content
 
 \subsection{Enrollment Module}
 \subsubsection{Requirement UFR-OE-103-01: Enroll in a Course}
+\paragraph{Overview}
+Enrolling in a course is the first step for any learner. This requirement provides a clear enrollment flow from the course catalog, allowing learners to choose between audit (free) and verified (paid) tracks. Upon confirmation, the course is added to the learner’s dashboard.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Enroll in a course.
 \item \textbf{UML Traceability:} Sequence: “Enrollment Flow”.
@@ -903,6 +979,8 @@ Then the course appears in my dashboard
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-103-02: Open and Start a Course}
+\paragraph{Overview}
+Once enrolled, learners need a clear way to begin or resume their learning. This requirement provides “Start Course” for first‑time access and “Resume Course” to return to the last viewed unit, minimising friction and helping learners stay on track.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Open and start a course.
 \item \textbf{Actor:} Learner.
@@ -922,6 +1000,8 @@ Then I am taken to the last content I viewed
 
 \subsection{Course Prerequisites Module}
 \subsubsection{Requirement UFR-OE-104-01: Overview of Prerequisites}
+\paragraph{Overview}
+Prerequisites help ensure learners have the necessary background before starting a course. This requirement displays a clear list of required courses on the course info page, along with the learner’s completion status for each, so they can plan their learning path accordingly.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View course prerequisites.
 \item \textbf{Actor:} Learner.
@@ -940,6 +1020,8 @@ Then I see the required courses and my completion status
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-104-02: Complete Prerequisite Course}
+\paragraph{Overview}
+To automatically unlock a course, the learner must complete its prerequisites with a passing grade. This requirement ensures that completion is tracked and that the advanced course becomes available in the dashboard once all prerequisites are met.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Complete prerequisite course.
 \item \textbf{Actor:} Learner.
@@ -958,6 +1040,8 @@ Then the advanced course becomes available
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-104-03: Pass Entrance Exam}
+\paragraph{Overview}
+Some courses may require an entrance exam to assess readiness. This requirement allows educators to set a minimum score, and learners can attempt the exam (with retake cooldown if they fail). Passing automatically grants access to the course content.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Pass entrance exam.
 \item \textbf{Actor:} Learner.
@@ -977,6 +1061,8 @@ Then I can access the course content
 
 \subsection{Course Content Access Module}
 \subsubsection{Requirement UFR-OE-105-01: Troubleshoot Accessing Course Content}
+\paragraph{Overview}
+When learners encounter access restrictions (e.g., locked content due to prerequisites or release dates), they need clear explanations and guidance. This requirement ensures that error messages are user‑friendly, explain the reason, and provide links to support or course staff for assistance.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Troubleshoot content access issues.
 \item \textbf{Actor:} Learner.
@@ -995,6 +1081,8 @@ Then I see a message explaining why and how to gain access
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-105-02: Access an Archived Course}
+\paragraph{Overview}
+After a course ends, it may be archived. Learners should still be able to view the content in read‑only mode, but submissions and interactions are disabled. This requirement supports ongoing reference and revision without allowing new activity.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Access archived course.
 \item \textbf{Actor:} Learner.
@@ -1013,6 +1101,8 @@ Then I can view content but not submit assignments
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-105-03: View Final Course Grade}
+\paragraph{Overview}
+At the end of a course, learners need to see their final grade and whether they passed. This requirement provides a dedicated “Grades” page that summarises all assignment scores and the overall final grade, giving learners a clear picture of their performance.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View final course grade.
 \item \textbf{Actor:} Learner.
@@ -1031,6 +1121,8 @@ Then I see my final grade and passing status
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-105-04: View Certificate Status}
+\paragraph{Overview}
+Learners who pass a course can earn a certificate. This requirement shows the certificate status (eligible, available, or not eligible) in the profile, and provides a download link when available. This motivates learners and gives them a tangible credential.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View certificate status.
 \item \textbf{Actor:} Learner.
@@ -1050,6 +1142,8 @@ Then I see if I am eligible and can download it
 
 \subsection{Course Progress Module}
 \subsubsection{Requirement UFR-OE-106-01: Find Course Start Date}
+\paragraph{Overview}
+Knowing the course start date helps learners plan their schedule. This requirement ensures that the start date is prominently displayed on the course info page and on the dashboard, so learners are aware of when the course officially begins.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View course start date.
 \item \textbf{Actor:} Learner.
@@ -1068,6 +1162,8 @@ Then I see the start date
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-106-02: Start or Resume a Course}
+\paragraph{Overview}
+This requirement is similar to UFR-OE-103-02 but appears in the context of progress. It ensures that the “Start”/“Resume” button is always accessible from the course home page and the dashboard, allowing learners to jump directly to their last visited content.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Start or resume a course.
 \item \textbf{Actor:} Learner.
@@ -1086,6 +1182,8 @@ Then I am taken to the last unit I viewed
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-106-03: Progress Indicators}
+\paragraph{Overview}
+Visual progress indicators (e.g., progress bars) help learners understand how much of a section or subsection they have completed. This requirement provides these indicators at multiple levels – overall course, section, and subsection – to motivate and guide learners through the material.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View progress indicators.
 \item \textbf{Actor:} Learner.
@@ -1104,6 +1202,8 @@ Then I see a progress bar indicating completion
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-106-04: The Progress Page}
+\paragraph{Overview}
+For a detailed view of progress, learners can access a dedicated Progress page that shows scores for each assignment and overall completion status. This page is particularly useful for tracking performance and identifying areas that need more attention.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Access the Progress page.
 \item \textbf{Actor:} Learner.
@@ -1123,6 +1223,8 @@ Then I see scores for each assignment and overall completion
 
 \subsection{Certificates \& Badges Module}
 \subsubsection{Requirement UFR-OE-107-01: Accessing a Certificate}
+\paragraph{Overview}
+Earned certificates are a key motivator. This requirement allows learners to download their certificate as a signed PDF from their profile. The certificate includes the learner’s name, course title, and a unique verification code for authenticity.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Access earned certificate.
 \item \textbf{Actor:} Learner.
@@ -1141,6 +1243,8 @@ Then a PDF certificate is generated and downloaded
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-107-02: Viewing Earned Badges in Profile}
+\paragraph{Overview}
+Badges recognise specific achievements (e.g., completing a module, scoring high on an assignment). This requirement displays all earned badges in the learner’s profile, providing a visual record of accomplishments that can be shared with others.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View earned badges in profile.
 \item \textbf{Actor:} Learner.
@@ -1159,6 +1263,8 @@ Then I see all earned badges
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-107-03: Sharing Badges on Mozilla Backpack}
+\paragraph{Overview}
+For learners who want to showcase their badges outside the platform, this requirement integrates with Mozilla Backpack (or similar open badge services). Learners can share their earned badges to their Backpack account, making them portable and verifiable across the web.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Share badges to Mozilla Backpack.
 \item \textbf{Actor:} Learner.
@@ -1178,6 +1284,8 @@ Then the badge appears in my Backpack
 
 \subsection{Video Player Module}
 \subsubsection{Requirement UFR-OE-108-01: Watching Videos on the Open edX Video Player}
+\paragraph{Overview}
+The video player is the primary interface for consuming video content. This requirement defines the standard controls (play, pause, volume, speed, full‑screen, closed captions) and ensures reliable playback across devices and browsers. The player must also handle adaptive bitrate streaming for smooth viewing.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Use the video player.
 \item \textbf{Actor:} Learner.
@@ -1197,6 +1305,8 @@ Then I can control playback and see captions if available
 
 \subsection{Discussions Module}
 \subsubsection{Requirement UFR-OE-109-01: Getting Started with Discussions}
+\paragraph{Overview}
+The discussion forum is a place for learners to ask questions, share insights, and collaborate. This requirement provides a clear entry point – the “Discussions” tab – where learners can view existing threads, filter by topic, and create new posts. The forum must be intuitive and encourage participation.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Access course discussions.
 \item \textbf{Actor:} Learner.
@@ -1215,6 +1325,8 @@ Then I see all threads and can create new posts
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-109-02: Finding and Following Conversations}
+\paragraph{Overview}
+To stay engaged, learners need to find relevant discussions and follow them. This requirement supports search, filtering, and a “follow” feature that sends email notifications when new replies are posted. This keeps learners informed without requiring them to constantly check the forum.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Find and follow conversations.
 \item \textbf{Actor:} Learner.
@@ -1233,6 +1345,8 @@ Then I receive email notifications for new replies
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-109-03: Taking Part in Discussions}
+\paragraph{Overview}
+Active participation is key to a vibrant learning community. This requirement allows learners to create new threads (topics) and reply to existing ones, with all posts subject to moderation as configured by the educator. The interface must be simple and responsive.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Participate in discussions.
 \item \textbf{Actor:} Learner.
@@ -1251,6 +1365,8 @@ Then my reply appears in the discussion
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-109-04: Staying Updated with Notifications}
+\paragraph{Overview}
+To avoid missing important replies, learners receive email notifications for threads they follow or when they are mentioned. This requirement ensures that notification delivery is reliable and respects the learner’s preferences (e.g., digest vs. immediate).
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Receive discussion notifications.
 \item \textbf{Actor:} Learner.
@@ -1270,6 +1386,8 @@ Then I receive an email notification
 
 \subsection{Assignments \& Assessments Module}
 \subsubsection{Requirement UFR-OE-110-01: Completing Mathematical and Scientific Assignments}
+\paragraph{Overview}
+Many courses involve mathematical notation. This requirement supports LaTeX input and rendering within assignments, allowing learners to write formulas and equations. The system must render the LaTeX correctly and grade the answer appropriately.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Complete mathematical assignments.
 \item \textbf{Actor:} Learner.
@@ -1288,6 +1406,8 @@ Then the math renders correctly and is graded
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-110-02: Taking a Timed Exam}
+\paragraph{Overview}
+Timed exams simulate real‑world test conditions. This requirement provides a countdown timer that is visible throughout the exam; when time expires, the exam is automatically submitted. This ensures fairness and enforces time limits set by the educator.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Take timed exam.
 \item \textbf{Actor:} Learner.
@@ -1306,6 +1426,8 @@ Then I must submit before time expires or it auto-submits
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-110-03: Proctored Exams}
+\paragraph{Overview}
+For high‑stakes assessments, proctoring ensures integrity. This requirement integrates with a proctoring service (e.g., ProctorU) – learners must install a browser extension, verify their identity, and complete the exam under live monitoring. The system records the session for later review.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Take proctored exam.
 \item \textbf{Actor:} Learner.
@@ -1324,6 +1446,8 @@ Then my session is monitored and recorded
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-110-04: Explaining Multiple Choice Answers}
+\paragraph{Overview}
+Sometimes a learner wants to justify their choice. This optional feature allows learners to provide a brief explanation alongside their answer. This can be useful for instructors to understand reasoning and for learners to reflect on their decisions.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Provide explanation for multiple choice answers.
 \item \textbf{Actor:} Learner.
@@ -1342,6 +1466,8 @@ Then the explanation is stored for review
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-110-05: Completing Essay Assignments}
+\paragraph{Overview}
+Essay assignments allow open‑ended responses. This requirement provides a rich text editor where learners can write, format, and submit their essays. The system stores the submission and makes it available for grading by instructors or peers.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Complete essay assignment.
 \item \textbf{Actor:} Learner.
@@ -1360,6 +1486,8 @@ Then it is saved and available for grading
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-110-06: Open Response Assessment Steps}
+\paragraph{Overview}
+The ORA workflow is multi‑step: submit, self‑assess, peer‑assess, and receive score. This requirement guides learners through these steps with clear instructions and progress indicators, ensuring they complete each phase correctly.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Follow ORA workflow.
 \item \textbf{Actor:} Learner.
@@ -1378,6 +1506,8 @@ Then I receive a final score
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-110-07: How Grading Is Done In Open Response Assessments}
+\paragraph{Overview}
+To demystify the grading process, this requirement provides transparency about the rubric and how peer scores are combined. Learners can view the grading criteria and understand how their final score is calculated, building trust in the system.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Understand ORA grading.
 \item \textbf{Actor:} Learner.
@@ -1396,6 +1526,8 @@ Then I see the rubric and how scores are calculated
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-110-08: Completing an Open Response Assessment}
+\paragraph{Overview}
+This requirement covers the full ORA completion cycle. Learners submit their response, perform self‑assessment, review peers, and finally see their aggregated score. Each step must be intuitive, with clear deadlines and reminders.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Complete ORA.
 \item \textbf{Actor:} Learner.
@@ -1414,6 +1546,8 @@ Then I see my final grade and feedback
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-110-09: Receive Score and Provide Feedback}
+\paragraph{Overview}
+After an ORA is graded, learners can view their score and, if desired, provide feedback on the assessment experience. This feedback loop helps improve future assessments and gives learners a voice in the process.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Receive ORA score and provide feedback.
 \item \textbf{Actor:} Learner.
@@ -1432,6 +1566,8 @@ Then I can optionally submit feedback on the process
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-110-10: How Peer Assessment Scores Are Calculated}
+\paragraph{Overview}
+Peer assessment scoring can be complex. This requirement explains the algorithm (e.g., average, median, or adjusted scores) so learners understand how multiple peer evaluations are combined into a final score. This transparency reduces confusion and increases acceptance of peer grading.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Understand peer assessment scoring.
 \item \textbf{Actor:} Learner.
@@ -1450,6 +1586,8 @@ Then I understand the algorithm used
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-110-11: Canceled Responses}
+\paragraph{Overview}
+Sometimes a learner may submit a response and later wish to withdraw it before any assessment has started. This requirement allows cancellation, giving learners the flexibility to correct errors or change their mind. Once assessment begins, cancellation is not permitted.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Handle canceled responses.
 \item \textbf{Actor:} Learner.
@@ -1469,6 +1607,8 @@ Then I can resubmit later
 
 \subsection{Team Projects Module}
 \subsubsection{Requirement UFR-OE-111-01: About Teams and Topics}
+\paragraph{Overview}
+Team projects encourage collaboration. This requirement provides an introductory page that explains what teams are, how topics (project themes) work, and how learners can form or join teams. This sets the stage for productive group work.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Understand teams and topics.
 \item \textbf{Actor:} Learner.
@@ -1487,6 +1627,8 @@ Then I see an explanation of teams and topics
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-111-02: Search for a Team}
+\paragraph{Overview}
+To find a suitable team, learners need search functionality. This requirement allows searching by team name, topic, or member name, making it easy to discover existing teams. Search results are case‑insensitive and ordered by relevance.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Search for a team.
 \item \textbf{Actor:} Learner.
@@ -1505,6 +1647,8 @@ Then I see matching teams
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-111-03: Join a Team}
+\paragraph{Overview}
+Joining a team may require approval, depending on the team’s settings. This requirement provides a “Join Team” button; if approval is required, the team captain receives a request. Once accepted, the learner becomes a full member with access to team resources.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Join an existing team.
 \item \textbf{Actor:} Learner.
@@ -1523,6 +1667,8 @@ Then I become a member and can access team discussions
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-111-04: Leave a Team}
+\paragraph{Overview}
+Learners should be able to leave a team if they are no longer interested or if they need to switch. This requirement provides a “Leave Team” button; if the leaving member is the last member, the team may be dissolved automatically to avoid orphaned groups.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Leave a team.
 \item \textbf{Actor:} Learner.
@@ -1541,6 +1687,8 @@ Then I am removed and lose access to team resources
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-111-05: Create a Team}
+\paragraph{Overview}
+If no suitable team exists, learners can create their own. This requirement provides a form to enter team name, description, topic, and enrollment type (open or by approval). The team name must be unique within the course to avoid duplication.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Create a new team.
 \item \textbf{Actor:} Learner.
@@ -1559,6 +1707,8 @@ Then the team appears in the team list
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-111-06: Participating in Team Discussions}
+\paragraph{Overview}
+Team members need a private space to communicate. This requirement provides a team‑specific discussion forum where only members can view and post. This facilitates coordination, task assignment, and sharing of resources within the team.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Participate in team discussions.
 \item \textbf{Actor:} Learner.
@@ -1578,6 +1728,8 @@ Then only team members can see my post
 
 \subsection{Search Module}
 \subsubsection{Requirement UFR-OE-112-01: Overview of Search}
+\paragraph{Overview}
+To help learners find content efficiently, the platform provides a full‑text search powered by Meilisearch. This requirement ensures that search help is available, explaining what is searchable (course titles, content, discussions) and how to refine queries.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Understand search capabilities.
 \item \textbf{Actor:} Learner.
@@ -1596,6 +1748,8 @@ Then I see a description of what is searchable
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-112-02: Search a Single Course}
+\paragraph{Overview}
+When inside a course, learners often want to find content within that course only. This requirement provides a search box that restricts results to the current course, making it easy to locate specific topics without being overwhelmed by other courses.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Search within a course.
 \item \textbf{Actor:} Learner.
@@ -1614,6 +1768,8 @@ Then I see results only from that course
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-112-03: Search All Your Courses}
+\paragraph{Overview}
+From the dashboard, learners may want to search across all their enrolled courses. This requirement provides a global search that returns results from all courses the learner is enrolled in, helping them quickly find content without navigating each course individually.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Search across all courses.
 \item \textbf{Actor:} Learner.
@@ -1633,6 +1789,8 @@ Then I see results from all my courses
 
 \subsection{Bookmarking Module}
 \subsubsection{Requirement UFR-OE-113-01: Add or Remove a Bookmark}
+\paragraph{Overview}
+Bookmarks allow learners to save important content for quick reference. This requirement provides a bookmark icon on each piece of content; clicking it toggles the bookmark status. Bookmarked content is then listed in a dedicated bookmarks page for easy access.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Bookmark course content.
 \item \textbf{Actor:} Learner.
@@ -1651,6 +1809,8 @@ Then the content is bookmarked and appears in my bookmarks list
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-113-02: View Your Bookmarks}
+\paragraph{Overview}
+The bookmarks page provides a consolidated list of all saved content. Bookmarks are sorted by date added, and learners can click on any entry to navigate directly to that content. This serves as a personal study guide.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View bookmarked content.
 \item \textbf{Actor:} Learner.
@@ -1670,6 +1830,8 @@ Then I see a list of all bookmarked content
 
 \subsection{Notifications \& Preferences Module}
 \subsubsection{Requirement UFR-OE-114-01: Where Notifications Appear}
+\paragraph{Overview}
+Notifications keep learners informed about important events (replies, due dates, updates). This requirement defines that notifications appear in three places: the dashboard, email, and in‑app alerts (bell icon). The bell icon shows a badge count for unread notifications.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Access notifications.
 \item \textbf{Actor:} Learner.
@@ -1688,6 +1850,8 @@ Then I see the bell icon with a badge count
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-114-02: Activity Types}
+\paragraph{Overview}
+To help learners understand what triggers notifications, this requirement lists all activity types: discussion replies, assignment due dates, course updates, and feedback on assessments. This transparency helps learners manage their expectations and preferences.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Understand notification activity types.
 \item \textbf{Actor:} Learner.
@@ -1706,6 +1870,8 @@ Then I see all available activity types
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-114-03: Managing Preferences}
+\paragraph{Overview}
+Learners have different preferences for how and when they receive notifications. This requirement provides a settings panel where learners can enable/disable notifications per activity type and choose delivery channels (email, in‑app). Preferences are stored per user.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Manage notification preferences.
 \item \textbf{Actor:} Learner.
@@ -1724,6 +1890,8 @@ Then my preferences are updated
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-114-04: Notifications Expiry}
+\paragraph{Overview}
+To keep the notification list manageable, this requirement defines that notifications older than 30 days are automatically archived. Archived notifications are still accessible but not in the active inbox, reducing clutter.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Notification expiry.
 \item \textbf{Actor:} System.
@@ -1743,6 +1911,8 @@ Then the notification is moved to archive
 
 \subsection{Course Wiki Module}
 \subsubsection{Requirement UFR-OE-115-01: Using the Course Wiki}
+\paragraph{Overview}
+The course wiki is a collaborative space where learners can contribute knowledge, share resources, and build a living document. This requirement provides access to the wiki from the course navigation, with edit permissions controlled by the educator. Learners can view and, if allowed, edit pages.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} Use the course wiki.
 \item \textbf{Actor:} Learner.
@@ -1761,6 +1931,8 @@ Then I can view and optionally edit pages
 \end{enumerate}
 
 \subsubsection{Requirement UFR-OE-115-02: View Live Course}
+\paragraph{Overview}
+This requirement ensures that learners only see published and released content – content that the educator has made visible. Unpublished content is hidden, and learners are not confused by draft materials. This maintains a clear and reliable learning path.
 \begin{enumerate}[label=\textbf{\arabic*.}]
 \item \textbf{Title:} View live course content.
 \item \textbf{Actor:} Learner.
