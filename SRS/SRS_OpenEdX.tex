@@ -1957,7 +1957,7 @@ Then I only see content that has been published and released
 This section defines mandatory security requirements derived from INSA’s CMCSRS, the Computer Crime Proclamation, and the Electronic Signature Proclamation. All requirements are traceable to the \textit{Security Architecture \& Threat Model} document.
 
 \subsection{Access Control (CMCSRS 6.17)}
-\begin{enumerate}[label=\textbf{SEC-NFR-001-\arabic*.}]
+\begin{enumerate}[label=\textbf{SEC-NFR-001-\arabic*.}, leftmargin=*, align=left]
     \item The system must enforce role‑based access control (RBAC) for all user actions.
     \item All access to administrative functions must be restricted to users with appropriate privileges.
     \item User accounts must be subject to a formal provisioning and de‑provisioning process.
@@ -1966,7 +1966,7 @@ This section defines mandatory security requirements derived from INSA’s CMCSR
 \end{enumerate}
 
 \subsection{Cryptography (CMCSRS 6.18)}
-\begin{enumerate}[label=\textbf{SEC-NFR-002-\arabic*.}]
+\begin{enumerate}[label=\textbf{SEC-NFR-002-\arabic*.}, leftmargin=*, align=left]
     \item All data in transit must be encrypted using TLS 1.2 or higher.
     \item All sensitive data at rest must be encrypted using strong, INSA‑approved algorithms.
     \item Private keys and secrets must never be stored in plaintext.
@@ -1974,7 +1974,7 @@ This section defines mandatory security requirements derived from INSA’s CMCSR
 \end{enumerate}
 
 \subsection{Network Security (CMCSRS 5.7.c)}
-\begin{enumerate}[label=\textbf{SEC-NFR-003-\arabic*.}]
+\begin{enumerate}[label=\textbf{SEC-NFR-003-\arabic*.}, leftmargin=*, align=left]
     \item A host‑based firewall must be active and configured to allow only necessary ports.
     \item The internal network must be segmented into separate Docker networks.
     \item All unnecessary services and ports must be disabled.
@@ -1982,7 +1982,7 @@ This section defines mandatory security requirements derived from INSA’s CMCSR
 \end{enumerate}
 
 \subsection{Logging and Monitoring (CMCSRS 6.25)}
-\begin{enumerate}[label=\textbf{SEC-NFR-004-\arabic*.}]
+\begin{enumerate}[label=\textbf{SEC-NFR-004-\arabic*.}, leftmargin=*, align=left]
     \item All logs must be collected centrally and retained for at least one month.
     \item Security‑relevant events must be logged with timestamps and user identifiers.
     \item Regular vulnerability scanning must be performed weekly.
@@ -1990,7 +1990,7 @@ This section defines mandatory security requirements derived from INSA’s CMCSR
 \end{enumerate}
 
 \subsection{Incident Response and Business Continuity (CMCSRS 6.26, 6.19)}
-\begin{enumerate}[label=\textbf{SEC-NFR-005-\arabic*.}]
+\begin{enumerate}[label=\textbf{SEC-NFR-005-\arabic*.}, leftmargin=*, align=left]
     \item An incident response plan must be documented and tested annually.
     \item A business continuity plan with defined RTO and RPO must be maintained.
     \item Regular backups must be performed and stored off‑site.
@@ -1998,14 +1998,14 @@ This section defines mandatory security requirements derived from INSA’s CMCSR
 \end{enumerate}
 
 \subsection{Personnel Security (CMCSRS 5.6, 6.37)}
-\begin{enumerate}[label=\textbf{SEC-NFR-006-\arabic*.}]
+\begin{enumerate}[label=\textbf{SEC-NFR-006-\arabic*.}, leftmargin=*, align=left]
     \item All personnel with access to sensitive systems must undergo security clearance.
     \item Mandatory annual security awareness training must be provided.
     \item Job descriptions must include security responsibilities.
 \end{enumerate}
 
 \subsection{Compliance and Audit (CMCSRS 6.21, 6.22, 6.23)}
-\begin{enumerate}[label=\textbf{SEC-NFR-007-\arabic*.}]
+\begin{enumerate}[label=\textbf{SEC-NFR-007-\arabic*.}, leftmargin=*, align=left]
     \item The system must undergo an annual security audit by an INSA‑certified auditor.
     \item All information systems must be accredited before deployment.
     \item A compliance report must be submitted to INSA annually.
